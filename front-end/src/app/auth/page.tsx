@@ -127,7 +127,7 @@ export default function Home() {
       />
 
       <div className="homepage-container flex flex-col gap-20 pb-20">
-        بیی
+        auth
       </div>
     </main>
   );

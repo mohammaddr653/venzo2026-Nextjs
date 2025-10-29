@@ -1,9 +1,7 @@
 import "../assets/css/globals.css";
-import Footer from "@/components/common/footer";
 import { Toaster } from "sonner";
-import { iransans } from "./ui/fonts";
-import Header from "@/components/common/header";
-import ClientBootstrap from "@/components/common/clientBootstrap";
+import { iransans } from "./fonts";
+import Header from "@/components/header";
 
 export default function RootLayout({
   children,
@@ -13,12 +11,11 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`bg-white dark:bg-neutral-900 transition-colors duration-300 font-weight300 flex flex-col ${iransans.className} max-w-screen mx-auto`}
+        className={`bg-white border dark:bg-neutral-900 transition-colors duration-300 font-weight300 flex flex-col ${iransans.className} max-w-screen mx-auto`}
       >
         <Header></Header>
         {children}
-        <Footer></Footer>
-        <ClientBootstrap></ClientBootstrap>
+        <footer className="bg-red-500">footer</footer>
         <Toaster position="top-right" />
       </body>
     </html>

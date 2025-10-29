@@ -1,0 +1,32 @@
+div#header-container div.account-hover div.hidden-div {
+  visibility: hidden;
+  opacity: 0;
+  transition: all;
+  transition-delay: 100ms;
+  transition-duration: 300ms;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+div#header-container div.account-hover:hover div.hidden-div {
+  visibility: visible;
+  opacity: 1;
+}
+
+div#header-container div.account-hover div.hidden-div a,
+div#header-container div.account-hover div.hidden-div button {
+  text-wrap: nowrap;
+  padding: 5px 10px;
+  text-align: right;
+  transition: all 300ms;
+}
+div#header-container div.account-hover div.hidden-div a:hover,
+div#header-container div.account-hover div.hidden-div button:hover {
+  color: var(--color-primary);
+  text-shadow: 0 1px 1px var(--color-cu-neutral-700);
+  transition: all 300ms;
+}
+div#header-container div.account-hover div.hidden-div hr {
+  color: var(--color-cu-neutral-700);
+}

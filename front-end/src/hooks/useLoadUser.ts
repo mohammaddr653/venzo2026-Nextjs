@@ -5,7 +5,7 @@ import callManager from "./callManager";
 import { useUserStore } from "../store";
 
 const useLoadUser = () => {
-  const { call, loading } = callManager();
+  const { call } = callManager();
   const { user, setUser } = useUserStore();
 
   async function getAuthedUser() {
