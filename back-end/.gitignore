@@ -1,0 +1,8 @@
+node_modules
+uploads
+
+# note:remove client folder from gitignore before deploy to liara . because we need it
+client
+
+.env
+logfile.log

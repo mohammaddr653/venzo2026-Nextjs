@@ -1,0 +1,13 @@
+{
+  "app": "venzo2025-backend",
+  "port": 5000,
+  "build": {
+    "location": "iran"
+  },
+  "disks": [
+    {
+      "name": "venzo2025-disk",
+      "mountTo": "uploads"
+    }
+  ]
+}

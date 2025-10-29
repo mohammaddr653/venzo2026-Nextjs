@@ -1,0 +1,116 @@
+/* وقتی تیلویند رو اینجور اضافه کنی دستت بازتره */
+/* installed tailwind using vite method exepct the next 4 lines */
+/* this code makes all bootstrap icons vertical align middle */
+.bi::before {
+  vertical-align: middle;
+}
+
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-iransans), sans-serif;
+  }
+  input {
+    outline: none;
+  }
+  textarea {
+    outline: none;
+  }
+}
+
+/* شخصی سازی های تیلویند */
+@theme {
+  --color-primary: #169976;
+  --color-primary-glass: #167c61c9;
+  --color-secondary: #1dcd9f;
+  --color-neutral-primary: #11644e;
+  --color-cu-neutral-400: #f8f3e6;
+  --color-cu-neutral-500: #e7cc8f;
+  --color-cu-neutral-600: #d8d2c2;
+  --color-cu-neutral-700: #bbbbbb;
+  --color-cu-neutral-800: #4a4947;
+  --color-cu-neutral-900: #333;
+
+  --color-glass-shadow: rgba(0, 0, 0, 0.684);
+
+  --shadow-b-lean-300: 0 0.5px 3px rgba(0, 0, 0, 0.1);
+  --shadow-b-lean-light: 0 0.5px 2px #167c61c9;
+  --shadow-r-lean-light: 0px 0 4.5px 0.5px #167c61c9;
+  --shadow-b-card-300: 0 0 5px 1px #ab3e16;
+  --shadow-card-neutral: 0 0 5px 1px #bbbbbb;
+  --shadow-full-ring: 0 0 3px 2px #ab3e16;
+  --shadow-full-black: 0 0 1px 1px black;
+  --inset-full-444: inset 0 0 0px 1px #444;
+  --text-shadow-stroke: 0 0 5px var(--tw-text-shadow-color);
+
+  --spacing-1px: 1px;
+  --spacing-2px: 2px;
+  /* نهایت عرض */
+  --spacing-screen: 1616px;
+
+  --font-vazir: "vazir";
+
+  --font-weight-weight900: 900;
+  --font-weight-weight800: 800;
+  --font-weight-weight600: 600;
+  --font-weight-weight500: 500;
+  --font-weight-weight400: 400;
+  --font-weight-weight300: 300;
+  --font-weight-weight200: 200;
+  --font-weight-weight100: 100;
+
+  --text-size36: 36px;
+  --text-size32: 32px;
+  --text-size28: 28px;
+  --text-size24: 24px;
+  --text-size17: 17px;
+  --text-size16: 16px;
+  --text-size15: 15px;
+  --text-size14: 14px;
+  --text-size13: 13px;
+
+  --aspect-1353/555: 1353/555;
+  --aspect-284/170: 284/170;
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 53rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 100rem;
+}
+
+@layer components {
+  .cu-button-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700;
+  }
+
+  .cu-button-secondary {
+    @apply bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 
+
+sm	: (640px)
+md	: (768px)
+lg	: (1024px)
+xl	: (1280px)
+2xl	: (1536px)
+
+ */
