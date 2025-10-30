@@ -18,7 +18,7 @@ const MobMenuItem = ({ item, categories }: any) => {
         )}
         {item.type === "box" && <h4>{item.name}</h4>}
         {item.type === "link" && <Link href={item.link}>{item.name}</Link>}
-        {condition && <LeftSvg fill={"none"} width={20}></LeftSvg>}
+        {condition && <LeftSvg fill={"currentColor"} width={20}></LeftSvg>}
       </div>
       {condition && (
         <div className="childs">

@@ -1,8 +1,8 @@
 import "../assets/css/globals.css";
 import { Toaster } from "sonner";
 import { iransans } from "./fonts";
-import Header from "@/features/header/components/header";
 import ClientBootstrap from "@/components/clientBootstrap";
+import GoUp from "@/components/goUp";
 
 export default function RootLayout({
   children,
@@ -18,6 +18,7 @@ export default function RootLayout({
         <footer className="bg-red-500">footer</footer>
         <ClientBootstrap></ClientBootstrap>
         <Toaster position="top-right" />
+        <GoUp></GoUp>
       </body>
     </html>
   );
