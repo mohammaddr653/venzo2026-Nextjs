@@ -9,8 +9,18 @@ require("express-async-errors");
 require("dotenv").config();
 
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const app = express();
+
+// تنظیمات CORS
+app.use(
+  cors({
+    origin: process.env.ORIGIN_URL, // آدرس فرانت (Next.js)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // برای کوکی یا هدرهای خاص
+  })
+);
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());

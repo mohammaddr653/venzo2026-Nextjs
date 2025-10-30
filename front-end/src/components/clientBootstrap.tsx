@@ -5,17 +5,19 @@ import { useMobileMenuStore, useWidthStore } from "@/store";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/app/loading";
+import useLoadUser from "@/hooks/useLoadUser";
 
 const ClientBootstrap = () => {
   const { setWidth } = useWidthStore();
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
   const { mobileMenuShow, setMobileMenuShow } = useMobileMenuStore();
+  const { getAuthedUser } = useLoadUser();
 
   useEffect(() => {
-    const header = document.getElementsByTagName("header")[0];
+    const html = document.getElementsByTagName("html")[0];
     mobileMenuShow
-      ? header.classList.add("mobmenu-open")
-      : header.classList.remove("mobmenu-open");
+      ? html.classList.add("mobmenu-open")
+      : html.classList.remove("mobmenu-open");
   }, [mobileMenuShow]);
 
   function handleScroll() {
@@ -43,6 +45,7 @@ const ClientBootstrap = () => {
     };
     window.addEventListener("resize", handleResize);
     axios.defaults.withCredentials = true; //sends httponly cookies to the server by default
+    getAuthedUser(); //if token exist , set the user
     window.addEventListener("scroll", handleScroll, { passive: false });
     return () => {
       window.removeEventListener("scroll", handleScroll);

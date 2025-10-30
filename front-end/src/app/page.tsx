@@ -1,3 +1,4 @@
+import Header from "@/features/header/components/header";
 import { Metadata } from "next";
 
 const baseURL =
@@ -88,126 +89,129 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "محمد امین درخشنده",
-            url: `${baseURL}`,
-            jobTitle: "توسعه‌دهنده وب",
-            sameAs: [
-              "https://www.instagram.com/mohammaddr653/?hl=fa",
-              "https://telegram.me/mohammaddr653",
-              "https://www.linkedin.com/in/amin-derakhshande/",
-              "https://eitaa.com/mohammaddr653",
-            ],
-            description:
-              "سلام! من محمد امین درخشنده هستم، توسعه‌دهنده وب. در این رزومه آنلاین می‌توانید نمونه کارها و مهارت‌های من را ببینید و با من در ارتباط باشید.",
-            knowsAbout: [
-              "Next.js",
-              "React",
-              "Typescript",
-              "Javascript",
-              "Nodejs",
-              "Express",
-              "Frontend Development",
-              "Full Stack Development",
-              "طراحی سایت",
-              "برنامه نویسی وب",
-            ],
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `${baseURL}`,
-            },
-          }),
-        }}
-      />
+    <>
+      <Header focus={false}></Header>
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "محمد امین درخشنده",
+              url: `${baseURL}`,
+              jobTitle: "توسعه‌دهنده وب",
+              sameAs: [
+                "https://www.instagram.com/mohammaddr653/?hl=fa",
+                "https://telegram.me/mohammaddr653",
+                "https://www.linkedin.com/in/amin-derakhshande/",
+                "https://eitaa.com/mohammaddr653",
+              ],
+              description:
+                "سلام! من محمد امین درخشنده هستم، توسعه‌دهنده وب. در این رزومه آنلاین می‌توانید نمونه کارها و مهارت‌های من را ببینید و با من در ارتباط باشید.",
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "Typescript",
+                "Javascript",
+                "Nodejs",
+                "Express",
+                "Frontend Development",
+                "Full Stack Development",
+                "طراحی سایت",
+                "برنامه نویسی وب",
+              ],
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": `${baseURL}`,
+              },
+            }),
+          }}
+        />
 
-      <div className="homepage-container flex flex-col gap-20 pb-20">
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-        <p>asdfef</p>
-      </div>
-    </main>
+        <div className="homepage-container flex flex-col gap-20 pb-20">
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+          <p>asdfef</p>
+        </div>
+      </main>
+    </>
   );
 }

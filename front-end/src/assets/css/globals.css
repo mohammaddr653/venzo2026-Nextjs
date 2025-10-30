@@ -15,7 +15,6 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     font-family: var(--font-iransans), sans-serif;
   }
   input {
@@ -99,6 +98,10 @@
 
   .cu-header-focus {
     @apply scrolled:bg-[#ffffffc3] scrolled:backdrop-blur-md scrolled:shadow-b-lean-300 hover:bg-[#ffffffc3] hover:backdrop-blur-md hover:shadow-b-lean-300;
+  }
+
+  .cu-header-absolute-focus {
+    @apply bg-[#ffffffc3] backdrop-blur-md shadow-b-lean-300;
   }
 }
 

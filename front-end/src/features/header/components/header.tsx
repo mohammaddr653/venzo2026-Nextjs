@@ -10,7 +10,7 @@ import DeskMenuItem from "./desktop-menuItem";
 import MobileNav from "./mobileNav";
 import Logo from "@/components/logo";
 
-const Header = async () => {
+const Header = async ({ focus }: any) => {
   const response = (await (
     await fetch(`${SERVER_API}/categories`)
   ).json()) as any;
@@ -19,7 +19,9 @@ const Header = async () => {
     <header className={`w-full max-w-screen fixed z-50`}>
       <div
         id="header-container"
-        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 bg-transparent cu-header-focus`}
+        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 bg-transparent cu-header-focus ${
+          focus ? "cu-header-absolute-focus" : null
+        }`}
       >
         <Logo></Logo>
         <div className="menu hidden md:flex flex-row justify-between w-full items-stretch">
@@ -39,7 +41,7 @@ const Header = async () => {
                   })
                 : null}
               <div
-                className={`glass absolute w-[100vw] h-[100vh] bg-glass-shadow top-full right-0 z-30 transition-all duration-300 delay-150 invisible opacity-0`}
+                className={`glass absolute w-[100vw] max-w-screen h-[100vh] bg-glass-shadow top-full right-0 z-30 transition-all duration-300 delay-150 invisible opacity-0`}
               ></div>
             </ul>
           </nav>

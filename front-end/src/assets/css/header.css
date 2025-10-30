@@ -4,20 +4,16 @@ div#header-container nav.desktop-nav ul li div h4 {
 
 /* first column */
 
-div#header-container nav.desktop-nav li.mega-menu {
-  position: relative;
-}
-
-div#header-container nav.desktop-nav li.mega-menu:hover~div.glass {
+div#header-container nav.desktop-nav li.mega-menu:hover ~ div.glass {
   visibility: visible;
   opacity: 1;
 }
 
-div#header-container nav.desktop-nav li.mega-menu>div.childs a {
+div#header-container nav.desktop-nav li.mega-menu > div.childs a {
   color: var(--color-neutral-800);
   transition: color 300ms;
 }
-div#header-container nav.desktop-nav li.mega-menu>div.childs a:hover {
+div#header-container nav.desktop-nav li.mega-menu > div.childs a:hover {
   color: red;
   cursor: pointer;
 }
@@ -27,7 +23,9 @@ div#header-container nav.desktop-nav li.mega-menu > div.childs {
   opacity: 0;
   position: absolute;
   top: calc(100% + 5px);
+  right: calc(var(--spacing) * 20);
   width: 70vw;
+  max-width: calc(var(--spacing-screen) - (var(--spacing) * 40));
   height: 50vh;
   border-radius: 5px;
   background-color: white;
@@ -230,4 +228,3 @@ div#header-container nav.mobile-nav ul li.open > div.childs {
 div#header-container nav.mobile-nav ul li.open > div.head > svg {
   transform: rotate(-90deg);
 }
-

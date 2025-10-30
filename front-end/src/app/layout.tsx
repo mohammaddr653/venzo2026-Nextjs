@@ -14,7 +14,6 @@ export default function RootLayout({
       <body
         className={`bg-white border dark:bg-neutral-900 transition-colors duration-300 font-weight200 text-size16 flex flex-col ${iransans.className} max-w-screen mx-auto`}
       >
-        <Header></Header>
         {children}
         <footer className="bg-red-500">footer</footer>
         <ClientBootstrap></ClientBootstrap>
