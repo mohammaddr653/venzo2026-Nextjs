@@ -61,7 +61,7 @@ const Header = async ({ focus }: any) => {
         <MenuButton></MenuButton>
         <MobileMenuOverlay></MobileMenuOverlay>
         <div
-          className={`mobileMenu flex flex-col md:hidden gap-5 items-stretch h-[100dvh] w-[90%] dark:shadow-r-lean-light bg-white dark:bg-neutral-900 absolute transition-[left] duration-500 top-0 left-[-100%] mobmenu-open:left-0`}
+          className={`mobileMenu overflow-y-scroll flex flex-col md:hidden gap-5 items-stretch h-[100dvh] w-[90%] dark:shadow-r-lean-light bg-white dark:bg-neutral-900 absolute transition-[left] duration-500 top-0 left-[-100%] mobmenu-open:left-0`}
         >
           <div className="flex justify-between items-center gap-2 p-4 px-5">
             <h1>وانیمارت</h1>

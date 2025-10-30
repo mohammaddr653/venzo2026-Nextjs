@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/app/loading";
 import useLoadUser from "@/hooks/useLoadUser";
+import { usePathname } from "next/navigation";
 
 const ClientBootstrap = () => {
   const { setWidth } = useWidthStore();
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
   const { mobileMenuShow, setMobileMenuShow } = useMobileMenuStore();
   const { getAuthedUser } = useLoadUser();
+  const pathname = usePathname();
 
   useEffect(() => {
     const html = document.getElementsByTagName("html")[0];
@@ -19,6 +21,10 @@ const ClientBootstrap = () => {
       ? html.classList.add("mobmenu-open")
       : html.classList.remove("mobmenu-open");
   }, [mobileMenuShow]);
+
+  useEffect(() => {
+    setMobileMenuShow(false);
+  }, [pathname]);
 
   function handleScroll() {
     let lastScrollTop = 0;

@@ -6,6 +6,7 @@ import Img from "../../../components/img";
 import Link from "next/link";
 import axios from "axios";
 import callManager from "@/hooks/callManager";
+import ExitSvg from "@/components/icons/exit-svg";
 
 const AccountButtons = (props: any) => {
   const { call } = callManager();
@@ -111,11 +112,7 @@ const AccountButtons = (props: any) => {
               onClick={userLogout}
               className="cursor-pointer font-weight300 text-red-600 text-size14 flex flex-row gap-2 items-center"
             >
-              <img
-                src="/images/icons/icons8-exit-50.png"
-                alt="exit-icon"
-                width={40}
-              />
+              <ExitSvg fill={"currentColor"} width={40}></ExitSvg>
               خروج از حساب
             </button>
           </div>
