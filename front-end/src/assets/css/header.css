@@ -1,0 +1,233 @@
+div#header-container nav.desktop-nav ul li div h4 {
+  cursor: pointer;
+}
+
+/* first column */
+
+div#header-container nav.desktop-nav li.mega-menu {
+  position: relative;
+}
+
+div#header-container nav.desktop-nav li.mega-menu:hover~div.glass {
+  visibility: visible;
+  opacity: 1;
+}
+
+div#header-container nav.desktop-nav li.mega-menu>div.childs a {
+  color: var(--color-neutral-800);
+  transition: color 300ms;
+}
+div#header-container nav.desktop-nav li.mega-menu>div.childs a:hover {
+  color: red;
+  cursor: pointer;
+}
+
+div#header-container nav.desktop-nav li.mega-menu > div.childs {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 20px);
+  width: 70vw;
+  height: 50vh;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid var(--color-neutral-300);
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-delay: 150ms;
+  z-index: 101;
+}
+div#header-container nav.desktop-nav li.mega-menu > div.childs > ul {
+  width: 20%;
+  border-left: 1px solid var(--color-neutral-300);
+  display: flex;
+  padding: 15px 0;
+  flex-direction: column;
+  height: 100%;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.head {
+  transition: background-color 300ms;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.head
+  a {
+  display: block;
+  padding: 5px 15px;
+}
+div#header-container nav.desktop-nav li.mega-menu:hover > div.childs {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* second column */
+
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  font-weight: 200;
+  height: 100%;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-delay: 100ms;
+  overflow-y: scroll;
+  padding: 20px;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul {
+  columns: 3;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li:hover
+  > div.head {
+  background-color: var(--color-neutral-200);
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu:hover
+  > div.childs
+  > ul
+  > li:hover
+  > div.childs {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* third column */
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul
+  > li {
+  height: fit-content;
+  break-inside: avoid;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul
+  > li
+  > div.head {
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul
+  > li
+  > div.head
+  > a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  justify-content: start;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul
+  > li
+  > div.head
+  > a::before {
+  content: "";
+  vertical-align: middle;
+  display: block;
+  border: 2px solid red;
+  border-radius: 5px;
+  height: 20px;
+  background-color: red;
+}
+div#header-container
+  nav.desktop-nav
+  li.mega-menu
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul
+  > li
+  > div.childs
+  > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-right: 10px;
+}
+
+div#header-container nav.mobile-nav ul li.mega-menu {
+  border: 1px solid var(--color-neutral-300);
+  border-radius: 5px;
+}
+
+div#header-container nav.mobile-nav ul li > div.head {
+  padding: 10px;
+}
+div#header-container nav.mobile-nav ul li > div.childs {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition-property: grid-template-rows;
+  transition-duration: 300ms;
+}
+div#header-container nav.mobile-nav ul li > div.head > svg {
+  transform: rotate(0);
+}
+div#header-container nav.mobile-nav ul li > div.childs > ul {
+  overflow: hidden;
+}
+div#header-container nav.mobile-nav ul li.open > div.childs {
+  grid-template-rows: 1fr;
+}
+div#header-container nav.mobile-nav ul li.open > div.head > svg {
+  transform: rotate(-90deg);
+}
+

@@ -10,7 +10,8 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant mobmenu-open (&:where(.mobmenu-open, .mobmenu-open *));
+@custom-variant scrolled (&:where(.scrolled, .scrolled *));
 
 @layer base {
   html {

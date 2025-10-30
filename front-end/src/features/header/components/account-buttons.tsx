@@ -1,8 +1,8 @@
 "use client";
 import { useUserStore } from "@/store";
-import { SERVER_API, SERVER_URL } from "../../config";
-import "../assets/css/account-buttons.css";
-import Img from "./img";
+import { SERVER_API, SERVER_URL } from "../../../../config";
+import "../../../assets/css/account-buttons.css";
+import Img from "../../../components/img";
 import Link from "next/link";
 import axios from "axios";
 import callManager from "@/hooks/callManager";

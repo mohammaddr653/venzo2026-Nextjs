@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import "../assets/css/account-buttons.css";
+import "../../../assets/css/account-buttons.css";
 import { useUserStore } from "@/store";
 
 const CartCounter = (props: any) => {
