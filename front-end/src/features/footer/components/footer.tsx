@@ -14,7 +14,7 @@ const Footer = () => {
             <div className=" w-full flex flex-col gap-8">
               <div className="flex flex-row justify-between items-center">
                 <Logo></Logo>
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row gap-2">
                   <SocialIcons
                     width={"20px"}
                     height={"20px"}

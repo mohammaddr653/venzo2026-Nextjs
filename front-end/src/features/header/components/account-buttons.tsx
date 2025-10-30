@@ -7,6 +7,7 @@ import Link from "next/link";
 import axios from "axios";
 import callManager from "@/hooks/callManager";
 import ExitSvg from "@/components/icons/exit-svg";
+import UserSvg from "@/components/icons/user-svg";
 
 const AccountButtons = (props: any) => {
   const { call } = callManager();
@@ -25,12 +26,8 @@ const AccountButtons = (props: any) => {
       {!user ? (
         props.mode === "desktop" ? (
           <>
-            <Link href={"/auth/login"}>
-              <img
-                src="/icons/icons8-user-default-64 (1).png"
-                width={40}
-                alt="user-icon"
-              />
+            <Link href={"/auth/login"} className="text-primary">
+              <UserSvg width={35} fill={"currentColor"}></UserSvg>
             </Link>
           </>
         ) : (
