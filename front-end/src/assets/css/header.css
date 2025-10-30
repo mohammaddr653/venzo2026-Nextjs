@@ -26,7 +26,7 @@ div#header-container nav.desktop-nav li.mega-menu > div.childs {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: calc(100% + 20px);
+  top: calc(100% + 5px);
   width: 70vw;
   height: 50vh;
   border-radius: 5px;

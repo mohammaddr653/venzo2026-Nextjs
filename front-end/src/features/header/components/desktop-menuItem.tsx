@@ -2,18 +2,24 @@ import Link from "next/link";
 
 const DeskMenuItem = ({ item, categories }: any) => {
   return (
-    <li
-      className={item.display}
-    >
-      <div className="head">
+    <li className={item.display}>
+      <div className="head h-full">
         {item.type === "shop" && (
-          <Link href={`/shop/${item._id}`}>{item.name}</Link>
+          <Link href={`/shop/${item._id}`} className="flex justify-around items-center h-full">
+            {item.name}
+          </Link>
         )}
         {item.type === "archive" && (
-          <Link href={`/archive/${item._id}`}>{item.name}</Link>
+          <Link href={`/archive/${item._id}`} className="flex justify-around items-center h-full">
+            {item.name}
+          </Link>
         )}
-        {item.type === "box" && <h4>{item.name}</h4>}
-        {item.type === "link" && <Link href={item.link}>{item.name}</Link>}
+        {item.type === "box" && <h4 className="flex justify-around items-center h-full">{item.name}</h4>}
+        {item.type === "link" && (
+          <Link href={item.link} className="flex justify-around items-center h-full">
+            {item.name}
+          </Link>
+        )}
       </div>
       {categories?.length &&
         categories.some((category: any) => category.motherId === item._id) && (

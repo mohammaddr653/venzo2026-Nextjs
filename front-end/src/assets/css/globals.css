@@ -96,6 +96,10 @@
   .cu-button-secondary {
     @apply bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300;
   }
+
+  .cu-header-focus {
+    @apply scrolled:bg-[#ffffffc3] scrolled:backdrop-blur-md scrolled:shadow-b-lean-300 hover:bg-[#ffffffc3] hover:backdrop-blur-md hover:shadow-b-lean-300;
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {

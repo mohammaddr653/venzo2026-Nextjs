@@ -1,5 +1,3 @@
-import { nastaliq } from "@/app/fonts";
-import Link from "next/link";
 import SearchBar from "./search-bar";
 import CartCounter from "./cart-counter";
 import AccountButtons from "./account-buttons";
@@ -10,6 +8,7 @@ import MobileMenuOverlay from "./mobileMenu-overlay";
 import { SERVER_API } from "../../../../config";
 import DeskMenuItem from "./desktop-menuItem";
 import MobileNav from "./mobileNav";
+import Logo from "@/components/logo";
 
 const Header = async () => {
   const response = (await (
@@ -20,15 +19,13 @@ const Header = async () => {
     <header className={`w-full max-w-screen fixed z-50`}>
       <div
         id="header-container"
-        className={`relative z-50 flex flex-row gap-10 justify-start items-center px-5 md:px-20 py-3 transition-all duration-300 delay-150 bg-transparent scrolled:bg-red-800 hover:bg-red-800`}
+        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 bg-transparent cu-header-focus`}
       >
-        <Link href={"/"} className={`${nastaliq.className}`}>
-          <h1>وانیمارت</h1>
-        </Link>
-        <div className="menu hidden md:flex flex-row justify-between w-full items-center">
+        <Logo></Logo>
+        <div className="menu hidden md:flex flex-row justify-between w-full items-stretch">
           <nav className="desktop-nav">
             <ul
-              className={`flex px-0 flex-row gap-5 font-weight200 transition-all duration-300 delay-150 `}
+              className={`flex px-0 h-full flex-row gap-5 font-weight200 transition-all duration-300 delay-150 `}
             >
               {categories?.length
                 ? categories.map((category: any, index: any) => {
