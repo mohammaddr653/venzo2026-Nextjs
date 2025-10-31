@@ -9,6 +9,7 @@ import { SERVER_API } from "../../../../config";
 import DeskMenuItem from "./desktop-menuItem";
 import MobileNav from "./mobileNav";
 import Logo from "@/components/logo";
+import ScreenWrapper from "@/components/screen-wrapper";
 
 const Header = async ({ focus }: any) => {
   const response = (await (
@@ -40,9 +41,11 @@ const Header = async ({ focus }: any) => {
                     ) : null;
                   })
                 : null}
-              <div
-                className={`glass absolute w-[100vw] max-w-screen h-[100vh] bg-glass-shadow top-full right-0 z-30 transition-all duration-300 delay-150 invisible opacity-0`}
-              ></div>
+              <ScreenWrapper
+                className={
+                  "glass bg-glass-shadow top-full w-full h-[100vh] right-0 z-30 transition-all duration-300 delay-150 invisible opacity-0"
+                }
+              ></ScreenWrapper>
             </ul>
           </nav>
           <div className="flex flex-row gap-2 items-center">

@@ -3,16 +3,13 @@
 "use client";
 import { useMobileMenuStore, useWidthStore } from "@/store";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Loading from "@/app/loading";
-import useLoadUser from "@/hooks/useLoadUser";
 import { usePathname } from "next/navigation";
 
 const ClientBootstrap = () => {
   const { setWidth } = useWidthStore();
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
   const { mobileMenuShow, setMobileMenuShow } = useMobileMenuStore();
-  const { getAuthedUser } = useLoadUser();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -50,8 +47,6 @@ const ClientBootstrap = () => {
       setWidth(innerWidth);
     };
     window.addEventListener("resize", handleResize);
-    axios.defaults.withCredentials = true; //sends httponly cookies to the server by default
-    getAuthedUser(); //if token exist , set the user
     window.addEventListener("scroll", handleScroll, { passive: false });
     return () => {
       window.removeEventListener("scroll", handleScroll);

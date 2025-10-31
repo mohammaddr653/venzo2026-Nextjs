@@ -1,6 +1,6 @@
 "use client";
 import { useUserStore } from "@/store";
-import { SERVER_API, SERVER_URL } from "../../../../config";
+import { SERVER_API } from "../../../../config";
 import "../../../assets/css/account-buttons.css";
 import Img from "../../../components/img";
 import Link from "next/link";
