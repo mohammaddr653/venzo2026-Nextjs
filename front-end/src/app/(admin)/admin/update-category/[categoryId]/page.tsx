@@ -2,36 +2,34 @@
 
 import Img from "@/components/img";
 import Library from "@/components/library";
-import axios from "axios";
-import { SERVER_API } from "../../../../../config";
-import { useEffect, useRef, useState } from "react";
-import useLoadCategories from "@/hooks/useLoadCategories";
-import { useUserStore } from "@/store";
-import callManager from "@/hooks/callManager";
-import { buildList } from "@/helpers/buildList";
 import { buildSelectionList } from "@/helpers/buildSelectionList";
-import { useRouter } from "next/navigation";
+import callManager from "@/hooks/callManager";
+import { useUserStore } from "@/store";
+import { useEffect, useRef, useState } from "react";
+import { SERVER_API } from "../../../../../../config";
+import axios from "axios";
+import useLoadCategories from "@/hooks/useLoadCategories";
+import { useParams } from "next/navigation";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
 
-export default function CategoriesPage() {
+export default function UpdateCategoryPage() {
   const { call } = callManager();
+  const { categoryId } = useParams<{categoryId:string}>();
   const { categories, loadCategories } = useLoadCategories();
-  const list = useRef<HTMLUListElement>(null);
-  const selectionList = useRef<HTMLSelectElement>(null);
   const { user } = useUserStore();
-  const router = useRouter();
-  const [libShow, setLibShow] = useState(false);
-  const [selectedImgs, setSelectedImgs] = useState<any>([]);
   const [formData, setFormData] = useState({
     name: "",
     motherId: "",
     type: "",
     link: "",
     img: "",
-    display: "ordinary",
+    display: "",
   });
+  const selectionList = useRef<HTMLSelectElement>(null);
+  const [libShow, setLibShow] = useState(false);
+  const [selectedImgs, setSelectedImgs] = useState<any>([]);
 
   useEffect(() => {
     if (selectedImgs.length) {
@@ -45,6 +43,42 @@ export default function CategoriesPage() {
     }
   }, [selectedImgs]);
 
+  useEffect(() => {
+    buildSelectionList(
+      selectionList,
+      categories,
+      "root",
+      "دسته بندی مادر",
+      categoryId
+    );
+  }, [categories]);
+
+  async function loadOneCategory() {
+    const response = await call(
+      axios.get(SERVER_API + `/admin/dashboard/categories/${categoryId}`),
+      false
+    );
+    const matchedCategory = response.data.data;
+    setFormData({
+      ...formData,
+      name: matchedCategory.name,
+      motherId: matchedCategory.motherId,
+      type: matchedCategory.type,
+      link: matchedCategory.link,
+      display: matchedCategory.display,
+    });
+    if (matchedCategory.img)
+      setSelectedImgs((prev: any) => {
+        return [...prev, matchedCategory.img];
+      });
+  }
+  useEffect(() => {
+    if (!categories.length) {
+      loadCategories();
+    }
+    loadOneCategory();
+  }, []);
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -53,87 +87,55 @@ export default function CategoriesPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  async function refresh() {
-    setFormData({
-      name: "",
-      motherId: "",
-      type: "",
-      link: "",
-      img: "",
-      display: "ordinary",
-    });
-    setSelectedImgs([]);
-    loadCategories();
-  }
-
-  useEffect(() => {
-    refresh();
-  }, []);
-
-  //نوع دسته بندی مادر بطور پیشفرض به عنوان نوع دسته بندی جدید قرار میگیرد
-  useEffect(() => {
-    const motherCat = categories.find((item) => item._id === formData.motherId);
-    if (motherCat) setFormData({ ...formData, type: motherCat.type });
-  }, [formData.motherId]);
-
-  useEffect(() => {
-    buildList(list, categories, handleDelete, handleUpdate, false, null, null);
-    buildSelectionList(selectionList, categories, "", "دسته بندی مادر", null);
-  }, [categories]);
-
-  const handleDelete = async (categoryId: any) => {
-    const response = await call(
-      axios.delete(SERVER_API + `/admin/dashboard/categories/${categoryId}`),
-      true
-    );
-    refresh();
-  };
-
-  const handleUpdate = async (categoryId: any) => {
-    router.push(`/admin/update-category/${categoryId}`);
-  };
-
-  const handleRefresh = () => {
-    refresh();
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const response = await call(
-      axios.post(SERVER_API + "/admin/dashboard/categories", formData),
+      axios.put(
+        SERVER_API + `/admin/dashboard/categories/${categoryId}`,
+        formData
+      ),
       true
     );
-    refresh();
   };
 
   return (
     <div>
-      <h1>مدیریت دسته بندی ها</h1>
-      <div className="bg-red-300">
-        <form onSubmit={handleSubmit}>
+      <h1>مشاهده یک دسته بندی</h1>
+      <div className="my-form my-3">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white flex flex-col gap-3 justify-center align-middle shadow-md p-3 rounded"
+        >
           <input
             type="text"
-            name="name"
+            className="border rounded p-3"
             placeholder="name"
-            className="border"
-            value={formData.name}
+            name="name"
+            value={formData?.name}
             onChange={handleChange}
           />
           <select
             id="motherId"
             name="motherId"
-            value={formData.motherId}
+            value={formData?.motherId}
             onChange={handleChange}
             className="border"
             ref={selectionList}
           >
-            {/* dynamic */}
+            {categories?.map((category: any, index: any) => {
+              if (category._id !== categoryId) {
+                return (
+                  <option key={index} value={category._id}>
+                    {category.name}
+                  </option>
+                );
+              }
+            })}
           </select>
-          <br />
           <select
             id="type"
             name="type"
-            value={formData.type}
+            value={formData?.type}
             onChange={handleChange}
             className="border"
           >
@@ -143,13 +145,12 @@ export default function CategoriesPage() {
             <option value="shop">فروشگاه</option>
             <option value="archive">آرشیو</option>
           </select>
-          <br />
           <h4>آدرس لینک تنها برای دسته بندی های نوع لینک بکار می آید</h4>
           <input
             type="text"
             name="link"
             placeholder="link"
-            value={formData.link}
+            value={formData?.link}
             className="border"
             onChange={handleChange}
           />
@@ -189,15 +190,8 @@ export default function CategoriesPage() {
             ) : null}
           </div>
 
-          <button>ساخت دسته بندی</button>
+          <button>بروزرسانی</button>
         </form>
-      </div>
-      <div className="bg-blue-300">
-        <button onClick={handleRefresh}>refresh</button>
-        <h1>لیست دسته بندی ها</h1>
-        <ul className="bg-green-300 p-2" ref={list}>
-          {/* dynamic */}
-        </ul>
       </div>
       <div className="bg-sky-600">this is tailwind</div>
       <div className="bg-sky-300">
