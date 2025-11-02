@@ -1,7 +1,7 @@
 "use client";
 
 import Img from "@/components/img";
-import Library from "@/components/library";
+import Library from "@/features/admin/components/library";
 import axios from "axios";
 import { SERVER_API } from "../../../../../config";
 import { useEffect, useRef, useState } from "react";

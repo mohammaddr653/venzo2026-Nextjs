@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Img from "./img";
+import Img from "../../../components/img";
 import useLoadMedias from "@/hooks/useLoadMedias";
 
 interface LibraryProps {

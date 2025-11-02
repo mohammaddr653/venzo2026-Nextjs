@@ -7,7 +7,7 @@ import { SERVER_API } from "../../../../../../config";
 import axios from "axios";
 import Img from "@/components/img";
 import useLoadBanners from "@/hooks/useLoadBanners";
-import Library from "@/components/library";
+import Library from "@/features/admin/components/library";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";

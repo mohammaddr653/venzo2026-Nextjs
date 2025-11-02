@@ -7,6 +7,8 @@ export const DEFAULT_IMAGE =
 
 export const SITE_KEY = process.env.NEXT_PUBLIC_SITE_KEY;
 
+export const TMCE_API_KEY = process.env.NEXT_PUBLIC_TINYMCE_KEY;
+
 //same on index.css
 export const BREAK_POINTS = {
   sm: 640,

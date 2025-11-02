@@ -1,7 +1,7 @@
 "use client";
 
 import Img from "@/components/img";
-import Library from "@/components/library";
+import Library from "@/features/admin/components/library";
 import { buildSelectionList } from "@/helpers/buildSelectionList";
 import callManager from "@/hooks/callManager";
 import { useUserStore } from "@/store";
@@ -16,7 +16,7 @@ const baseURL =
 
 export default function UpdateCategoryPage() {
   const { call } = callManager();
-  const { categoryId } = useParams<{categoryId:string}>();
+  const { categoryId } = useParams<{ categoryId: string }>();
   const { categories, loadCategories } = useLoadCategories();
   const { user } = useUserStore();
   const [formData, setFormData] = useState({
