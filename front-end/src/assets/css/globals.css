@@ -16,6 +16,7 @@
 @layer base {
   html {
     font-family: var(--font-iransans), sans-serif;
+    background-color: rgba(0, 0, 0, 0.038);
   }
   input {
     outline: none;
