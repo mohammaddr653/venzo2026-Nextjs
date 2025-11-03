@@ -44,21 +44,29 @@ const AccountButtons = (props: any) => {
             <Img
               pic={user?.avatar}
               sizes={"500px"}
-              className={"rounded-full aspect-square object-cover"}
-              width={40}
+              className={
+                "rounded-full aspect-square min-w-[35px] w-[35px] object-cover"
+              }
               alt="user-avatar"
             ></Img>
-            <div className="hidden-div py-3 absolute flex flex-column gap-2 rounded-xl bg-white shadow-sm shadow-cu-neutral-900 top-full left-full">
+            <div className="hidden-div py-3 absolute flex flex-column rounded-xl bg-primary/80 border border-primary top-full mt-2 left-full">
               {user?.isadmin ? (
                 <>
-                  <Link href={"/admin"}>پنل ادمین</Link> <hr />
+                  <Link className="cu-account-button" href={"/admin"}>
+                    پنل ادمین
+                  </Link>
                 </>
               ) : null}
-              <Link href={"/user"}>حساب کاربری</Link>
-              <hr />
-              <Link href={"/cart"}>سبد خرید</Link>
-              <hr />
-              <button className="cursor-pointer" onClick={userLogout}>
+              <Link className="cu-account-button" href={"/user"}>
+                حساب کاربری
+              </Link>
+              <Link className="cu-account-button" href={"/cart"}>
+                سبد خرید
+              </Link>
+              <button
+                className="cu-account-button"
+                onClick={userLogout}
+              >
                 خروج از حساب
               </button>
             </div>

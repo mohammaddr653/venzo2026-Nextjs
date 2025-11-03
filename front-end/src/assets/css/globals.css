@@ -104,6 +104,10 @@
   .cu-header-absolute-focus {
     @apply bg-[#ffffffc3] backdrop-blur-md shadow-b-lean-300;
   }
+
+  .cu-account-button {
+    @apply text-white cursor-pointer text-shadow-md text-shadow-neutral-primary/80 text-sm font-weight300
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {
