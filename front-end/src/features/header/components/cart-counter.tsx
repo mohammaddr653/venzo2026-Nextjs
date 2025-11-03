@@ -11,8 +11,8 @@ const CartCounter = () => {
     <>
       {user ? (
         <div>
-          <Link href={"/cart"} className="m-0 p-0 text-neutral-primary">
-            <CartSvg width={33} fill={"currentColor"}></CartSvg>
+          <Link href={"/cart"} className="flex border rounded-full m-0 p-1.5 justify-center items-center text-neutral-primary border-primary/70 hover:bg-primary transition-all duration-300 hover:text-white">
+            <CartSvg width={25} fill={"currentColor"}></CartSvg>
           </Link>
         </div>
       ) : null}

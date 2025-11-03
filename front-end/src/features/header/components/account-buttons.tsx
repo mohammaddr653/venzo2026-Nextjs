@@ -40,12 +40,12 @@ const AccountButtons = (props: any) => {
         )
       ) : props.mode === "desktop" ? (
         <>
-          <div className="account-hover relative shadow-sm shadow-cu-neutral-900 rounded-full flex justify-center items-center">
+          <div className="account-hover relative rounded-full flex justify-start items-center h-full gap-1">
             <Img
               pic={user?.avatar}
               sizes={"500px"}
               className={
-                "rounded-full aspect-square min-w-[35px] w-[35px] object-cover"
+                "rounded-full aspect-square h-full object-cover"
               }
               alt="user-avatar"
             ></Img>
@@ -63,10 +63,7 @@ const AccountButtons = (props: any) => {
               <Link className="cu-account-button" href={"/cart"}>
                 سبد خرید
               </Link>
-              <button
-                className="cu-account-button"
-                onClick={userLogout}
-              >
+              <button className="cu-account-button" onClick={userLogout}>
                 خروج از حساب
               </button>
             </div>

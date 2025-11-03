@@ -48,15 +48,15 @@ const Header = async ({ focus }: any) => {
               ></ScreenWrapper>
             </ul>
           </nav>
-          <div className="flex flex-row gap-2 items-center">
-            <div className="w-full px-0">
+          <div className="flex flex-row gap-2 items-stretch h-[40px] my-auto">
+            <div className="px-0">
               <SearchBar className={"w-auto"}></SearchBar>
             </div>
-            <span className="block bg-cu-neutral-700 w-1px h-6 rounded-3xl border-0"></span>
-            <div className="block">
+            <span className=" bg-cu-neutral-700 w-1px h-6 my-auto rounded-3xl border-0"></span>
+            <div className="">
               <CartCounter></CartCounter>
             </div>
-            <div className="block">
+            <div className="shrink-0">
               <AccountButtons mode={"desktop"}></AccountButtons>
             </div>
           </div>
