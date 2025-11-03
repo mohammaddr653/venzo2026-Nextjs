@@ -8,7 +8,7 @@ const SearchBar = (props: any) => {
       </span>
       <input
         type="text"
-        className={` font-weight300 py-2 w-full px-1 text-size14 ${props.className} text-primary`}
+        className={` font-weight300 py-2 w-full px-1 text-size14 ${props.className} text-neutral-primary`}
         placeholder="جستجو..."
       />
     </div>

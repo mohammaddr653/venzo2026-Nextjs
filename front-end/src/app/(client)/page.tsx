@@ -1,3 +1,4 @@
+import Greetings from "@/features/greetings/components/greetings";
 import Header from "@/features/header/components/header";
 import { Metadata } from "next";
 
@@ -129,7 +130,10 @@ export default function Home() {
           }}
         />
 
-        <div className="homepage-container flex flex-col gap-20 pb-20">
+        <div className="homepage-container flex flex-col gap-20 pb-20 pt-20">
+          <div className="lg:px-20 px-0">
+            <Greetings></Greetings>
+          </div>
           <p>asdfef</p>
           <p>asdfef</p>
           <p>asdfef</p>

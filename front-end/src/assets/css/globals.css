@@ -98,7 +98,7 @@
   }
 
   .cu-header-focus {
-    @apply scrolled:bg-[#ffffffc3] scrolled:backdrop-blur-md scrolled:shadow-b-lean-300 hover:bg-[#ffffffc3] hover:backdrop-blur-md hover:shadow-b-lean-300;
+    @apply bg-transparent scrolled:bg-[#ffffffc3] scrolled:backdrop-blur-md scrolled:shadow-b-lean-300 hover:bg-[#ffffffc3] hover:backdrop-blur-md hover:shadow-b-lean-300;
   }
 
   .cu-header-absolute-focus {

@@ -20,7 +20,7 @@ const Header = async ({ focus }: any) => {
     <header className={`w-full max-w-screen fixed z-50`}>
       <div
         id="header-container"
-        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 bg-transparent cu-header-focus ${
+        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 cu-header-focus ${
           focus ? "cu-header-absolute-focus" : null
         }`}
       >
