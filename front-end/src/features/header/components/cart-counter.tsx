@@ -10,11 +10,12 @@ const CartCounter = () => {
   return (
     <>
       {user ? (
-        <div>
-          <Link href={"/cart"} className="flex border rounded-full m-0 p-1.5 justify-center items-center text-neutral-primary border-primary/70 hover:bg-primary transition-all duration-300 hover:text-white">
-            <CartSvg width={25} fill={"currentColor"}></CartSvg>
-          </Link>
-        </div>
+        <Link
+          href={"/cart"}
+          className="flex h-full border rounded-full m-0 p-1.5 justify-center items-center text-neutral-primary border-primary/70 hover:bg-primary transition-all duration-300 hover:text-white"
+        >
+          <CartSvg className="h-full" fill={"currentColor"}></CartSvg>
+        </Link>
       ) : null}
     </>
   );

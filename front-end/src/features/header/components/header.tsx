@@ -20,7 +20,7 @@ const Header = async ({ focus }: any) => {
     <header className={`w-full max-w-screen fixed z-50`}>
       <div
         id="header-container"
-        className={`relative z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 cu-header-focus ${
+        className={`relative h-[60px] z-50 flex flex-row gap-10 justify-start items-stretch px-5 md:px-20 transition-all duration-300 delay-150 cu-header-focus ${
           focus ? "cu-header-absolute-focus" : null
         }`}
       >
@@ -48,11 +48,11 @@ const Header = async ({ focus }: any) => {
               ></ScreenWrapper>
             </ul>
           </nav>
-          <div className="flex flex-row gap-2 items-stretch h-[40px] my-auto">
+          <div className="flex flex-row gap-2 items-stretch h-[60%] my-auto">
             <div className="px-0">
               <SearchBar className={"w-auto"}></SearchBar>
             </div>
-            <span className=" bg-cu-neutral-700 w-1px h-6 my-auto rounded-3xl border-0"></span>
+            <span className=" bg-cu-neutral-700 w-1px h-[70%] my-auto rounded-3xl border-0"></span>
             <div className="">
               <CartCounter></CartCounter>
             </div>

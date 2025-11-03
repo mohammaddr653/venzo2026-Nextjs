@@ -9,10 +9,10 @@ const MenuButton = () => {
   return (
     <button
       onClick={() => setMobileMenuShow(true)}
-      className={"cursor-pointer md:hidden ms-auto text-primary"}
+      className={"cursor-pointer h-[60%] my-auto md:hidden ms-auto text-primary"}
       aria-label="Open menu"
     >
-      <MenuSvg width={30} fill={"currentColor"}></MenuSvg>
+      <MenuSvg className="h-full" fill={"currentColor"}></MenuSvg>
     </button>
   );
 };
