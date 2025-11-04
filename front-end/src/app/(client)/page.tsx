@@ -1,5 +1,6 @@
 import Greetings from "@/features/greetings/components/greetings";
 import Header from "@/features/header/components/header";
+import TrustBar from "@/features/trust-bar/components/trust-bar";
 import { Metadata } from "next";
 
 const baseURL =
@@ -130,10 +131,14 @@ export default function Home() {
           }}
         />
 
-        <div className="homepage-container flex flex-col gap-20 pb-20 pt-20">
-          <div className="lg:px-20 px-0">
+        <div className="homepage-container flex flex-col gap-10 pb-20 pt-20">
+          <div className="md:px-20 px-0">
             <Greetings></Greetings>
           </div>
+          <div className="px-5 md:px-20">
+            <TrustBar></TrustBar>
+          </div>
+
           <p>asdfef</p>
           <p>asdfef</p>
           <p>asdfef</p>

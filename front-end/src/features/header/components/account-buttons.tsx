@@ -26,7 +26,7 @@ const AccountButtons = (props: any) => {
       {!user ? (
         props.mode === "desktop" ? (
           <>
-            <Link href={"/auth/login"} className="text-primary">
+            <Link href={"/auth/login"} className="text-neutral-primary">
               <UserSvg width={35} fill={"currentColor"}></UserSvg>
             </Link>
           </>
