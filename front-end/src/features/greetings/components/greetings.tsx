@@ -16,44 +16,118 @@ import "swiper/css/scrollbar";
 import SwiperButtonPrev from "@/components/swiper-button-prev";
 import SwiperButtonNext from "@/components/swiper-button-next";
 import Image from "next/image";
+import { useWidthStore } from "@/store";
+import { BREAK_POINTS } from "../../../../config";
+import Skeleton from "@/components/skeleton";
 
 const Greetings = () => {
+  const { width } = useWidthStore();
+  const sliders = [
+    {
+      id: 1,
+      link: "https://digikala.com",
+      deskUrl: "Gaming Consoles slider pc v1 copy-1600x400.jpg",
+      mobUrl: "Gaming Consoles slider mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 2,
+      link: "https://digikala.com",
+      deskUrl: "Gaming Monitors slider pc v1 copy-1600x400.jpg",
+      mobUrl: "Gaming Monitors slider mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 3,
+      link: "https://digikala.com",
+      deskUrl: "Gaming System slider pc v1 copy-1600x400.jpg",
+      mobUrl: "Gaming System slider mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 4,
+      link: "https://digikala.com",
+      deskUrl: "Gpus slider pc v1 copy (2)-1600x400.jpg",
+      mobUrl: "Gpus slider mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 5,
+      link: "https://digikala.com",
+      deskUrl: "Rendering Systems slider pc v1 copy-1600x400.jpg",
+      mobUrl: "Rendering Systems slider mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 6,
+      link: "https://digikala.com",
+      deskUrl: "Accessories pc v1 copy-1600x400.jpg",
+      mobUrl: "Accessories mobile v1 copy-1500x400.jpg",
+    },
+    {
+      id: 7,
+      link: "https://digikala.com",
+      deskUrl: "MSI C v1 copy-1600x400.jpg",
+      mobUrl: "gaming chair mobile v1 copy-1-1500x400.jpg",
+    },
+  ];
   return (
-    <div className="relative w-full aspect-[1508/377]">
-      <Swiper
-        modules={[Pagination, EffectFade, Navigation, Scrollbar, A11y]}
-        initialSlide={0}
-        loop={true}
-        slidesPerView={1}
-        effect="fade"
-        fadeEffect={{ crossFade: true }}
-        speed={500}
-      >
-        <div className="swiperjs-controlls flex justify-between items-stretch top-0 h-full w-full absolute text-black">
-          <SwiperButtonPrev
-            className={
-              "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-r-2xl"
-            }
-            width={30}
-            height={30}
-          ></SwiperButtonPrev>
-          <SwiperButtonNext
-            className={
-              "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-l-2xl"
-            }
-            width={30}
-            height={30}
-          ></SwiperButtonNext>
-        </div>
-        <SwiperSlide className="relative md:rounded-2xl overflow-hidden">
-          <Image
-            alt="main-slider"
-            src={"/Gaming Consoles slider pc v1 copy-1600x400.jpg"}
-            width={1508}
-            height={377}
-          ></Image>
-        </SwiperSlide>
-      </Swiper>
+    <div className="relative w-full aspect-[840/500] md:aspect-[1356/339] md:rounded-2xl overflow-hidden">
+      {width ? (
+        <Swiper
+          modules={[Pagination, EffectFade, Navigation, Scrollbar, A11y]}
+          initialSlide={0}
+          loop={true}
+          slidesPerView={1}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          speed={500}
+        >
+          <div className="swiperjs-controlls flex justify-between items-stretch top-0 h-full w-full absolute text-black">
+            <SwiperButtonPrev
+              className={
+                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-r-2xl"
+              }
+              width={30}
+              height={30}
+            ></SwiperButtonPrev>
+            <SwiperButtonNext
+              className={
+                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-l-2xl"
+              }
+              width={30}
+              height={30}
+            ></SwiperButtonNext>
+          </div>
+          {sliders?.map((slider: any, index: any) => {
+            return (
+              <SwiperSlide className="relative">
+                {width > BREAK_POINTS.md ? (
+                  <Image
+                    alt="main-slider"
+                    src={`/${slider.deskUrl}`}
+                    priority
+                    width={1356}
+                    height={339}
+                    placeholder="blur"
+                    blurDataURL="/placeholder.jpg"
+                    className="w-full aspect-[1356/339] object-cover"
+                  ></Image>
+                ) : (
+                  <Image
+                    alt="main-slider-mobile"
+                    src={`/${slider.mobUrl}`}
+                    priority
+                    width={1500}
+                    placeholder="blur"
+                    quality={100}
+                    blurDataURL="/placeholder.jpg"
+                    height={400}
+                    className="w-full aspect-[840/500] object-cover"
+                  ></Image>
+                )}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Skeleton className="w-full h-full animate-pulse"></Skeleton>
+      )}
     </div>
   );
 };
