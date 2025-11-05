@@ -5,6 +5,8 @@ import TrustBar from "@/features/trust-bar/components/trust-bar";
 import { Metadata } from "next";
 import NewestProductsCarousel from "@/features/products/components/newestProductsCarousel";
 import OffProductsCarousel from "@/features/products/components/offProductsCarousel";
+import adcollection1 from "@/data/adcollection1.json";
+import adcollection2 from "@/data/adcollection2.json";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -143,6 +145,7 @@ export default function Home() {
           </div>
           <div className="px-5 md:px-20 flex gap-3 [&>*]:basis-[250px] flex-wrap [&>*]:grow">
             <Ads
+              data={adcollection1}
               width={750}
               height={255}
               sizes="(max-width: 800px) 100vw, 33vw"
@@ -155,86 +158,15 @@ export default function Home() {
           <div className="px-5 md:px-20 mt-5">
             <OffProductsCarousel></OffProductsCarousel>
           </div>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
-          <p>asdfef</p>
+          <div className="px-5 md:px-20 flex gap-3 [&>*]:basis-[380px] flex-wrap [&>*]:grow">
+            <Ads
+              data={adcollection2}
+              width={760}
+              height={380}
+              sizes="(max-width: 800px) 100vw, 50vw"
+              className="object-cover w-full"
+            ></Ads>
+          </div>
         </div>
       </main>
     </>

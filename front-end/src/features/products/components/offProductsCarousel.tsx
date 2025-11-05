@@ -55,9 +55,21 @@ const OffProductsCarousel = () => {
           initialSlide={0}
           className="mySwiper"
         >
-          <div className="swiperjs-controlls">
-            <SwiperButtonPrev></SwiperButtonPrev>
-            <SwiperButtonNext></SwiperButtonNext>
+          <div className="swiperjs-controlls flex justify-between items-center top-[calc(50%-10px)] px-2 w-full absolute text-black">
+            <SwiperButtonPrev
+              className={
+                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
+              }
+              width={20}
+              height={20}
+            ></SwiperButtonPrev>
+            <SwiperButtonNext
+              className={
+                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
+              }
+              width={20}
+              height={20}
+            ></SwiperButtonNext>
           </div>
 
           {products.map((product: any, index: any) => {
