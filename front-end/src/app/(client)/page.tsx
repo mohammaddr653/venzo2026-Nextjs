@@ -3,6 +3,7 @@ import Header from "@/features/header/components/header";
 import Ads from "@/features/ads/components/ads";
 import TrustBar from "@/features/trust-bar/components/trust-bar";
 import { Metadata } from "next";
+import NewestProductsCarousel from "@/features/products/components/newestProductsCarousel";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -146,6 +147,9 @@ export default function Home() {
               sizes="(max-width: 800px) 100vw, 33vw"
               className="object-cover w-full"
             ></Ads>
+          </div>
+          <div className="px-5 md:px-20 mt-5">
+            <NewestProductsCarousel></NewestProductsCarousel>
           </div>
           <p>asdfef</p>
           <p>asdfef</p>

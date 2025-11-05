@@ -1,5 +1,5 @@
 import OrderStatus from "./order-status";
-import PriceUnit from "./priceUnit";
+import PriceUnit from "../../../components/priceUnit";
 
 const ExpandedOrder = ({ selectedOrder, setSelectedOrder }: any) => {
   return (
