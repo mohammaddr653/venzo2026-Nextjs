@@ -1,5 +1,6 @@
 import Greetings from "@/features/greetings/components/greetings";
 import Header from "@/features/header/components/header";
+import Ads from "@/features/ads/components/ads";
 import TrustBar from "@/features/trust-bar/components/trust-bar";
 import { Metadata } from "next";
 
@@ -138,7 +139,14 @@ export default function Home() {
           <div className="px-5 md:px-20">
             <TrustBar></TrustBar>
           </div>
-
+          <div className="px-5 md:px-20 flex gap-3 [&>*]:basis-[250px] flex-wrap [&>*]:grow">
+            <Ads
+              width={750}
+              height={255}
+              sizes="(max-width: 800px) 100vw, 33vw"
+              className="object-cover w-full"
+            ></Ads>
+          </div>
           <p>asdfef</p>
           <p>asdfef</p>
           <p>asdfef</p>
