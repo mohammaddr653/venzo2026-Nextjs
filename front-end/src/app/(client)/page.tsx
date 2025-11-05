@@ -4,6 +4,7 @@ import Ads from "@/features/ads/components/ads";
 import TrustBar from "@/features/trust-bar/components/trust-bar";
 import { Metadata } from "next";
 import NewestProductsCarousel from "@/features/products/components/newestProductsCarousel";
+import OffProductsCarousel from "@/features/products/components/offProductsCarousel";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -150,6 +151,9 @@ export default function Home() {
           </div>
           <div className="px-5 md:px-20 mt-5">
             <NewestProductsCarousel></NewestProductsCarousel>
+          </div>
+          <div className="px-5 md:px-20 mt-5">
+            <OffProductsCarousel></OffProductsCarousel>
           </div>
           <p>asdfef</p>
           <p>asdfef</p>
