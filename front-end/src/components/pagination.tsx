@@ -72,9 +72,7 @@ const Pagination = ({ totalPagesCount, searchParams }: any) => {
             صفحه قبل
           </button>
         </div>
-      ) : (
-        <div>محتوایی یافت نشد</div>
-      )}
+      ) : null}
     </>
   );
 };
