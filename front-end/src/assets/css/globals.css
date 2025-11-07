@@ -11,6 +11,7 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 @custom-variant mobmenu-open (&:where(.mobmenu-open, .mobmenu-open *));
+@custom-variant mobfilters-open (&:where(.mobfilters-open, .mobfilters-open *));
 @custom-variant scrolled (&:where(.scrolled, .scrolled *));
 
 @layer base {
@@ -106,7 +107,7 @@
   }
 
   .cu-account-button {
-    @apply text-white cursor-pointer text-shadow-md text-shadow-neutral-primary/80 text-sm font-weight300
+    @apply text-white cursor-pointer text-shadow-md text-shadow-neutral-primary/80 text-sm font-weight300;
   }
 }
 

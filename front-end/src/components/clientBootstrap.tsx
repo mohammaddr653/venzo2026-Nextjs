@@ -1,7 +1,11 @@
 //این کامپوننت داده های اولیه مورد نیاز ما را میگیرد و در گلوبال ذخیره میکند
 
 "use client";
-import { useMobileMenuStore, useWidthStore } from "@/store";
+import {
+  useMobileFiltersStore,
+  useMobileMenuStore,
+  useWidthStore,
+} from "@/store";
 import { useEffect, useState } from "react";
 import Loading from "@/app/loading";
 import { usePathname } from "next/navigation";
@@ -10,6 +14,8 @@ const ClientBootstrap = () => {
   const { setWidth } = useWidthStore();
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
   const { mobileMenuShow, setMobileMenuShow } = useMobileMenuStore();
+  const { mobileFiltersShow } = useMobileFiltersStore();
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -18,6 +24,13 @@ const ClientBootstrap = () => {
       ? html.classList.add("mobmenu-open")
       : html.classList.remove("mobmenu-open");
   }, [mobileMenuShow]);
+
+  useEffect(() => {
+    const html = document.getElementsByTagName("html")[0];
+    mobileFiltersShow
+      ? html.classList.add("mobfilters-open")
+      : html.classList.remove("mobfilters-open");
+  }, [mobileFiltersShow]);
 
   useEffect(() => {
     setMobileMenuShow(false);
