@@ -13,12 +13,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/scrollbar";
-import SwiperButtonPrev from "@/components/swiper-button-prev";
-import SwiperButtonNext from "@/components/swiper-button-next";
 import Image from "next/image";
 import { useWidthStore } from "@/store";
 import { BREAK_POINTS } from "../../../../config";
 import Skeleton from "@/components/skeleton";
+import SwiperControlls from "@/components/swiper-controlls";
 
 const Greetings = () => {
   const { width } = useWidthStore();
@@ -78,22 +77,12 @@ const Greetings = () => {
           fadeEffect={{ crossFade: true }}
           speed={500}
         >
-          <div className="swiperjs-controlls flex justify-between items-stretch top-0 h-full w-full absolute text-black">
-            <SwiperButtonPrev
-              className={
-                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-r-2xl"
-              }
-              width={30}
-              height={30}
-            ></SwiperButtonPrev>
-            <SwiperButtonNext
-              className={
-                "cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-l-2xl"
-              }
-              width={30}
-              height={30}
-            ></SwiperButtonNext>
-          </div>
+          <SwiperControlls
+            parentClass="swiperjs-controlls flex justify-between items-stretch top-0 h-full w-full absolute text-black"
+            prevClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-r-2xl"
+            nextClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-l-2xl"
+          ></SwiperControlls>
+
           {sliders?.map((slider: any, index: any) => {
             return (
               <SwiperSlide className="relative">

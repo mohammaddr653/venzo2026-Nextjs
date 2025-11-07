@@ -7,11 +7,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import SwiperButtonPrev from "./swiper-button-prev";
-import SwiperButtonNext from "./swiper-button-next";
 import Link from "next/link";
 import Image from "next/image";
 import { DEFAULT_IMAGE, SERVER_URL } from "../../config";
+import SwiperControlls from "./swiper-controlls";
 
 const ChildCategories = ({ childCats, categoryId }: any) => {
   return (
@@ -38,22 +37,11 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
         initialSlide={0}
         className="mySwiper w-full"
       >
-        <div className="swiperjs-controlls flex justify-between items-center top-[calc(50%-10px)] px-2 w-full absolute text-black">
-          <SwiperButtonPrev
-            className={
-              "cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
-            }
-            width={20}
-            height={20}
-          ></SwiperButtonPrev>
-          <SwiperButtonNext
-            className={
-              "cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
-            }
-            width={20}
-            height={20}
-          ></SwiperButtonNext>
-        </div>
+        <SwiperControlls
+          parentClass="swiperjs-controlls flex justify-between items-stretch top-[calc(50%-10px)] px-2 w-full absolute text-black"
+          prevClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
+          nextClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
+        ></SwiperControlls>
         {childCats.map((item: any, index: any) => {
           if (item.motherId === categoryId) {
             return (
