@@ -88,26 +88,27 @@ const Greetings = () => {
               <SwiperSlide className="relative">
                 {width > BREAK_POINTS.md ? (
                   <Image
+                    //rez:1456/364
                     alt="main-slider"
                     src={`/${slider.deskUrl}`}
                     priority
-                    width={1356}
-                    height={339}
+                    width={1456}
+                    height={364}
                     placeholder="blur"
                     blurDataURL="/placeholder.jpg"
-                    className="w-full aspect-[1356/339] object-cover"
+                    className="w-full aspect-[1456/364] object-cover"
                   ></Image>
                 ) : (
                   <Image
+                    //rez:834/496
                     alt="main-slider-mobile"
                     src={`/${slider.mobUrl}`}
                     priority
-                    width={1500}
+                    width={834}
                     placeholder="blur"
-                    quality={100}
                     blurDataURL="/placeholder.jpg"
-                    height={400}
-                    className="w-full aspect-[840/500] object-cover"
+                    height={496}
+                    className="w-full aspect-[834/496] object-cover"
                   ></Image>
                 )}
               </SwiperSlide>

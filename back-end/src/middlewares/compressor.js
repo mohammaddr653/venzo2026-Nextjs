@@ -20,7 +20,13 @@ const compressor = (dir) => {
       await Promise.all(
         Object.entries(sizes).map(async ([key, size]) => {
           let pipeline = sharp(file.buffer).withMetadata();
+          const metadata = await pipeline.metadata();
+
+          let width = metadata.width;
+          let height = metadata.height;
+          if (size && width <= size.width) return;
           let format = extName.substring(1).toLowerCase();
+
           switch (format) {
             case "png":
               pipeline = pipeline.webp({ quality: 70 });
@@ -50,11 +56,6 @@ const compressor = (dir) => {
             "/" +
             fileName +
             (key === "original" ? format : `-${key}${format}`);
-
-          const metadata = await pipeline.metadata();
-
-          let width = metadata.width;
-          let height = metadata.height;
 
           if (size) {
             pipeline = pipeline.resize(size);

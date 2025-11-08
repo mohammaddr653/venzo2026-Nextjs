@@ -144,6 +144,7 @@ export default function Home() {
             <TrustBar></TrustBar>
           </div>
           <div className="px-5 md:px-20 flex gap-3 [&>*]:basis-[250px] flex-wrap [&>*]:grow">
+            {/* rez:750/255 */}
             <Ads
               data={adcollection1}
               width={750}
@@ -159,6 +160,7 @@ export default function Home() {
             <OffProductsCarousel></OffProductsCarousel>
           </div>
           <div className="px-5 md:px-20 flex gap-3 [&>*]:basis-[380px] flex-wrap [&>*]:grow">
+            {/* rez:760/380 */}
             <Ads
               data={adcollection2}
               width={760}

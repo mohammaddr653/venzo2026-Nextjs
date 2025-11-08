@@ -12,9 +12,15 @@ const Img = ({ pic, ...props }: any) => {
       srcSet={
         pic?.urls
           ? `
-          ${SERVER_URL + pic?.urls.small.url} ${pic?.urls.small.width + "w"},
-          ${SERVER_URL + pic?.urls.medium.url} ${pic?.urls.medium.width + "w"},
-          ${SERVER_URL + pic?.urls.large.url} ${pic?.urls.large.width + "w"},
+          ${SERVER_URL + pic?.urls?.small?.url} ${
+              pic?.urls?.small?.width + "w"
+            },
+          ${SERVER_URL + pic?.urls?.medium?.url} ${
+              pic?.urls?.medium?.width + "w"
+            },
+          ${SERVER_URL + pic?.urls?.large?.url} ${
+              pic?.urls?.large?.width + "w"
+            },
           ${SERVER_URL + pic?.urls.original.url} ${
               pic?.urls.original.width + "w"
             },
