@@ -1,61 +1,19 @@
 import Img from "../../../components/img";
-import { useEffect, useState } from "react";
 import "@/assets/css/product-card.css";
-import { createPriceAndStockObj } from "@/helpers/createPriceAndStockObj";
 import Link from "next/link";
 import {
   ProductPropertiesObj,
   ProductPropertyvalsObj,
 } from "@/features/admin/types/properties";
 import HeartSvg from "@/components/icons/heart-svg";
-import PriceUnit from "@/components/priceUnit";
-import Offpercent from "./offpercent";
 import CartPlusSvg from "@/components/icons/cart-plus-svgrepo-com";
+import ProductPrice from "./product-price";
 
 interface ProductCardProps {
   product: any;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const [priceAndStock, setPriceAndStock] = useState<any>({
-    price: null,
-    discount: null,
-    percent: null,
-    stock: null,
-  });
-
-  function handlePriceAndStock() {
-    const selectiveProperty = product.properties.find(
-      (property: any) => property.selective
-    );
-    if (selectiveProperty) {
-      let lowest = null;
-
-      for (let propertyval of selectiveProperty.values) {
-        if (lowest) {
-          const existingConfig = lowest.discount?.offer ?? lowest.price;
-          const newConfig = propertyval.discount?.offer ?? propertyval.price;
-          if (newConfig < existingConfig) {
-            lowest = propertyval;
-          }
-        } else {
-          lowest = propertyval;
-        }
-        const priceAndStockObj = createPriceAndStockObj(lowest);
-        setPriceAndStock({ ...priceAndStockObj });
-      }
-    } else {
-      const priceAndStockObj = createPriceAndStockObj(product);
-      setPriceAndStock({ ...priceAndStockObj });
-    }
-  }
-
-  useEffect(() => {
-    if (product) {
-      handlePriceAndStock();
-    }
-  }, [product]);
-
   return (
     <div className="flex flex-col gap-1.5 h-full">
       <Link
@@ -107,33 +65,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <p className="px-4">{product?.name}</p>
               <div className="mt-auto px-4 flex flex-row gap-1 w-full justify-between items-end flex-nowrap">
                 <CartPlusSvg color={"#525252"}></CartPlusSvg>
-                <div className="flex flex-col items-end">
-                  {priceAndStock.discount ? (
-                    <>
-                      <div className="flex flex-row gap-1 items-center">
-                        <span className="text-nowrap align-middle line-through text-neutral-600 text-size14">
-                          {priceAndStock.price}
-                        </span>
-                        <Offpercent
-                          percent={priceAndStock.percent}
-                        ></Offpercent>
-                      </div>
-                      <div className="flex flex-row gap-1 items-center flex-nowrap">
-                        <span className="text-neutral-900 text-size24 font-weight300 text-nowrap">
-                          {priceAndStock.discount.offer}
-                        </span>
-                        <PriceUnit></PriceUnit>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="flex flex-row gap-1 items-center flex-nowrap">
-                      <span className="text-neutral-900 text-size24 font-weight300 text-nowrap">
-                        {priceAndStock.price}
-                      </span>
-                      <PriceUnit></PriceUnit>
-                    </div>
-                  )}
-                </div>
+                <ProductPrice product={product}></ProductPrice>
               </div>
             </div>
             <img
