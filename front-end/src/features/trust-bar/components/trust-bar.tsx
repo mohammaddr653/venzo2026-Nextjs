@@ -1,5 +1,3 @@
-import Img from "@/components/img";
-import { SERVER_API } from "../../../../config";
 import ServiceSvg from "@/components/icons/service-svg";
 import FastSvg from "@/components/icons/fast-svg";
 import PaymentSvg from "@/components/icons/payment-svg";
