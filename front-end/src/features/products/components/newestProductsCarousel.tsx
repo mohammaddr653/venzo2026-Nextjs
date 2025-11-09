@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import callManager from "@/hooks/callManager";
-import { SERVER_API } from "../../../../config";
+import { BREAK_POINTS, SERVER_API } from "../../../../config";
 import ProductCard from "./product-card";
 import SwiperControlls from "@/components/swiper-controlls";
 
@@ -40,19 +40,21 @@ const NewestProductsCarousel = () => {
         <Swiper
           breakpoints={{
             0: {
-              slidesPerView: 1.1,
+              slidesPerView: 1.3,
+              spaceBetween: 20,
             },
-            640: {
-              slidesPerView: 2.1,
+            [BREAK_POINTS.sm]: {
+              slidesPerView: 2.3,
+              spaceBetween: 20,
             },
-            768: {
+            [BREAK_POINTS.md]: {
               slidesPerView: 3,
             },
-            1024: {
+            [BREAK_POINTS.lg]: {
               slidesPerView: 4,
             },
           }}
-          spaceBetween={20}
+          spaceBetween={30}
           initialSlide={0}
           className="mySwiper"
         >

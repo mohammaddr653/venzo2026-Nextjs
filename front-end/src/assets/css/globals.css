@@ -82,11 +82,11 @@
   --aspect-284/170: 284/170;
 
   --breakpoint-*: initial;
-  --breakpoint-sm: 40rem;
-  --breakpoint-md: 53rem;
-  --breakpoint-lg: 64rem;
-  --breakpoint-xl: 80rem;
-  --breakpoint-2xl: 100rem;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 }
 
 @layer components {

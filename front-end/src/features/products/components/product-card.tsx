@@ -1,13 +1,12 @@
 import Img from "../../../components/img";
-import "@/assets/css/product-card.css";
 import Link from "next/link";
 import {
   ProductPropertiesObj,
   ProductPropertyvalsObj,
 } from "@/features/admin/types/properties";
-import HeartSvg from "@/components/icons/heart-svg";
 import CartPlusSvg from "@/components/icons/cart-plus-svgrepo-com";
 import ProductPrice from "./product-price";
+import { BREAK_POINTS } from "../../../../config";
 
 interface ProductCardProps {
   product: any;
@@ -18,46 +17,46 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="flex flex-col gap-1.5 h-full">
       <Link
         href={`/single-shop/${product._id}`}
-        className="product-card rounded-xl border-neutral-300 border overflow-hidden hover:border-primary/70 transition-shadow duration-300"
+        className="product-card group rounded-xl border-neutral-300 border overflow-hidden hover:border-primary/70 transition-shadow duration-300"
       >
-        <div className=" main-part w-full flex flex-col justify-start items-center h-full">
+        <div className="main-part w-full flex flex-col justify-start items-center h-full">
           <div className="relative w-full p-2">
             <div className="w-full relative overflow-hidden rounded-xl">
-              <div className="flex absolute justify-between items-center top-0 right-0 rounded-xl w-full p-2 px-2.5 z-10">
-                <div className="flex flex-row gap-1">
-                  {product?.properties
-                    .find(
-                      (property: ProductPropertiesObj) =>
-                        property.property.type === "color"
-                    )
-                    ?.values.map(
-                      (color: ProductPropertyvalsObj, index: any) => {
-                        return color.propertyval?.hex ? (
-                          <span
-                            key={index}
-                            style={{
-                              backgroundColor:
-                                "#" + color.propertyval.hex.toString(),
-                            }}
-                            className="h-4.5 aspect-square rounded-full border-2 border-white outline-1 outline-[#444] inset-full-444"
-                          ></span>
-                        ) : null;
-                      }
-                    )}
-                </div>
-                <div>
-                  <HeartSvg></HeartSvg>
-                </div>
-              </div>
-
               <Img
                 pic={product?.img}
-                sizes={"500px"}
+                width={493}
+                height={493}
+                sizes={`
+                  (max-width: ${BREAK_POINTS.sm}px) 433px,
+                  (max-width: ${BREAK_POINTS.md}px) 310px,
+                  (max-width: ${BREAK_POINTS.lg}px) 246px,
+                  323px
+                `}
                 className={
-                  "product-img relative aspect-284/170 object-cover w-full z-0"
+                  "group-hover:scale-[1.1] transition-all duration-300 aspect-square relative object-cover w-full z-0"
                 }
-                width={100}
               ></Img>
+            </div>
+            <div className="flex absolute justify-start px-4 items-center top-4 right-0 rounded-xl w-full z-10 h-5">
+              <div className="flex flex-row gap-1 h-full">
+                {product?.properties
+                  .find(
+                    (property: ProductPropertiesObj) =>
+                      property.property.type === "color"
+                  )
+                  ?.values.map((color: ProductPropertyvalsObj, index: any) => {
+                    return color.propertyval?.hex ? (
+                      <span
+                        key={index}
+                        style={{
+                          backgroundColor:
+                            "#" + color.propertyval.hex.toString(),
+                        }}
+                        className="h-full aspect-square rounded-full border-2 border-white outline-1 outline-[#444] inset-full-444"
+                      ></span>
+                    ) : null;
+                  })}
+              </div>
             </div>
           </div>
           <div className="relative overflow-hidden w-full grow">
