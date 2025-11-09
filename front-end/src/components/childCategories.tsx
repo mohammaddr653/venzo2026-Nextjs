@@ -8,9 +8,9 @@ import "swiper/css/pagination";
 
 // import required modules
 import Link from "next/link";
-import Image from "next/image";
-import { DEFAULT_IMAGE, SERVER_URL } from "../../config";
+import { BREAK_POINTS } from "../../config";
 import SwiperControlls from "./swiper-controlls";
+import Img from "./img";
 
 const ChildCategories = ({ childCats, categoryId }: any) => {
   return (
@@ -23,13 +23,13 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
           0: {
             slidesPerView: 1.5,
           },
-          640: {
+          [BREAK_POINTS.sm]: {
             slidesPerView: 2.5,
           },
-          768: {
+          [BREAK_POINTS.md]: {
             slidesPerView: 4,
           },
-          1024: {
+          [BREAK_POINTS.lg]: {
             slidesPerView: 6,
           },
         }}
@@ -38,9 +38,9 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
         className="mySwiper w-full"
       >
         <SwiperControlls
-          parentClass="swiperjs-controlls flex justify-between items-stretch top-[calc(50%-10px)] px-2 w-full absolute text-black"
-          prevClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
-          nextClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center p-3 rounded-full"
+          parentClass="swiperjs-controlls flex justify-between items-stretch top-[calc(50%-22.5px)] h-[45px] px-2 w-full absolute text-black"
+          prevClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center aspect-square rounded-full"
+          nextClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 bg-neutral-primary/70 text-white justify-center items-center aspect-square rounded-full"
         ></SwiperControlls>
         {childCats.map((item: any, index: any) => {
           if (item.motherId === categoryId) {
@@ -51,19 +51,23 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
                   href={`/shop/${item._id}`}
                   className=" rounded-md flex flex-col justify-between border overflow-hidden border-neutral-300 p-2 gap-2 items-center"
                 >
-                  <Image
-                    alt="child-category"
-                    src={
-                      item.img?.urls?.original?.url
-                        ? SERVER_URL + item.img.urls.original.url
-                        : DEFAULT_IMAGE
+                  {/* 380/280 */}
+                  <Img
+                    pic={item.img}
+                    width={380}
+                    height={280}
+                    alt="child-category-image"
+                    sizes={`
+                      (max-width: ${BREAK_POINTS.sm}px) 372px,
+                      (max-width: ${BREAK_POINTS.md}px) 260px,
+                      (max-width: ${BREAK_POINTS.lg}px) 183px,
+                      208px
+                    `}
+                    className={
+                      "object-cover aspect-[380/280] border border-neutral-300"
                     }
-                    width={200}
-                    height={100}
-                    placeholder="blur"
-                    blurDataURL="/placeholder.jpg"
-                    className="w-full object-cover"
-                  ></Image>
+                  ></Img>
+
                   <h3 className="text-size15">{item.name}</h3>
                 </Link>
               </SwiperSlide>

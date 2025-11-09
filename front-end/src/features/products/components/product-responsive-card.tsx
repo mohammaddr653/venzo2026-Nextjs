@@ -26,6 +26,7 @@ const ProductResponsiveCard = ({ product }: ProductCardProps) => {
                 pic={product?.img}
                 width={354}
                 height={354}
+                alt="product-image"
                 sizes={`
                   (max-width: ${BREAK_POINTS.sm}px) 191px,
                   (max-width: ${BREAK_POINTS.md}px) 336px,
