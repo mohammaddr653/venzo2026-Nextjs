@@ -43,9 +43,12 @@ const Library = (props: LibraryProps) => {
               >
                 <Img
                   pic={media}
-                  sizes={"500px"}
+                  width={36}
+                  height={36}
+                  sizes={`
+                  36px
+                `}
                   className={"aspect-square object-cover w-full"}
-                  width={100}
                 ></Img>
                 {props.selectedImgs.some(
                   (img: any) => img._id === media._id
