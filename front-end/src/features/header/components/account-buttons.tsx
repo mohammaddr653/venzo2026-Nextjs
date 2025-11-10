@@ -43,11 +43,11 @@ const AccountButtons = (props: any) => {
           <div className="account-hover relative rounded-full flex justify-start items-center h-full gap-1">
             <Img
               pic={user?.avatar}
-              sizes={"500px"}
-              className={
-                "rounded-full aspect-square h-full object-cover"
-              }
               alt="user-avatar"
+              sizes={"36px"}
+              width={36}
+              height={36}
+              className={"rounded-full aspect-square h-full object-cover"}
             ></Img>
             <div className="hidden-div py-3 absolute flex flex-column rounded-xl bg-primary/80 border border-primary top-full mt-2 left-full">
               {user?.isadmin ? (
@@ -79,9 +79,11 @@ const AccountButtons = (props: any) => {
               <div className="flex flex-row gap-2 items-center">
                 <Img
                   pic={user?.avatar}
-                  sizes={"500px"}
-                  className={"rounded-full aspect-square object-cover"}
+                  alt="user-avatar"
+                  sizes={"40px"}
                   width={40}
+                  height={40}
+                  className={"rounded-full aspect-square object-cover"}
                 ></Img>
                 <h4>{user?.name}</h4>
               </div>
@@ -98,9 +100,11 @@ const AccountButtons = (props: any) => {
                   <div className="flex flex-row gap-2 items-center">
                     <Img
                       pic={user?.avatar}
-                      sizes={"500px"}
-                      className={"rounded-full aspect-square object-cover"}
+                      alt="admin-avatar"
+                      sizes={"40px"}
                       width={40}
+                      height={40}
+                      className={"rounded-full aspect-square object-cover"}
                     ></Img>
                     <h4>{user?.name}</h4>
                   </div>
