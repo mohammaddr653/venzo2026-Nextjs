@@ -63,6 +63,7 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
                       (max-width: ${BREAK_POINTS.lg}px) 183px,
                       208px
                     `}
+                    loading="lazy"
                     className={
                       "object-cover aspect-[380/280] border border-neutral-300"
                     }

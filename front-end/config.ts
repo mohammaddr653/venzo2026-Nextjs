@@ -2,8 +2,7 @@ export const SERVER_URL = `${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${proces
 
 export const SERVER_API = SERVER_URL + "/api";
 
-export const DEFAULT_IMAGE =
-  "/1759131600005-673329792-abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products-medium.webp"; //تصویر پیش فرض
+export const DEFAULT_IMAGE = "/placeholder.jpg"; //تصویر پیش فرض
 
 export const SITE_KEY = process.env.NEXT_PUBLIC_SITE_KEY;
 

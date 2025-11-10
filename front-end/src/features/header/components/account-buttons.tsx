@@ -47,6 +47,7 @@ const AccountButtons = (props: any) => {
               sizes={"36px"}
               width={36}
               height={36}
+              loading="lazy"
               className={"rounded-full aspect-square h-full object-cover"}
             ></Img>
             <div className="hidden-div py-3 absolute flex flex-column rounded-xl bg-primary/80 border border-primary top-full mt-2 left-full">
@@ -83,6 +84,7 @@ const AccountButtons = (props: any) => {
                   sizes={"40px"}
                   width={40}
                   height={40}
+                  loading="lazy"
                   className={"rounded-full aspect-square object-cover"}
                 ></Img>
                 <h4>{user?.name}</h4>
@@ -104,6 +106,7 @@ const AccountButtons = (props: any) => {
                       sizes={"40px"}
                       width={40}
                       height={40}
+                      loading="lazy"
                       className={"rounded-full aspect-square object-cover"}
                     ></Img>
                     <h4>{user?.name}</h4>

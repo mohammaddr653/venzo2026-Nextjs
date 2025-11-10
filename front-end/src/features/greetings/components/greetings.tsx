@@ -15,7 +15,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/scrollbar";
 import Image from "next/image";
 import { useWidthStore } from "@/store";
-import { BREAK_POINTS } from "../../../../config";
+import { BREAK_POINTS, DEFAULT_IMAGE } from "../../../../config";
 import Skeleton from "@/components/skeleton";
 import SwiperControlls from "@/components/swiper-controlls";
 
@@ -91,11 +91,11 @@ const Greetings = () => {
                     //rez:1456/364
                     alt="main-slider"
                     src={`/${slider.deskUrl}`}
-                    priority
                     width={1456}
                     height={364}
+                    priority={true}
                     placeholder="blur"
-                    blurDataURL="/placeholder.jpg"
+                    blurDataURL={DEFAULT_IMAGE}
                     className="w-full aspect-[1456/364] object-cover"
                   ></Image>
                 ) : (
@@ -103,10 +103,10 @@ const Greetings = () => {
                     //rez:834/496
                     alt="main-slider-mobile"
                     src={`/${slider.mobUrl}`}
-                    priority
+                    priority={true}
                     width={834}
                     placeholder="blur"
-                    blurDataURL="/placeholder.jpg"
+                    blurDataURL={DEFAULT_IMAGE}
                     height={496}
                     className="w-full aspect-[834/496] object-cover"
                   ></Image>

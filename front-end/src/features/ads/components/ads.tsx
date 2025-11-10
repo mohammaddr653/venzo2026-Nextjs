@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DEFAULT_IMAGE } from "../../../../config";
 
 const Ads = ({ data, width, height, sizes, className }: any) => {
   return (
@@ -13,7 +14,7 @@ const Ads = ({ data, width, height, sizes, className }: any) => {
               height={height}
               sizes={sizes}
               placeholder="blur"
-              blurDataURL="/placeholder.jpg"
+              blurDataURL={DEFAULT_IMAGE}
               className={className}
             ></Image>
           </div>
