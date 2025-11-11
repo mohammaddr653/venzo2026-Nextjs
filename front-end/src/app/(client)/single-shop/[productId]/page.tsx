@@ -12,9 +12,9 @@ import TitleRight from "@/components/title-right";
 import SingleShopGallery from "@/features/single-shop-gallery/components/singleShop-gallery";
 import Offpercent from "@/features/products/components/offpercent";
 import PriceUnit from "@/components/priceUnit";
-import NonSelectivePropertiesGrid from "@/features/product-properties/components/non-selective-properties-grid";
-import SelectiveProperties from "@/features/product-properties/components/selective-properties";
-import PropertiesTable from "@/features/product-properties/components/propertiesTable";
+import NonSelectivePropertiesGrid from "@/features/products/components/non-selective-properties-grid";
+import SelectiveProperties from "@/features/products/components/selective-properties";
+import PropertiesTable from "@/features/products/components/propertiesTable";
 
 const SingleShopPage = () => {
   const { width, setWidth } = useWidthStore();
