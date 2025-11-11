@@ -29,17 +29,10 @@ const SingleShopPage = () => {
     percent: null,
     stock: null,
   });
-  const [defaultSelectiveProperty, setDefaultSelectiveProperty] = useState<any>(
-    {
-      id: "",
-      valueString: "",
-    }
-  );
   const [formData, setFormData] = useState<any>({
     selectedPropertyvalString: "",
+    selectedPropertyvalValue: "",
   });
-  const [selectedPropertyvalString, setSelectedPropertyvalString] =
-    useState<any>("");
 
   useEffect(() => {
     load();
@@ -50,9 +43,11 @@ const SingleShopPage = () => {
       (property: any) => property.selective
     );
     if (selectiveProperty) {
-      setDefaultSelectiveProperty({
-        id: selectiveProperty?.values[0].propertyval._id.toString(),
-        valueString: selectiveProperty?.values[0].propertyval.value,
+      setFormData({
+        selectedPropertyvalString:
+          selectiveProperty?.values[0].propertyval._id.toString(),
+        selectedPropertyvalValue:
+          selectiveProperty?.values[0].propertyval.value,
       });
     }
   }
@@ -87,16 +82,6 @@ const SingleShopPage = () => {
     }
   }, [product, formData]);
 
-  useEffect(() => {
-    if (
-      defaultSelectiveProperty.id !== "" &&
-      defaultSelectiveProperty.valueString !== ""
-    ) {
-      setFormData({ selectedPropertyvalString: defaultSelectiveProperty.id });
-      setSelectedPropertyvalString(defaultSelectiveProperty.valueString);
-    }
-  }, [defaultSelectiveProperty]);
-
   async function load() {
     const response = await call(
       axios.get(SERVER_API + `/single-shop/withProperties/${productId}`),
@@ -118,8 +103,10 @@ const SingleShopPage = () => {
     propertyvalString: any
   ) => {
     if (e.target.checked) {
-      setFormData({ selectedPropertyvalString: e.target.value });
-      setSelectedPropertyvalString(propertyvalString);
+      setFormData({
+        selectedPropertyvalString: e.target.value,
+        selectedPropertyvalValue: propertyvalString,
+      });
     }
   };
 
@@ -154,7 +141,6 @@ const SingleShopPage = () => {
                 <SelectiveProperties
                   product={product}
                   formData={formData}
-                  selectedPropertyvalString={selectedPropertyvalString}
                   handleSelectProperty={handleSelectProperty}
                 ></SelectiveProperties>
                 <div className=" flex flex-col gap-2 items-end">

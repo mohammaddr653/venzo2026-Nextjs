@@ -3,7 +3,6 @@ import PropertySelector from "./propertySelector";
 interface SelectivePropertiesGridProps {
   formData: any;
   product: any;
-  selectedPropertyvalString: any;
   handleSelectProperty: any;
 }
 
@@ -19,7 +18,7 @@ const SelectiveProperties = (props: SelectivePropertiesGridProps) => {
                     <span className="font-weight300 text-neutral-900">
                       {property.property.name} :
                     </span>
-                    <span>{props.selectedPropertyvalString}</span>
+                    <span>{props.formData.selectedPropertyvalValue}</span>
                   </h4>
                   <form className="selective-property-form flex flex-row flex-wrap gap-1">
                     {property.values.map((propertyval: any, index: any) => {
