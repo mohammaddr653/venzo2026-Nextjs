@@ -1,3 +1,4 @@
+"use client";
 import GallerySvg from "@/components/icons/gallery-svg";
 import ThreeDotsSvg from "@/components/icons/three-dots-svg";
 import Img from "@/components/img";
