@@ -93,6 +93,7 @@ const Greetings = () => {
                     src={`/${slider.deskUrl}`}
                     width={1456}
                     height={364}
+                    sizes="1456px"
                     priority={true}
                     placeholder="blur"
                     blurDataURL={DEFAULT_IMAGE}
@@ -108,6 +109,7 @@ const Greetings = () => {
                     placeholder="blur"
                     blurDataURL={DEFAULT_IMAGE}
                     height={496}
+                    sizes="834px"
                     className="w-full aspect-[834/496] object-cover"
                   ></Image>
                 )}

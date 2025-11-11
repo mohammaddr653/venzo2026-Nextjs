@@ -1,0 +1,33 @@
+div.gallery-slider-container .swiper {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.gallery-slider-container .swiper-slide {
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.gallery-slider-container .mySwiper2 .swiper-wrapper {
+  /* justify-content: center; */
+  align-items: center;
+}
+
+div.gallery-slider-container .mySwiper {
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+div.gallery-slider-container .mySwiper .swiper-slide {
+  opacity: 0.4;
+}
+
+div.gallery-slider-container .mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
