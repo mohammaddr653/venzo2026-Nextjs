@@ -27,23 +27,17 @@ const SingleShopPage = async ({
   return (
     <>
       <Header focus={true}></Header>
-      <main className="pt-20 pb-15">
-        <div className="singleShopPage-container flex flex-col gap-5">
+      <main>
+        <div className="singleShopPage-container flex flex-col gap-5 pt-20 pb-20">
           {motherCats?.length ? (
             <BreadCrumb motherCats={motherCats}></BreadCrumb>
           ) : null}
           <div className="flex flex-col md:flex-row gap-10 px-5 md:px-20">
             <div className="flex flex-col items-end md:items-start md:flex-row gap-4 flex-6 relative">
-              <div className="w-full md:hidden">
-                <TitleRight title={product?.name}></TitleRight>
-              </div>
-              <div className="flex flex-col gap-2">
-                <i className="bi bi-heart text-size24"></i>
-              </div>
               <SingleShopGallery product={product}></SingleShopGallery>
             </div>
             <div className=" flex-11 w-full flex flex-col gap-10">
-              <div className="hidden md:flex">
+              <div className="">
                 <TitleRight title={product?.name}></TitleRight>
               </div>
               <NonSelectivePropertiesGrid

@@ -174,7 +174,7 @@ export default async function ShopPage({
             }),
           }}
         />
-        <div className="shopPage-container flex flex-col gap-10  pb-20 pt-20">
+        <div className="shopPage-container flex flex-col gap-10 pb-20 pt-20">
           <div className="flex flex-col gap-5">
             {motherCats?.length > 0 && (
               <BreadCrumb motherCats={motherCats}></BreadCrumb>
