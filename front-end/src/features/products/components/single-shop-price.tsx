@@ -5,9 +5,8 @@ import SelectiveProperties from "./selective-properties";
 import { SERVER_API } from "../../../../config";
 import callManager from "@/hooks/callManager";
 import axios from "axios";
-import Offpercent from "./offpercent";
-import PriceUnit from "@/components/priceUnit";
 import { createPriceAndStockObj } from "@/helpers/createPriceAndStockObj";
+import ProductPrice from "./product-price";
 
 const SingleShopPrice = ({ product }: any) => {
   const { call } = callManager();
@@ -93,31 +92,7 @@ const SingleShopPrice = ({ product }: any) => {
         handleSelectProperty={handleSelectProperty}
       ></SelectiveProperties>
       <div className=" flex flex-col gap-2 items-end">
-        <div>
-          {priceAndStock.discount ? (
-            <>
-              <div className="flex flex-row gap-1">
-                <span className="text-nowrap line-through text-neutral-600 text-size14">
-                  {priceAndStock.price}
-                </span>
-                <Offpercent percent={priceAndStock.percent}></Offpercent>
-              </div>
-              <div className="flex flex-row gap-1 items-center flex-nowrap">
-                <span className="text-neutral-900 text-size24 font-weight300 text-nowrap">
-                  {priceAndStock.discount.offer}
-                </span>
-                <PriceUnit></PriceUnit>
-              </div>
-            </>
-          ) : (
-            <div className="flex flex-row gap-1 items-center flex-nowrap">
-              <span className="text-neutral-900 text-size24 font-weight300 text-nowrap">
-                {priceAndStock.price}
-              </span>
-              <PriceUnit></PriceUnit>
-            </div>
-          )}
-        </div>
+        <ProductPrice priceAndStock={priceAndStock}></ProductPrice>
         <button
           onClick={() => handleAddToCart(product._id)}
           className="bg-lime-600 text-white text-shadow-lg rounded-lg px-4 py-2"

@@ -5,8 +5,8 @@ import {
   ProductPropertyvalsObj,
 } from "@/features/admin/types/properties";
 import CartPlusSvg from "@/components/icons/cart-plus-svgrepo-com";
-import ProductPrice from "./product-price";
 import { BREAK_POINTS } from "../../../../config";
+import ProductCardPrice from "./product-card-price";
 
 interface ProductCardProps {
   product: any;
@@ -66,7 +66,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               <p className="px-4">{product?.name}</p>
               <div className="mt-auto px-4 flex flex-row gap-1 w-full justify-between items-end flex-nowrap">
                 <CartPlusSvg color={"#525252"}></CartPlusSvg>
-                <ProductPrice product={product}></ProductPrice>
+                <ProductCardPrice product={product}></ProductCardPrice>
               </div>
             </div>
             <img

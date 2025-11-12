@@ -42,7 +42,7 @@ const Footer = () => {
               </div>
             </div>
             <div className=" w-full flex flex-row gap-3 justify-end">
-              <Enamad></Enamad>
+              {/* <Enamad></Enamad> */}
             </div>
           </div>
           <p className="text-size14 text-center  text-neutral-700">
