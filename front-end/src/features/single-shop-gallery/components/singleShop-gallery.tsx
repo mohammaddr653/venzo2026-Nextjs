@@ -4,6 +4,7 @@ import ThreeDotsSvg from "@/components/icons/three-dots-svg";
 import Img from "@/components/img";
 import { useEffect, useState } from "react";
 import GallerySlider from "./gallerySlider";
+import ScreenWrapper from "@/components/screen-wrapper";
 
 interface SingleShopGalleryProps {
   product: any;
@@ -65,18 +66,12 @@ const SingleShopGallery = ({ product }: SingleShopGalleryProps) => {
         </div>
       ) : null}
       {galleryShow && product?.gallery.length ? (
-        <div className="fixed top-0 z-[60] w-full h-full right-0 flex justify-center items-center">
-          <div
-            onClick={() => setGalleryShow(false)}
-            className="w-full z-[61] h-full bg-glass-shadow absolute right-0 "
-          ></div>
-          <div className="relative z-[62] flex justify-center items-center w-[90vw] h-[90vh]">
-            <GallerySlider
-              object={product?.gallery}
-              setGalleryShow={setGalleryShow}
-            ></GallerySlider>
-          </div>
-        </div>
+        <ScreenWrapper className="w-full h-full top-0 right-0 z-60 flex justify-center bg-glass-shadow">
+          <GallerySlider
+            object={product?.gallery}
+            setGalleryShow={setGalleryShow}
+          ></GallerySlider>
+        </ScreenWrapper>
       ) : null}
     </div>
   );

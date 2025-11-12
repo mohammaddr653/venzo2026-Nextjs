@@ -52,7 +52,7 @@ const GallerySlider = ({ object, setGalleryShow }: any) => {
                     <Img
                       pic={item}
                       sizes={"500px"}
-                      className="object-cover h-full"
+                      className="object-cover aspect-square"
                     ></Img>
                   </SwiperSlide>
                 );

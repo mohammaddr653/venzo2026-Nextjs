@@ -33,11 +33,11 @@ const SingleShopPage = async ({
             <BreadCrumb motherCats={motherCats}></BreadCrumb>
           ) : null}
           <div className="flex flex-col md:flex-row gap-10 px-5 md:px-20">
-            <div className="flex flex-col items-end md:items-start md:flex-row gap-4 flex-6 relative">
+            <div className="flex flex-col items-end md:items-start md:flex-row gap-4 flex-6">
               <SingleShopGallery product={product}></SingleShopGallery>
             </div>
             <div className=" flex-11 w-full flex flex-col gap-10">
-              <div className="">
+              <div>
                 <TitleRight title={product?.name}></TitleRight>
               </div>
               <NonSelectivePropertiesGrid
