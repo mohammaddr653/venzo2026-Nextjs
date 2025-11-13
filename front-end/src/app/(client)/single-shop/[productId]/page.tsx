@@ -6,6 +6,7 @@ import SingleShopGallery from "@/features/single-shop-gallery/components/singleS
 import NonSelectivePropertiesGrid from "@/features/products/components/non-selective-properties-grid";
 import PropertiesTable from "@/features/products/components/propertiesTable";
 import SingleShopPrice from "@/features/products/components/single-shop-price";
+import SingleShopBootstrap from "@/components/singleShopBootstrap";
 
 const SingleShopPage = async ({
   params,
@@ -26,6 +27,7 @@ const SingleShopPage = async ({
 
   return (
     <>
+      <SingleShopBootstrap product={product}></SingleShopBootstrap>
       <Header focus={true}></Header>
       <main>
         <div className="singleShopPage-container flex flex-col gap-5 pt-20 pb-20">
