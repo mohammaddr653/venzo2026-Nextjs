@@ -23,11 +23,16 @@ const SingleShopPage = async ({
   ).json()) as any;
 
   const product = response.data.product;
+  if (product?.img) {
+    //عکس اصلی را به آرایه گالری محصول اضافه میکند
+    product.gallery.unshift(product.img);
+  }
+
   const motherCats = [...response?.data.motherCategories.reverse()];
 
   return (
     <>
-      <SingleShopBootstrap product={product}></SingleShopBootstrap>
+      <SingleShopBootstrap></SingleShopBootstrap>
       <Header focus={true}></Header>
       <main>
         <div className="singleShopPage-container flex flex-col gap-5 pt-20 pb-20">

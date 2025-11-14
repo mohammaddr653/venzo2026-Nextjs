@@ -2,18 +2,17 @@
 
 "use client";
 
-import { useClickedImageStore } from "@/store";
+import { useGalleryShowStore } from "@/store";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const SingleShopBootstrap = ({ product }: any) => {
-  const { setClickedImg } = useClickedImageStore();
+const SingleShopBootstrap = () => {
+  const pathname = usePathname();
+  const {setGalleryShow } = useGalleryShowStore();
 
   useEffect(() => {
-    if (product?.img) {
-      product.gallery.unshift(product.img);
-      setClickedImg({ ...product.img });
-    }
-  }, [product]);
+    setGalleryShow(false);
+  }, [pathname]);
 
   return null;
 };

@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 const useClickedImageStore = create<any>((set) => ({
-  clickedImg: null,
-  setClickedImg: (newImg: any) => set({ clickedImg: newImg }),
+  clickedImg: 0,
+  setClickedImg: (newImg: number) => set({ clickedImg: newImg }),
 }));
 export default useClickedImageStore;

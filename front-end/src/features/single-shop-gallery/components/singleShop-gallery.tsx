@@ -15,10 +15,11 @@ const SingleShopGallery = ({ product }: SingleShopGalleryProps) => {
         <Img
           pic={product?.img}
           sizes={"500px"}
+          id="singleshop-image"
           className="aspect-square object-cover w-full"
         ></Img>
         {product?.gallery.length ? (
-          <OpenButton className="cursor-pointer absolute w-full h-full opacity-0 group-hover:opacity-100 flex transition-opacity duration-300 justify-center items-center top-0 bg-glass-shadow">
+          <OpenButton className="cursor-pointer absolute w-full h-full opacity-0 group-hover:opacity-100 flex transition-opacity duration-300 justify-center items-center top-0 bg-glass-shadow" initialSlide={0}>
             <GallerySvg width={50} fill={"white"}></GallerySvg>
           </OpenButton>
         ) : null}

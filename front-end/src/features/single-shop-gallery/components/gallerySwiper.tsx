@@ -17,10 +17,11 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useState } from "react";
 import Img from "@/components/img";
 import ExitSvg from "@/components/icons/exit-svg";
-import { useGalleryShowStore } from "@/store";
+import { useClickedImageStore, useGalleryShowStore } from "@/store";
 import ScreenWrapper from "@/components/screen-wrapper";
 
 const GallerySwiper = ({ object }: any) => {
+  const { clickedImg} = useClickedImageStore();
   const { setGalleryShow } = useGalleryShowStore();
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
@@ -44,6 +45,7 @@ const GallerySwiper = ({ object }: any) => {
             }}
             loop={true}
             spaceBetween={10}
+            initialSlide={clickedImg}
             navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}

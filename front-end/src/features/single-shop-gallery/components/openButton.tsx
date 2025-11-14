@@ -1,17 +1,24 @@
 "use client";
 
-import { useGalleryShowStore } from "@/store";
+import { useClickedImageStore, useGalleryShowStore } from "@/store";
 
 interface OpenButtonTypes
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  initialSlide: number;
   children?: React.ReactNode;
 }
 
-const OpenButton = ({ children, ...props }: OpenButtonTypes) => {
+const OpenButton = ({ initialSlide, children, ...props }: OpenButtonTypes) => {
+  const { setClickedImg } = useClickedImageStore();
   const { setGalleryShow } = useGalleryShowStore();
 
+  function handleClick() {
+    setClickedImg(initialSlide);
+    setGalleryShow(true);
+  }
+
   return (
-    <button onClick={() => setGalleryShow(true)} {...props}>
+    <button onClick={handleClick} {...props}>
       {children}
     </button>
   );
