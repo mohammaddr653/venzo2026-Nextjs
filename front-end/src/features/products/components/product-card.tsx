@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             </div>
             <img
-              src="/images/icons/jk4377d2c3969965e3b8e7e7dcdfc0be536.png"
+              src="/icons/jk4377d2c3969965e3b8e7e7dcdfc0be536.png"
               alt=""
               width={150}
               className="pattern-part object-cover absolute bottom-0 right-0 opacity-[0.05] z-0"
