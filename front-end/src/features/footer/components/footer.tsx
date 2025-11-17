@@ -12,9 +12,9 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center">
             <div className=" w-full flex flex-col gap-8">
-              <div className="flex flex-row justify-between items-center">
+              <div className="flex flex-row justify-between h-[60px] items-stretch">
                 <Logo></Logo>
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row gap-2 items-center">
                   <SocialIcons
                     width={"20px"}
                     height={"20px"}
