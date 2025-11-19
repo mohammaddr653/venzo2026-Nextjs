@@ -8,7 +8,7 @@ module.exports = new (class extends controller {
     const token = await userServices.createResetPasswordToken(req, res);
     if (token.status === 200) {
       let content = `<a href=${
-        process.env.ORIGIN_URL + "/pass-restore-form/" + token.data
+        process.env.ORIGIN_URL + "/pass-restore/" + token.data
       }>برای بازیابی رمزعبور کلیک کنید</a>`;
       sendEmail(req.body.email, content);
       return this.response({
