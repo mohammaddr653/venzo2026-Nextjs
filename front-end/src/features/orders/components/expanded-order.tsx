@@ -1,3 +1,4 @@
+"use client"
 import OrderStatus from "./order-status";
 import PriceUnit from "../../../components/priceUnit";
 import ScreenWrapper from "@/components/screen-wrapper";

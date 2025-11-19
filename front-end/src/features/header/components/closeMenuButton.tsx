@@ -4,7 +4,7 @@ import { useMobileMenuStore } from "@/store";
 import CloseSvg from "../../../components/icons/close-svg";
 
 const CloseMenuButton = () => {
-  const { mobileMenuShow, setMobileMenuShow } = useMobileMenuStore();
+  const { setMobileMenuShow } = useMobileMenuStore();
 
   return (
     <button

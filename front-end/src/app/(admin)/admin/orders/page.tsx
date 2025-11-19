@@ -1,7 +1,7 @@
 "use client";
 
-import ExpandedOrder from "@/features/admin/components/expanded-order";
-import OrderStatus from "@/features/admin/components/order-status";
+import ExpandedOrder from "@/features/orders/components/expanded-order";
+import OrderStatus from "@/features/orders/components/order-status";
 import { SERVER_API } from "../../../../../config";
 import axios from "axios";
 import { useEffect, useState } from "react";

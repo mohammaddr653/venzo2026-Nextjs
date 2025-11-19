@@ -1,3 +1,4 @@
+"use client"
 const OrderStatus = ({ order }: any) => {
   return (
     <>
