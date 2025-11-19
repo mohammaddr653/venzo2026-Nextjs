@@ -2,9 +2,9 @@
 const debug = require("debug")("app");
 const controller = require("./../controller");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const userServices = require("../../services/userServices");
 const validateRecaptcha = require("../../helpers/validateRecaptcha");
+const setJwtCookie = require("../../helpers/setJwtCookie");
 
 module.exports = new (class extends controller {
   async getRegister(req, res) {
@@ -78,20 +78,7 @@ module.exports = new (class extends controller {
         message: "ایمیل یا رمز عبور نامعتبر است",
       });
     }
-    const token = jwt.sign(
-      { _id: user.id, isAdmin: user.isadmin, verified: user.verified },
-      process.env.JWT_KEY
-    );
-    //storing jwt token as a httpOnly cookie
-    const mode = process.env.NODE_ENV;
-
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      path: "/",
-      secure: mode === "production" ? true : false,
-      sameSite: mode === "production" ? "None" : "Strict",
-      maxAge: 604800000,
-    });
-    this.response({ res, message: "با موفقیت وارد شدید", data: { token } });
+    setJwtCookie(res,user);
+    this.response({ res, message: "با موفقیت وارد شدید"});
   }
 })();

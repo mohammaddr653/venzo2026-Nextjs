@@ -7,6 +7,7 @@ const deleteFile = require("../helpers/deleteFile");
 const withTransaction = require("../helpers/withTransaction");
 const serviceResponse = require("../helpers/serviceResponse");
 const deleteWrapper = require("../helpers/deleteWrapper");
+const setJwtCookie = require("../helpers/setJwtCookie");
 
 class UserServices {
   async getAllUsers(req) {
@@ -131,11 +132,13 @@ class UserServices {
   }
 
   async verifyUser(req, res) {
-    const updateOp = await User.updateOne(
+    const user = await User.findOneAndUpdate(
       { email: req.user.email },
-      { $set: { verified: true } }
+      { $set: { verified: true } },
+      { new: true }
     );
-    if (updateOp.matchedCount > 0) {
+    if (user) {
+      setJwtCookie(res, user);
       return serviceResponse(200, {});
     }
     return serviceResponse(404, {});

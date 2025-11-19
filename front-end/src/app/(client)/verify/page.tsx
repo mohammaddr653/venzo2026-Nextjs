@@ -9,7 +9,7 @@ const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
 
 export default function VerifyPage() {
-  const { user, userLogout } = useLoadUser();
+  const { user } = useLoadUser();
   const { call } = callManager();
   const [formData, setFormData] = useState({
     code: "",
@@ -30,7 +30,7 @@ export default function VerifyPage() {
       true
     );
     if (response && response.status === 200) {
-      userLogout();
+      window.location.reload();
     }
   };
 
