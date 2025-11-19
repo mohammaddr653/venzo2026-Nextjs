@@ -1,25 +1,13 @@
 "use client";
-import { useUserStore } from "@/store";
-import { SERVER_API } from "../../../../config";
 import "../../../assets/css/account-buttons.css";
 import Img from "../../../components/img";
 import Link from "next/link";
-import axios from "axios";
-import callManager from "@/hooks/callManager";
 import ExitSvg from "@/components/icons/exit-svg";
 import UserSvg from "@/components/icons/user-svg";
+import useLoadUser from "@/hooks/useLoadUser";
 
 const AccountButtons = (props: any) => {
-  const { call } = callManager();
-  const { user } = useUserStore();
-
-  async function userLogout() {
-    const response = await call(
-      axios.get(SERVER_API + "/token/logout"),
-      false,
-      "/"
-    ); //deletes the token cookie
-  }
+  const { user, userLogout } = useLoadUser();
 
   return (
     <>

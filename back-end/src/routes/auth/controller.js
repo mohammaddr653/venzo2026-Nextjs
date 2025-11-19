@@ -78,7 +78,10 @@ module.exports = new (class extends controller {
         message: "ایمیل یا رمز عبور نامعتبر است",
       });
     }
-    const token = jwt.sign({ _id: user.id }, process.env.JWT_KEY);
+    const token = jwt.sign(
+      { _id: user.id, isAdmin: user.isadmin, verified: user.verified },
+      process.env.JWT_KEY
+    );
     //storing jwt token as a httpOnly cookie
     const mode = process.env.NODE_ENV;
 
