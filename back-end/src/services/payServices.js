@@ -90,9 +90,14 @@ class PayServices {
         //ارسال ایمیل به مشتری
         const client = await User.findById(saveOp.userId);
         let clientContent = `<p>از خرید شما ممنونیم . سفارش شما تایید شد و درحال آماده سازی برای ارسال است .</p>
-        <p>شماره سفارش : <span>${saveOp._id}</span></p>
-        <p>شناسه تراکنش : ${saveOp.authority}</p>
-        <p>کد رهگیری : ${saveOp.referenceId}</p>`;
+        <p>شماره سفارش :</p>
+        <p>${saveOp._id}</p>
+        <br/>
+        <p>شناسه تراکنش :</p>
+        <p>${saveOp.authority}</p>
+        <br/>
+        <p>کد رهگیری :</p>
+        <p>${saveOp.referenceId}</p>`;
         sendEmail(
           "فاکتور خرید از فروشگاه اینترنتی وانیمارت",
           client.email,
@@ -100,9 +105,14 @@ class PayServices {
         );
         //ارسال ایمیل به ادمین
         let content = `<a href='${process.env.ORIGIN_URL}/admin/orders'>سفارش جدیدی ثبت شد . لطفا بررسی کنید .</a>
-        <p>شماره سفارش : <span>${saveOp._id}</span></p>
-        <p>شناسه تراکنش : ${saveOp.authority}</p>
-        <p>کد رهگیری : ${saveOp.referenceId}</p>`;
+        <p>شماره سفارش :</p>
+        <p>${saveOp._id}</p>
+        <br/>
+        <p>شناسه تراکنش :</p>
+        <p>${saveOp.authority}</p>
+        <br/>
+        <p>کد رهگیری :</p>
+        <p>${saveOp.referenceId}</p>`;
         sendEmail("سفارش جدیدی دارید", "mohammaddr653@gmail.com", content);
 
         return serviceResponse(200, findOp._id);

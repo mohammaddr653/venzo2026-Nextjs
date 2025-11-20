@@ -25,7 +25,7 @@ const ClientOrders = () => {
       axios.post(SERVER_API + `/pay/${orderId}`),
       true
     );
-    if (response.data.data)
+    if (response?.data?.data)
       window.location.href = `https://sandbox.zarinpal.com/pg/StartPay/${response.data.data}`; //انتقال به صفحه پرداخت
   };
 

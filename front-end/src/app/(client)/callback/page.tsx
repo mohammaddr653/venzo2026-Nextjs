@@ -27,7 +27,7 @@ export default async function CallbackPage({
     <>
       <Header focus={true}></Header>
       <main>
-        <div className="callback-page-container flex flex-col gap-5 pt-15">
+        <div className="callback-page-container flex flex-col gap-5 py-20">
           <h1>callback page</h1>
           {info.code === "404" && (
             <h4>
