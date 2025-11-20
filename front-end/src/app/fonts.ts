@@ -1,17 +1,4 @@
 import localFont from "next/font/local";
-import { Roboto } from "next/font/google";
-import { Vazirmatn } from "next/font/google";
-
-export const roboto = Roboto({
-  weight: ["500", "800", "900"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const vazir = Vazirmatn({
-  subsets: ["arabic"],
-  display: "swap",
-});
 
 export const iransans = localFont({
   src: [
@@ -39,15 +26,4 @@ export const iransans = localFont({
   display: "swap",
   variable: "--font-iransans",
   preload: true,
-});
-
-export const nastaliq = localFont({
-  src: [
-    {
-      path: "../assets/fonts/nastaliq/IranNastaliq_YasDL.com.ttf",
-      weight: "300",
-      style: "normal",
-    },
-  ],
-  display: "swap",
 });
