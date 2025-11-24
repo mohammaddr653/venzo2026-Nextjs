@@ -47,7 +47,7 @@
   --shadow-r-lean-light: 0px 0 4.5px 0.5px #167c61c9;
   --shadow-b-card-300: 0 0 5px 1px #ab3e16;
   --shadow-card-neutral: 0 0 5px 1px #bbbbbb;
-  --shadow-full-ring: 0 0 3px 2px #ab3e16;
+  --shadow-full-ring: 0 0 1px 1px var(--color-neutral-300);
   --shadow-full-black: 0 0 1px 1px black;
   --inset-full-444: inset 0 0 0px 1px #444;
   --text-shadow-stroke: 0 0 5px var(--tw-text-shadow-color);

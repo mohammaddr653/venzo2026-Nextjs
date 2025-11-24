@@ -45,7 +45,7 @@ const ColorFilterBox = ({ item, query }: any) => {
                   style={{
                     backgroundColor: "#" + val.propertyval.hex.toString(),
                   }}
-                  className={`w-5 h-5 aspect-square rounded-full ${
+                  className={`w-5 h-5 aspect-square rounded-full shadow-full-ring ${
                     query
                       .getAll(`attributes[${item.property._id}]`)
                       ?.includes(val.propertyval?._id) &&

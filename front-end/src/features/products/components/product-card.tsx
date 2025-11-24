@@ -54,7 +54,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                           backgroundColor:
                             "#" + color.propertyval.hex.toString(),
                         }}
-                        className="h-full aspect-square rounded-full border-2 border-white outline-1 outline-[#444] inset-full-444"
+                        className="h-full aspect-square rounded-full border-2 border-white outline-1 outline-neutral-300 inset-full-444"
                       ></span>
                     ) : null;
                   })}
