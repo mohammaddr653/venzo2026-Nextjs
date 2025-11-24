@@ -91,7 +91,7 @@ export default function MediasPage() {
           <input
             type="file"
             name="media"
-            accept=".png,.jpg"
+            accept=".png,.jpg,.webp"
             className="border"
             multiple={true}
             onChange={handleFileChange}

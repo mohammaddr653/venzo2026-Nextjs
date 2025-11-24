@@ -21,16 +21,16 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
       <Swiper
         breakpoints={{
           0: {
-            slidesPerView: 1.5,
-          },
-          [BREAK_POINTS.sm]: {
             slidesPerView: 2.5,
           },
+          [BREAK_POINTS.sm]: {
+            slidesPerView: 3.5,
+          },
           [BREAK_POINTS.md]: {
-            slidesPerView: 4,
+            slidesPerView: 5,
           },
           [BREAK_POINTS.lg]: {
-            slidesPerView: 6,
+            slidesPerView: 7,
           },
         }}
         spaceBetween={20}
@@ -51,21 +51,21 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
                   href={`/shop/${item._id}`}
                   className=" rounded-md flex flex-col justify-between border overflow-hidden border-neutral-300 p-2 gap-2 items-center"
                 >
-                  {/*rez: 380/280 */}
+                  {/*rez: 380/380 */}
                   <Img
                     pic={item.img}
                     width={380}
-                    height={280}
+                    height={380}
                     alt="child-category-image"
                     sizes={`
-                      (max-width: ${BREAK_POINTS.sm}px) 372px,
+                      (max-width: ${BREAK_POINTS.sm}px) 370px,
                       (max-width: ${BREAK_POINTS.md}px) 260px,
                       (max-width: ${BREAK_POINTS.lg}px) 183px,
                       208px
                     `}
                     loading="lazy"
                     className={
-                      "object-cover aspect-[380/280] border border-neutral-300"
+                      "object-cover aspect-square"
                     }
                   ></Img>
 

@@ -20,7 +20,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         className="product-card group rounded-xl border-neutral-300 border overflow-hidden hover:border-primary/70 transition-shadow duration-300"
       >
         <div className="main-part w-full flex flex-col justify-start items-center h-full">
-          <div className="relative w-full p-2">
+          <div className="relative w-full p-10">
             <div className="w-full relative overflow-hidden rounded-xl">
               <Img
                 pic={product?.img}

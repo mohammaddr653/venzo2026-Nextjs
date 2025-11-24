@@ -20,7 +20,7 @@ const ProductResponsiveCard = ({ product }: ProductCardProps) => {
         className="product-card group rounded-xl border-neutral-200 border overflow-hidden hover:shadow-card-neutral transition-shadow duration-300"
       >
         <div className=" main-part w-full flex flex-row sm:flex-col justify-start items-stretch h-full">
-          <div className="relative flex-[1] p-2">
+          <div className="relative flex-[1] p-10">
             <div className="w-full relative overflow-hidden rounded-xl">
               <Img
                 pic={product?.img}
