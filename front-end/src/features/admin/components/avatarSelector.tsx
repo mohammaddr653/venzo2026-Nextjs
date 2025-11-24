@@ -119,7 +119,7 @@ const AvatarSelector = ({ user }: any) => {
               <div className="flex gap-2">
                 <form onSubmit={handleSubmit} className="flex gap-2">
                   <label
-                    htmlFor="newAvatar"
+                    htmlFor="avatar"
                     className="border border-neutral-500 rounded-full flex justify-center items-center bg-neutral-400 text-white w-10 h-10"
                   >
                     <input

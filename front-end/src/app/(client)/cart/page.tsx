@@ -2,7 +2,7 @@
 import callManager from "@/hooks/callManager";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BREAK_POINTS, SERVER_API } from "../../../../config";
+import { SERVER_API } from "../../../../config";
 import Link from "next/link";
 import Img from "@/components/img";
 import PriceUnit from "@/components/priceUnit";
