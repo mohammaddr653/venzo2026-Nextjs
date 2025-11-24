@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import callManager from "@/hooks/callManager";
 import useLoadUser from "@/hooks/useLoadUser";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { SERVER_API } from "../../../../config";
 import Link from "next/link";
-import AvatarSelector from "@/features/admin/components/avatarSelector";
+import AvatarSelector from "@/components/avatarSelector";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";

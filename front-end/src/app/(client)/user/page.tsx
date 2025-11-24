@@ -1,5 +1,5 @@
 "use client";
-import AvatarSelector from "@/features/admin/components/avatarSelector";
+import AvatarSelector from "@/components/avatarSelector";
 import { BREAK_POINTS, SERVER_API } from "../../../../config";
 import axios from "axios";
 import { useEffect, useState } from "react";

@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import callManager from "../../../hooks/callManager";
+import callManager from "../hooks/callManager";
 import axios from "axios";
-import { SERVER_API } from "../../../../config";
+import { SERVER_API } from "../../config";
 import Img from "@/components/img";
 import useLoadUser from "@/hooks/useLoadUser";
 import EditSvg from "@/components/icons/edit-svg";
@@ -119,7 +119,7 @@ const AvatarSelector = ({ user }: any) => {
               <div className="flex gap-2">
                 <form onSubmit={handleSubmit} className="flex gap-2">
                   <label
-                    htmlFor="avatar"
+                    htmlFor="newAvatar"
                     className="border border-neutral-500 rounded-full flex justify-center items-center bg-neutral-400 text-white w-10 h-10"
                   >
                     <input

@@ -219,6 +219,7 @@ export default function CartPage() {
                     <label htmlFor="name" className="flex flex-col gap-1">
                       <p>نام و نام خانوادگی</p>
                       <input
+                        id="name"
                         type="text"
                         name="name"
                         onChange={handleChange}
@@ -228,6 +229,7 @@ export default function CartPage() {
                     <label htmlFor="phone" className="flex flex-col gap-1">
                       <p>شماره تماس</p>
                       <input
+                        id="phone"
                         type="text"
                         name="phone"
                         onChange={handleChange}
@@ -237,6 +239,7 @@ export default function CartPage() {
                     <label htmlFor="province" className="flex flex-col gap-1">
                       <p>استان</p>
                       <input
+                        id="province"
                         type="text"
                         name="province"
                         onChange={handleChange}
@@ -246,6 +249,7 @@ export default function CartPage() {
                     <label htmlFor="city" className="flex flex-col gap-1">
                       <p>شهر</p>
                       <input
+                        id="city"
                         type="text"
                         name="city"
                         onChange={handleChange}
@@ -255,6 +259,7 @@ export default function CartPage() {
                     <label htmlFor="address" className="flex flex-col gap-1">
                       <p>آدرس کامل</p>
                       <textarea
+                        id="address"
                         name="address"
                         onChange={handleChange}
                         className="p-2 border border-neutral-300 rounded-md"
@@ -263,6 +268,7 @@ export default function CartPage() {
                     <label htmlFor="postalCode" className="flex flex-col gap-1">
                       <p>کد پستی</p>
                       <input
+                        id="postalCode"
                         type="text"
                         name="postalCode"
                         onChange={handleChange}
@@ -272,6 +278,7 @@ export default function CartPage() {
                     <label htmlFor="note" className="flex flex-col gap-1">
                       <p>یادداشت</p>
                       <textarea
+                        id="note"
                         name="note"
                         onChange={handleChange}
                         className="p-2 border border-neutral-300 rounded-md"
