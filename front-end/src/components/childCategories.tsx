@@ -51,7 +51,7 @@ const ChildCategories = ({ childCats, categoryId }: any) => {
                   href={`/shop/${item._id}`}
                   className=" rounded-md flex flex-col justify-between border overflow-hidden border-neutral-300 p-2 gap-2 items-center"
                 >
-                  {/* 380/280 */}
+                  {/*rez: 380/280 */}
                   <Img
                     pic={item.img}
                     width={380}

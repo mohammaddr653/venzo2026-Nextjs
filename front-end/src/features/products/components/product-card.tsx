@@ -70,7 +70,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             </div>
             <img
-              //size:150*93
+              //rez:150*93
               src="/jk4377d2c3969965e3b8e7e7dcdfc0be536.png"
               alt="sticker"
               width={150}

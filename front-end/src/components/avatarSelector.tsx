@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import callManager from "../hooks/callManager";
 import axios from "axios";
-import { SERVER_API } from "../../config";
+import { BREAK_POINTS, SERVER_API } from "../../config";
 import Img from "@/components/img";
 import useLoadUser from "@/hooks/useLoadUser";
 import EditSvg from "@/components/icons/edit-svg";
@@ -80,9 +80,16 @@ const AvatarSelector = ({ user }: any) => {
         <div className=" col-span-4">
           <Img
             pic={user?.avatar}
-            sizes={"500px"}
+            sizes={`
+              (max-width: ${BREAK_POINTS.md}px) 250px,
+              (max-width: ${BREAK_POINTS.lg}px) 114px,
+              (max-width: ${BREAK_POINTS.xl}px) 149px,
+              193px
+            `}
+            alt={"user-avatar"}
             className={"rounded-full aspect-square object-cover w-full"}
-            width={100}
+            width={300}
+            height={300}
           ></Img>
         </div>
         <div className=""></div>
@@ -104,16 +111,26 @@ const AvatarSelector = ({ user }: any) => {
               {avatarPreview ? (
                 <img
                   src={avatarPreview}
-                  alt=""
+                  alt="user-avatar-preview"
+                  sizes={`
+                    (max-width: ${BREAK_POINTS.sm}px) 250px,
+                    300px
+                  `}
                   className={"rounded-full aspect-square object-cover"}
                   width={300}
+                  height={300}
                 />
               ) : (
                 <Img
                   pic={user?.avatar}
-                  sizes={"500px"}
+                  sizes={`
+                    (max-width: ${BREAK_POINTS.sm}px) 250px,
+                    300px
+                  `}
+                  alt={"user-avatar"}
                   className={"rounded-full aspect-square object-cover"}
                   width={300}
+                  height={300}
                 ></Img>
               )}
               <div className="flex gap-2">
