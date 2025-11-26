@@ -191,38 +191,33 @@ export default async function ShopPage({
               <FiltersForm categoryId={categoryId} query={query}></FiltersForm>
             </div>
             <div className=" flex flex-[4] flex-col justify-between gap-5">
-              {products?.length ? (
-                <>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex justify-start items-center rounded-md mt-auto">
-                      <MobFiltersButton></MobFiltersButton>
-                      <CountPerPage
-                        query={query}
-                        initialVal={limit}
-                      ></CountPerPage>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                      {products?.map((item: any, index: any) => {
-                        return (
-                          //very similar to ProductCard...for now at least
-                          <ProductResponsiveCard
-                            key={index}
-                            product={item}
-                          ></ProductResponsiveCard>
-                        );
-                      })}
-                    </div>
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-start items-center rounded-md mt-auto">
+                  <MobFiltersButton></MobFiltersButton>
+                  <CountPerPage query={query} initialVal={limit}></CountPerPage>
+                </div>
+                {products?.length ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {products?.map((item: any, index: any) => {
+                      return (
+                        //very similar to ProductCard...for now at least
+                        <ProductResponsiveCard
+                          key={index}
+                          product={item}
+                        ></ProductResponsiveCard>
+                      );
+                    })}
                   </div>
-                  <div>
-                    <Pagination
-                      totalPagesCount={totalPagesCount}
-                      searchParams={resolvedSearchParams}
-                    ></Pagination>
-                  </div>
-                </>
-              ) : (
-                <p>محتوایی یافت نشد</p>
-              )}
+                ) : (
+                  <p>محتوایی یافت نشد</p>
+                )}
+              </div>
+              <div>
+                <Pagination
+                  totalPagesCount={totalPagesCount}
+                  searchParams={resolvedSearchParams}
+                ></Pagination>
+              </div>
             </div>
           </div>
           <div className="hidden mobfilters-open:flex bg-white py-2 fixed lg:hidden top-0 flex-col left-0 w-[100vw] h-[100vh] z-50">

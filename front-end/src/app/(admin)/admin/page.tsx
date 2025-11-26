@@ -53,7 +53,9 @@ export default function AdminPage() {
       <h1>{user?.email}</h1>
       <h1>{user?.isadmin ? "is admin" : "not admin"}</h1>
       <h1>admin page</h1>
-      <AvatarSelector user={user}></AvatarSelector>
+      <div className="w-50">
+        <AvatarSelector user={user}></AvatarSelector>
+      </div>
       <div className="bg-green-300">
         <h1>ویرایش اکانت</h1>
         <form onSubmit={handleSubmit}>

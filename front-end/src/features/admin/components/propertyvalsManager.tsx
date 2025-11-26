@@ -24,7 +24,13 @@ interface propertyvalObj {
 }
 
 const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
-  const {propertyObj,selectedProperty,propertiesAndVals,properties,setProperties} = props;
+  const {
+    propertyObj,
+    selectedProperty,
+    propertiesAndVals,
+    properties,
+    setProperties,
+  } = props;
   const [propertyval, setPropertyval] = useState<propertyvalObj>({
     valueString: "",
     price: "",
@@ -220,7 +226,7 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
   ) => {
     let filteredVals: ProductPropertyvalsObj[] = property?.values.filter(
       (propertyval) => {
-        property.property.specifiedVals
+        return property.property.specifiedVals
           ? propertyval.propertyval?.value !== value
           : propertyval.valueString !== value;
       }

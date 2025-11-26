@@ -1,5 +1,6 @@
 import Header from "@/features/header/components/header";
 import { SERVER_API } from "../../../../config";
+import { cookies } from "next/headers";
 
 export default async function CallbackPage({
   searchParams,
@@ -12,10 +13,14 @@ export default async function CallbackPage({
     data: resolvedSearchParams.data,
   };
   let order;
+  const cookie = (await cookies()).toString();
 
   if (info.code === "200" && info.data !== "undefined" && info.data) {
     const response = (await (
       await fetch(`${SERVER_API}/orders/${info.data}`, {
+        headers: {
+          Cookie: cookie, //برای ارسال کوکی jwt
+        },
         cache: "no-store",
       })
     ).json()) as any;

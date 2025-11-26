@@ -15,7 +15,7 @@ const FiltersForm = async ({ categoryId, query }: any) => {
         {filters.map((item: any, index: any) => {
           return (
             <form className="flex flex-col gap-2 p-4" key={index}>
-              <h4 className="font-weight300">{item?.property.name}</h4>
+              <h4 className="font-weight300 text-neutral-700">{item?.property.name}</h4>
               {item?.property?.type === "color" ? (
                 <ColorFilterBox item={item} query={query}></ColorFilterBox>
               ) : (
