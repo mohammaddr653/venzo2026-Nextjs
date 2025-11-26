@@ -9,7 +9,7 @@ const MobFiltersForm = async ({ categoryId, query }: any) => {
   const filters = response.data;
 
   return (
-    <div className="">
+    <div className="overflow-y-scroll">
       {filters.map((item: any, index: any) => {
         return (
           <form className="flex flex-col gap-2 p-4" key={index}>

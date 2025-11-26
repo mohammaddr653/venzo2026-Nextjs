@@ -29,9 +29,9 @@ const Pagination = ({ totalPagesCount, searchParams }: any) => {
   return (
     <>
       {totalPagesCount ? (
-        <div className="pagination flex flex-row justify-between">
+        <div className="pagination flex flex-row justify-between text-neutral-primary">
           <button
-            className="border border-neutral-300 rounded-md px-2 py-1 text-size14 text-neutral-800 cursor-pointer"
+            className="border border-neutral-primary rounded-md px-2 py-1 text-size14 cursor-pointer"
             onClick={handleNext}
           >
             صفحه بعد
@@ -48,8 +48,10 @@ const Pagination = ({ totalPagesCount, searchParams }: any) => {
                   <React.Fragment key={index}>
                     {index + 1 === page - 1 && index + 1 > 2 ? "..." : null}
                     <button
-                      className={`border rounded-md w-[30px] h-[30px] flex items-center justify-center cursor-pointer ${
-                        page === index + 1 ? "bg-amber-400" : null
+                      className={`border border-neutral-primary rounded-md w-[30px] h-[30px] flex items-center justify-center cursor-pointer ${
+                        page === index + 1
+                          ? "bg-neutral-primary text-neutral-50"
+                          : null
                       }`}
                       onClick={() => {
                         handleChangePage(index + 1);
@@ -66,7 +68,7 @@ const Pagination = ({ totalPagesCount, searchParams }: any) => {
             })}
           </div>
           <button
-            className="border border-neutral-300 rounded-md px-2 py-1 text-size14 text-neutral-800 cursor-pointer"
+            className="border border-neutral-primary rounded-md px-2 py-1 text-size14 cursor-pointer"
             onClick={handlePrev}
           >
             صفحه قبل

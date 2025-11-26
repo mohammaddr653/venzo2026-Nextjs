@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`bg-white relative dark:bg-neutral-900 transition-colors duration-300 font-weight200 text-size16 flex flex-col ${iransans.className} max-w-screen mx-auto min-h-[100vh]`}
+        className={`bg-white relative transition-colors duration-300 font-weight200 text-size16 flex flex-col ${iransans.className} max-w-screen mx-auto min-h-[100vh]`}
       >
         {children}
         <Toaster position="top-right" />
