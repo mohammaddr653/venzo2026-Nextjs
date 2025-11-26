@@ -1,22 +1,9 @@
 "use client";
 //کلاینتی باشد بهتر است چون محتوای منو در دسکتاپ هم موجود است و اگر این هم ایندکس شود امتیاز منفی دارد
 
-import { useEffect, useRef } from "react";
 import MobMenuItem from "./mobile-menuItem";
-import { mobileMenuScripts } from "@/helpers/mobileMenuScripts";
 
 const MobileNav = ({ categories }: any) => {
-  const listenerRef = useRef(false);
-
-  useEffect(() => {
-    if (!listenerRef.current) {
-      listenerRef.current = true;
-      mobileMenuScripts();
-      return () => {
-        listenerRef.current = false;
-      };
-    }
-  }, [categories]);
 
   return (
     <nav className="mobile-nav">
