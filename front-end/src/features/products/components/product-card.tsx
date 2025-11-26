@@ -62,8 +62,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </div>
           </div>
           <div className="relative overflow-hidden w-full grow">
-            <div className="relative flex flex-col justify-between items-center gap-4 min-h-[150px] py-4 z-10">
-              <p className="px-4">{product?.name}</p>
+            <div className="relative flex flex-col justify-between items-center min-h-[150px] py-4 z-10">
+              <p className="px-4 cu-text-truncate-2 text-size15 font-weight300 h-[45px] text-neutral-800">
+                {product?.name}
+              </p>
               <div className="mt-auto px-4 flex flex-row gap-1 w-full justify-between items-end flex-nowrap">
                 <CartPlusSvg color={"#525252"}></CartPlusSvg>
                 <ProductCardPrice product={product}></ProductCardPrice>

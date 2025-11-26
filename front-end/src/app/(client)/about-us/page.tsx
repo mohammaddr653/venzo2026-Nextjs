@@ -154,7 +154,7 @@ export default function AboutUsPage() {
             </p>
             <h6>لذت گیم با اگزو گیم ؛ عرضه کننده تخصصی کالاهای گیمینگ</h6>
           </div>
-          <div className="bg-green-300 w-full">
+          <div className="w-full">
             {/* rez:730/730 */}
             <Image
               src={"/image_2023-06-10_12-39-02.png"}

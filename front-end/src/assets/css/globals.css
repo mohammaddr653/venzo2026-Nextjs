@@ -109,6 +109,12 @@
   .cu-account-button {
     @apply text-white cursor-pointer text-shadow-md text-shadow-neutral-primary/80 text-sm font-weight300;
   }
+  .cu-text-truncate-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {
