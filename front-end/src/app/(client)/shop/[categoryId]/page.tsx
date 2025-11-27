@@ -186,8 +186,8 @@ export default async function ShopPage({
               ></ChildCategories>
             )}
           </div>
-          <div className="flex flex-row justify-between items-stretch px-5 md:px-20 gap-5">
-            <div className="hidden lg:flex flex-[1] flex-col gap-2">
+          <div className="flex flex-row justify-between items-start px-5 md:px-20 gap-5">
+            <div className="hidden lg:flex flex-[1] flex-col gap-2 sticky top-[60px]">
               <FiltersForm categoryId={categoryId} query={query}></FiltersForm>
             </div>
             <div className=" flex flex-[4] flex-col justify-between gap-5">
