@@ -6,10 +6,9 @@ import {
   useMobileMenuStore,
   useWidthStore,
 } from "@/store";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "@/app/loading";
 import { usePathname } from "next/navigation";
-import { mobileMenuScripts } from "@/helpers/mobileMenuScripts";
 
 const ClientBootstrap = () => {
   const { setWidth } = useWidthStore();
@@ -18,7 +17,6 @@ const ClientBootstrap = () => {
   const { mobileFiltersShow } = useMobileFiltersStore();
 
   const pathname = usePathname();
-  const accordionRef = useRef(false);
 
   useEffect(() => {
     const html = document.getElementsByTagName("html")[0];
@@ -36,13 +34,6 @@ const ClientBootstrap = () => {
 
   useEffect(() => {
     setMobileMenuShow(false);
-    if (!accordionRef.current) {
-      accordionRef.current = true;
-      mobileMenuScripts();
-      return () => {
-        accordionRef.current = false;
-      };
-    }
   }, [pathname]);
 
   function handleScroll() {

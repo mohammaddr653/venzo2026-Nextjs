@@ -1,4 +1,7 @@
 import LeftSvg from "@/components/icons/left-svg";
+import AccordionChilds from "@/features/accordion/components/accordion-childs";
+import AccordionHead from "@/features/accordion/components/accordion-head";
+import AccordionLi from "@/features/accordion/components/accordion-li";
 import Link from "next/link";
 
 const MobMenuItem = ({ item, categories }: any) => {
@@ -8,8 +11,12 @@ const MobMenuItem = ({ item, categories }: any) => {
     categories.some((category: any) => category.motherId === item._id);
 
   return (
-    <li className={`${item.display} ps-2 w-full`}>
-      <div className={`head flex flex-row items-center justify-between ${!condition&&"font-weight200"}`}>
+    <AccordionLi className={`${item.display} ps-2 w-full`}>
+      <AccordionHead
+        className={`flex flex-row items-center justify-between ${
+          !condition && "font-weight200"
+        }`}
+      >
         {item.type === "shop" && (
           <Link href={`/shop/${item._id}`}>{item.name}</Link>
         )}
@@ -19,9 +26,9 @@ const MobMenuItem = ({ item, categories }: any) => {
         {item.type === "box" && <h4>{item.name}</h4>}
         {item.type === "link" && <Link href={item.link}>{item.name}</Link>}
         {condition && <LeftSvg fill={"currentColor"} width={20}></LeftSvg>}
-      </div>
+      </AccordionHead>
       {condition && (
-        <div className="childs">
+        <AccordionChilds>
           <ul>
             {categories.map((category: any, index: any) => {
               if (category.motherId === item._id) {
@@ -35,11 +42,10 @@ const MobMenuItem = ({ item, categories }: any) => {
               }
             })}
           </ul>
-        </div>
+        </AccordionChilds>
       )}
-    </li>
+    </AccordionLi>
   );
 };
 
 export default MobMenuItem;
-

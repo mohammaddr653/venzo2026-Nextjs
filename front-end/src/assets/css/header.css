@@ -207,24 +207,12 @@ div#header-container nav.mobile-nav ul li.mega-menu {
   border-radius: 5px;
 }
 
-div#header-container nav.mobile-nav ul li > div.head {
+div#header-container nav.mobile-nav ul li > div.accordion-head {
   padding: 10px;
 }
-div#header-container nav.mobile-nav ul li > div.childs {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition-property: grid-template-rows;
-  transition-duration: 300ms;
-}
-div#header-container nav.mobile-nav ul li > div.head > svg {
+div#header-container nav.mobile-nav ul li > div.accordion-head > svg {
   transform: rotate(0);
 }
-div#header-container nav.mobile-nav ul li > div.childs > ul {
-  overflow: hidden;
-}
-div#header-container nav.mobile-nav ul li.open > div.childs {
-  grid-template-rows: 1fr;
-}
-div#header-container nav.mobile-nav ul li.open > div.head > svg {
+div#header-container nav.mobile-nav ul li.open > div.accordion-head > svg {
   transform: rotate(-90deg);
 }

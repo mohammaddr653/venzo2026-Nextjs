@@ -1,13 +1,13 @@
 "use client";
+import AccordionUl from "@/features/accordion/components/accordion-ul";
 //کلاینتی باشد بهتر است چون محتوای منو در دسکتاپ هم موجود است و اگر این هم ایندکس شود امتیاز منفی دارد
 
 import MobMenuItem from "./mobile-menuItem";
 
 const MobileNav = ({ categories }: any) => {
-
   return (
     <nav className="mobile-nav">
-      <ul className="flex px-2 w-full flex-col gap-2 items-center font-weight300 text-cu-neutral-900">
+      <AccordionUl id="mobile-nav-accordion" className="flex px-2 w-full flex-col gap-2 items-center font-weight300 text-cu-neutral-900">
         {categories?.length
           ? categories.map((category: any, index: any) => {
               return category.motherId === "root" ? (
@@ -19,7 +19,7 @@ const MobileNav = ({ categories }: any) => {
               ) : null;
             })
           : null}
-      </ul>
+      </AccordionUl>
     </nav>
   );
 };

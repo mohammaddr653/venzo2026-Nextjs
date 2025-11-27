@@ -1,0 +1,7 @@
+ul#filters-container li > div.accordion-head > svg {
+  transform: rotate(0);
+  transition: all 300ms;
+}
+ul#filters-container li.open > div.accordion-head > svg {
+  transform: rotate(-90deg);
+}

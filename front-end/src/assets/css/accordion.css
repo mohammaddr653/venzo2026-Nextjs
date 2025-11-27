@@ -1,0 +1,13 @@
+div.accordion-childs {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition-property: grid-template-rows;
+  transition-duration: 300ms;
+}
+div.accordion-childs > div {
+  overflow: hidden;
+}
+
+li.accordion-li.open > div.accordion-childs {
+  grid-template-rows: 1fr;
+}
