@@ -38,21 +38,19 @@ const OffProductsCarousel = () => {
         <Swiper
           breakpoints={{
             0: {
-              slidesPerView: 1.3,
-              spaceBetween: 20,
+              slidesPerView: 2,
             },
             [BREAK_POINTS.sm]: {
-              slidesPerView: 2.3,
-              spaceBetween: 20,
-            },
-            [BREAK_POINTS.md]: {
               slidesPerView: 3,
             },
-            [BREAK_POINTS.lg]: {
+            [BREAK_POINTS.md]: {
               slidesPerView: 4,
             },
+            [BREAK_POINTS.lg]: {
+              slidesPerView: 5,
+            },
           }}
-          spaceBetween={30}
+          spaceBetween={15}
           initialSlide={0}
           className="mySwiper"
         >

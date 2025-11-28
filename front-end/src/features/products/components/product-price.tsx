@@ -13,7 +13,7 @@ const ProductPrice = ({ priceAndStock }: any) => {
             <Offpercent percent={priceAndStock?.percent}></Offpercent>
           </div>
           <div className="flex flex-row gap-1 items-center flex-nowrap">
-            <span className="text-neutral-900  text-size17 sm:text-size24 font-weight300 text-nowrap">
+            <span className="text-neutral-900 text-size17 md:text-[20px] font-weight300 text-nowrap">
               {priceAndStock?.discount.offer}
             </span>
             <PriceUnit></PriceUnit>
@@ -21,7 +21,7 @@ const ProductPrice = ({ priceAndStock }: any) => {
         </>
       ) : (
         <div className="flex flex-row gap-1 items-center flex-nowrap">
-          <span className="text-neutral-900 text-size17 sm:text-size24 font-weight300 text-nowrap">
+          <span className="text-neutral-900 text-size17 md:text-[20px] font-weight300 text-nowrap">
             {priceAndStock?.price}
           </span>
           <PriceUnit></PriceUnit>

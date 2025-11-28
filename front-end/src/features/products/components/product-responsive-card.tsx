@@ -66,8 +66,7 @@ const ProductResponsiveCard = ({ product }: ProductCardProps) => {
               <p className="px-4 cu-text-truncate-2 text-size15 font-weight300 h-[45px] text-neutral-800">
                 {product?.name}
               </p>
-              <div className="mt-auto px-4 flex flex-row gap-1 w-full justify-between items-end flex-nowrap">
-                <CartPlusSvg color={"#525252"}></CartPlusSvg>
+              <div className="mt-auto px-4 flex flex-row gap-1 w-full justify-end items-end flex-nowrap">
                 <ProductCardPrice product={product}></ProductCardPrice>
               </div>
             </div>

@@ -197,7 +197,7 @@ export default async function ShopPage({
                   <CountPerPage query={query} initialVal={limit}></CountPerPage>
                 </div>
                 {products?.length ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     {products?.map((item: any, index: any) => {
                       return (
                         //very similar to ProductCard...for now at least
