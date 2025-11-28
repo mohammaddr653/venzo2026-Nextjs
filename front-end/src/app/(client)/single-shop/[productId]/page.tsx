@@ -45,7 +45,10 @@ const SingleShopPage = async ({
             </div>
             <div className=" flex-11 w-full flex flex-col gap-10">
               <div>
-                <TitleRight title={product?.name}></TitleRight>
+                <TitleRight
+                  title={product?.name}
+                  className={"text-wrap"}
+                ></TitleRight>
               </div>
               <NonSelectivePropertiesGrid
                 product={product}

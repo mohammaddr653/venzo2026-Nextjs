@@ -21,7 +21,7 @@ const PropertiesTable = ({ product }: PropertiesTableProps) => {
               <p className=" basis-40 text-neutral-600 py-2">
                 {item.property.name}
               </p>
-              <ul className=" py-2 self-stretch basis-180 grow border-b border-neutral-200 flex flex-row gap-2">
+              <ul className=" py-2 self-stretch basis-180 grow border-b border-neutral-200 flex flex-row gap-2 flex-wrap">
                 {item.values.map((propertyval: any, index: any) => {
                   return (
                     <li className="flex flex-row gap-2" key={index}>
