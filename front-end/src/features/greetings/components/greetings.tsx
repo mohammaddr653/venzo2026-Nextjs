@@ -6,6 +6,7 @@ import {
   Pagination,
   A11y,
   EffectFade,
+  Autoplay,
 } from "swiper/modules";
 
 import "swiper/css";
@@ -16,62 +17,27 @@ import "swiper/css/scrollbar";
 import Image from "next/image";
 import { useWidthStore } from "@/store";
 import { BREAK_POINTS, DEFAULT_IMAGE } from "../../../../config";
+import slides from "@/data/greetings-slides.json";
 import Skeleton from "@/components/skeleton";
 import SwiperControlls from "@/components/swiper-controlls";
 
 const Greetings = () => {
   const { width } = useWidthStore();
-  const sliders = [
-    {
-      id: 1,
-      link: "https://digikala.com",
-      deskUrl: "Gaming Consoles slider pc v1 copy-1600x400.jpg",
-      mobUrl: "Gaming Consoles slider mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 2,
-      link: "https://digikala.com",
-      deskUrl: "Gaming Monitors slider pc v1 copy-1600x400.jpg",
-      mobUrl: "Gaming Monitors slider mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 3,
-      link: "https://digikala.com",
-      deskUrl: "Gaming System slider pc v1 copy-1600x400.jpg",
-      mobUrl: "Gaming System slider mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 4,
-      link: "https://digikala.com",
-      deskUrl: "Gpus slider pc v1 copy (2)-1600x400.jpg",
-      mobUrl: "Gpus slider mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 5,
-      link: "https://digikala.com",
-      deskUrl: "Rendering Systems slider pc v1 copy-1600x400.jpg",
-      mobUrl: "Rendering Systems slider mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 6,
-      link: "https://digikala.com",
-      deskUrl: "Accessories pc v1 copy-1600x400.jpg",
-      mobUrl: "Accessories mobile v1 copy-1500x400.jpg",
-    },
-    {
-      id: 7,
-      link: "https://digikala.com",
-      deskUrl: "MSI C v1 copy-1600x400.jpg",
-      mobUrl: "gaming chair mobile v1 copy-1-1500x400.jpg",
-    },
-  ];
   return (
     <div className="relative w-full aspect-[840/500] md:aspect-[1356/339] md:rounded-2xl overflow-hidden">
       {width ? (
         <Swiper
-          modules={[Pagination, EffectFade, Navigation, Scrollbar, A11y]}
+          modules={[
+            Pagination,
+            Autoplay,
+            EffectFade,
+            Navigation,
+            Scrollbar,
+            A11y,
+          ]}
           initialSlide={0}
           loop={true}
+          autoplay={{ delay: 2000 }}
           slidesPerView={1}
           effect="fade"
           fadeEffect={{ crossFade: true }}
@@ -83,7 +49,7 @@ const Greetings = () => {
             nextClass="cursor-pointer flex z-40 hover:shadow transition-all duration-300 text-white justify-center items-center px-3 rounded-l-2xl"
           ></SwiperControlls>
 
-          {sliders?.map((slider: any, index: any) => {
+          {slides?.map((slider: any, index: any) => {
             return (
               <SwiperSlide className="relative">
                 {width > BREAK_POINTS.md ? (

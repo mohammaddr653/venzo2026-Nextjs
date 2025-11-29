@@ -1,15 +1,16 @@
-"use client"
+"use client";
 import OrderStatus from "./order-status";
 import PriceUnit from "../../../components/priceUnit";
 import ScreenWrapper from "@/components/screen-wrapper";
 
 const ExpandedOrder = ({ selectedOrder, setSelectedOrder }: any) => {
   return (
-    <ScreenWrapper
-      className="w-full h-full top-0 right-0 z-60 flex justify-center bg-glass-shadow"
-      onClick={() => setSelectedOrder(null)}
-    >
-      <div className="w-[80%] h-[80%] z-10 bg-white flex flex-col justify-start overflow-y-scroll">
+    <ScreenWrapper className="w-full h-full top-0 right-0 z-60 flex justify-center">
+      <div
+        className="bg-glass-shadow w-full h-full absolute top-0 right-0"
+        onClick={() => setSelectedOrder(null)}
+      ></div>
+      <div className="w-[80%] h-[80%] bg-white z-10 flex flex-col justify-start overflow-y-scroll">
         <button
           onClick={() => setSelectedOrder(null)}
           className=" flex w-fit self-end p-5"

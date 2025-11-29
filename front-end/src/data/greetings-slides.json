@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "link": "https://digikala.com",
+    "deskUrl": "Gaming Consoles slider pc v1 copy-1600x400.jpg",
+    "mobUrl": "Gaming Consoles slider mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 2,
+    "link": "https://digikala.com",
+    "deskUrl": "Gaming Monitors slider pc v1 copy-1600x400.jpg",
+    "mobUrl": "Gaming Monitors slider mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 3,
+    "link": "https://digikala.com",
+    "deskUrl": "Gaming System slider pc v1 copy-1600x400.jpg",
+    "mobUrl": "Gaming System slider mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 4,
+    "link": "https://digikala.com",
+    "deskUrl": "Gpus slider pc v1 copy (2)-1600x400.jpg",
+    "mobUrl": "Gpus slider mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 5,
+    "link": "https://digikala.com",
+    "deskUrl": "Rendering Systems slider pc v1 copy-1600x400.jpg",
+    "mobUrl": "Rendering Systems slider mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 6,
+    "link": "https://digikala.com",
+    "deskUrl": "Accessories pc v1 copy-1600x400.jpg",
+    "mobUrl": "Accessories mobile v1 copy-1500x400.jpg"
+  },
+  {
+    "id": 7,
+    "link": "https://digikala.com",
+    "deskUrl": "MSI C v1 copy-1600x400.jpg",
+    "mobUrl": "gaming chair mobile v1 copy-1-1500x400.jpg"
+  }
+]

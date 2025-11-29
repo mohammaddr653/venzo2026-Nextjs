@@ -1,36 +1,34 @@
-import Header from "@/features/header/components/header";
-import { SERVER_API } from "../../../../config";
-import { cookies } from "next/headers";
+"use client";
+import { SERVER_API } from "../../../config";
+import { useEffect, useState } from "react";
+import callManager from "@/hooks/callManager";
+import axios from "axios";
+import { useSearchParams } from "next/navigation";
 
-export default async function CallbackPage({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string };
-}) {
-  const resolvedSearchParams = await searchParams;
-  const info = {
-    code: resolvedSearchParams.code,
-    data: resolvedSearchParams.data,
-  };
-  let order;
-  const cookie = (await cookies()).toString();
+export default function CallbackPage() {
+  const { call } = callManager();
+  const allParams = useSearchParams();
+  const [info, setInfo] = useState<any>({ code: null, data: null });
+  const [order, setOrder] = useState<any>({});
 
-  if (info.code === "200" && info.data !== "undefined" && info.data) {
-    const response = (await (
-      await fetch(`${SERVER_API}/orders/${info.data}`, {
-        headers: {
-          Cookie: cookie, //برای ارسال کوکی jwt
-        },
-        cache: "no-store",
-      })
-    ).json()) as any;
-
-    order = { ...response?.data };
+  async function loadOrder() {
+    const response = await call(
+      axios.get(SERVER_API + `/orders/${info.data}`),
+      false
+    );
+    setOrder({ ...response.data.data });
   }
+  useEffect(() => {
+    setInfo({ code: allParams.get("code"), data: allParams.get("data") });
+  }, [allParams]);
+
+  useEffect(() => {
+    if (info.code === "200" && info.data !== "undefined" && info.data)
+      loadOrder();
+  }, [info]);
 
   return (
     <>
-      <Header focus={true}></Header>
       <main>
         <div className="callback-page-container flex flex-col gap-5 py-20">
           <h1>callback page</h1>
