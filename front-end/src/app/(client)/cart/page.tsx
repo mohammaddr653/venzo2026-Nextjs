@@ -7,6 +7,9 @@ import Link from "next/link";
 import Img from "@/components/img";
 import PriceUnit from "@/components/priceUnit";
 import Offpercent from "@/features/products/components/offpercent";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -15,29 +18,31 @@ export default function CartPage() {
   const [reservedProducts, setReservedProducts] = useState<any[]>([]);
   const [totalPrice, setTotalPrice] = useState(null);
   const { call } = callManager();
-  const [form, setForm] = useState<any>({
-    name: "",
-    phone: "",
-    province: "",
-    city: "",
-    address: "",
-    postalCode: "",
-    note: "",
+
+  const formSchema = z.object({
+    name: z.string().min(1),
+    phone: z.string().min(1),
+    province: z.string().min(1),
+    city: z.string().min(1),
+    address: z.string().min(1),
+    postalCode: z.string().min(1),
+    note: z.string(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(formSchema),
+    mode: "onChange",
   });
 
   async function loadCart() {
     const response = await call(axios.get(SERVER_API + "/cart"), false);
     setReservedProducts([...response.data.data.reservedProducts]);
     setTotalPrice(response.data.data.totalPrice);
-    setForm({
-      name: "",
-      phone: "",
-      province: "",
-      city: "",
-      address: "",
-      postalCode: "",
-      note: "",
-    });
   }
 
   useEffect(() => {
@@ -62,24 +67,20 @@ export default function CartPage() {
     loadCart();
   }
 
-  function handleChange(e: any) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
   async function handleDelete(e: React.FormEvent, id: string) {
     e.preventDefault();
     const response = await call(
       axios.delete(SERVER_API + `/cart/delete/${id}`),
       true
     );
+    reset();
     loadCart();
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function postData(data: any) {
     //ساخت سفارش جدید و بلافاصله انتقال به درگاه
-    e.preventDefault();
     const createOrder = await call(
-      axios.post(SERVER_API + "/orders", form),
+      axios.post(SERVER_API + "/orders", data),
       false
     );
     if (createOrder?.data?.data) {
@@ -91,7 +92,7 @@ export default function CartPage() {
         window.location.href = `https://sandbox.zarinpal.com/pg/StartPay/${response.data.data}`; //انتقال به صفحه پرداخت
     }
     loadCart();
-  };
+  }
 
   return (
     <>
@@ -215,74 +216,106 @@ export default function CartPage() {
                   <h4 className="font-bold text-neutral-700">
                     مشخصات گیرنده :
                   </h4>
-                  <form className="flex flex-col items-start gap-3">
+                  <form
+                    id="last-step"
+                    onSubmit={handleSubmit(postData)}
+                    className="flex flex-col items-start gap-3"
+                  >
                     <label htmlFor="name" className="flex flex-col gap-1">
                       <p>نام و نام خانوادگی</p>
                       <input
                         id="name"
                         type="text"
-                        name="name"
-                        onChange={handleChange}
+                        {...register("name")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.name ? (
+                        <span className="text-sm text-red-600">
+                          لطفا نام خود را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="phone" className="flex flex-col gap-1">
                       <p>شماره تماس</p>
                       <input
                         id="phone"
                         type="text"
-                        name="phone"
-                        onChange={handleChange}
+                        {...register("phone")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.phone ? (
+                        <span className="text-sm text-red-600">
+                          لطفا شماره تماس گیرنده را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="province" className="flex flex-col gap-1">
                       <p>استان</p>
                       <input
                         id="province"
                         type="text"
-                        name="province"
-                        onChange={handleChange}
+                        {...register("province")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.province ? (
+                        <span className="text-sm text-red-600">
+                          لطفا نام استان را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="city" className="flex flex-col gap-1">
                       <p>شهر</p>
                       <input
                         id="city"
                         type="text"
-                        name="city"
-                        onChange={handleChange}
+                        {...register("city")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.city ? (
+                        <span className="text-sm text-red-600">
+                          لطفا نام شهر را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="address" className="flex flex-col gap-1">
                       <p>آدرس کامل</p>
                       <textarea
                         id="address"
-                        name="address"
-                        onChange={handleChange}
+                        {...register("address")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.address ? (
+                        <span className="text-sm text-red-600">
+                          لطفا آدرس کامل گیرنده را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="postalCode" className="flex flex-col gap-1">
                       <p>کد پستی</p>
                       <input
                         id="postalCode"
                         type="text"
-                        name="postalCode"
-                        onChange={handleChange}
+                        {...register("postalCode")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.postalCode ? (
+                        <span className="text-sm text-red-600">
+                          لطفا کد پستی گیرنده را وارد کنید
+                        </span>
+                      ) : null}
                     </label>
                     <label htmlFor="note" className="flex flex-col gap-1">
                       <p>یادداشت</p>
                       <textarea
                         id="note"
-                        name="note"
-                        onChange={handleChange}
+                        {...register("note")}
                         className="p-2 border border-neutral-300 rounded-md"
                       />
+                      {errors.note ? (
+                        <span className="text-sm text-red-600">
+                          یادداشت باید یک رشته متنی باشد
+                        </span>
+                      ) : null}
                     </label>
                   </form>
                 </div>
@@ -295,11 +328,13 @@ export default function CartPage() {
                     <PriceUnit></PriceUnit>
                   </span>
                 </h2>
-                <form onSubmit={handleSubmit}>
-                  <button className="bg-green-500 text-shadow cursor-pointer text-white px-2 py-1 rounded-md">
-                    پرداخت
-                  </button>
-                </form>
+                <button
+                  type="submit"
+                  form="last-step"
+                  className="bg-green-500 text-shadow cursor-pointer text-white px-2 py-1 rounded-md"
+                >
+                  پرداخت
+                </button>
               </aside>
             </div>
           ) : (
