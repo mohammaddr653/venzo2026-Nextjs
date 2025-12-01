@@ -51,7 +51,7 @@ export default function PassRestorePage() {
                   id="email"
                   type="text"
                   placeholder="ایمیل"
-                  className="border border-neutral-300 rounded-md p-2"
+                  className="border w-full border-neutral-300 rounded-md p-2"
                   {...register("email")}
                 />
                 {errors.email ? (
