@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { SERVER_API } from "../../../config";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import callManager from "@/hooks/callManager";
 import useLoadUser from "@/hooks/useLoadUser";
 import Logo from "@/components/logo";

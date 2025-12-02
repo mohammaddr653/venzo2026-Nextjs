@@ -1,8 +1,6 @@
 "use client";
 import axios from "axios";
 import { SERVER_API } from "@/../config";
-import { useState } from "react";
-import useLoadUser from "@/hooks/useLoadUser";
 import callManager from "@/hooks/callManager";
 import { useParams } from "next/navigation";
 import Logo from "@/components/logo";
