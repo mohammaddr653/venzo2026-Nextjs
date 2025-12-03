@@ -225,21 +225,21 @@ class ProductServices {
         model: "Propertyval",
       });
     const productsWithCounts = await Promise.all(
-      products.map(async (product) => {
-        const productInfo = cart.reservedProducts.find((p) =>
-          p.productId.equals(product._id)
+      cart.reservedProducts.map((reserved) => {
+        const productInfo = products.find((product) =>
+          reserved.productId.equals(product._id)
         );
         const { price, discount, stock } = getPriceAndStock(
-          productInfo.selectedPropertyvalString,
-          product
+          reserved.selectedPropertyvalString,
+          productInfo
         );
         return {
-          ...product.toObject(),
+          ...productInfo.toObject(),
           price: price,
           discount: discount,
           stock: stock,
-          selectedPropertyvalString: productInfo.selectedPropertyvalString,
-          count: productInfo ? productInfo.count : 0,
+          selectedPropertyvalString: reserved.selectedPropertyvalString,
+          count: reserved ? reserved.count : 0,
         };
       })
     );

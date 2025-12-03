@@ -49,28 +49,46 @@ export default function CartPage() {
     loadCart();
   }, []);
 
-  async function handleIncrement(e: React.FormEvent, id: string) {
+  async function handleIncrement(
+    e: React.FormEvent,
+    id: string,
+    selectedPropertyvalString: string
+  ) {
     e.preventDefault();
     const response = await call(
-      axios.put(SERVER_API + `/cart/plus/${id}`),
+      axios.put(SERVER_API + `/cart/plus/${id}`, {
+        selectedPropertyvalString: selectedPropertyvalString,
+      }),
       true
     );
     loadCart();
   }
 
-  async function handleDecrement(e: React.FormEvent, id: string) {
+  async function handleDecrement(
+    e: React.FormEvent,
+    id: string,
+    selectedPropertyvalString: string
+  ) {
     e.preventDefault();
     const response = await call(
-      axios.put(SERVER_API + `/cart/minus/${id}`),
+      axios.put(SERVER_API + `/cart/minus/${id}`, {
+        selectedPropertyvalString: selectedPropertyvalString,
+      }),
       true
     );
     loadCart();
   }
 
-  async function handleDelete(e: React.FormEvent, id: string) {
+  async function handleDelete(
+    e: React.FormEvent,
+    id: string,
+    selectedPropertyvalString: string
+  ) {
     e.preventDefault();
     const response = await call(
-      axios.delete(SERVER_API + `/cart/delete/${id}`),
+      axios.put(SERVER_API + `/cart/delete/${id}`, {
+        selectedPropertyvalString: selectedPropertyvalString,
+      }),
       true
     );
     reset();
@@ -153,7 +171,11 @@ export default function CartPage() {
                               <div className="border border-neutral-300 rounded-md flex gap-3 h-fit flex-nowrap">
                                 <form
                                   onSubmit={(e) =>
-                                    handleIncrement(e, product._id)
+                                    handleIncrement(
+                                      e,
+                                      product._id,
+                                      product.selectedPropertyvalString
+                                    )
                                   }
                                 >
                                   <button className="px-2 cursor-pointer">
@@ -165,7 +187,11 @@ export default function CartPage() {
                                 </span>
                                 <form
                                   onSubmit={(e) =>
-                                    handleDecrement(e, product._id)
+                                    handleDecrement(
+                                      e,
+                                      product._id,
+                                      product.selectedPropertyvalString
+                                    )
                                   }
                                 >
                                   <button className="px-2 cursor-pointer">
@@ -174,7 +200,13 @@ export default function CartPage() {
                                 </form>
                               </div>
                               <form
-                                onSubmit={(e) => handleDelete(e, product._id)}
+                                onSubmit={(e) =>
+                                  handleDelete(
+                                    e,
+                                    product._id,
+                                    product.selectedPropertyvalString
+                                  )
+                                }
                               >
                                 <button className="p-2 cursor-pointer">
                                   ❌

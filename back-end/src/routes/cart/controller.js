@@ -25,8 +25,8 @@ module.exports = new (class extends controller {
       req,
       res
     );
-    if (results.failedProductIds.length) {
-      await cartServices.deleteReservedProduct(results.failedProductIds, cart);
+    if (results.failedProductObjs.length) {
+      await cartServices.deleteReservedProduct(results.failedProductObjs, cart);
     }
     return this.response({
       res,
@@ -129,7 +129,15 @@ module.exports = new (class extends controller {
     const { data: existing } = await cartServices.existOrNot(req, res, cart);
     if (existing && existing.count >= 1) {
       if (existing.count - 1 <= 0) {
-        await cartServices.deleteReservedProduct([req.params.productId], cart);
+        await cartServices.deleteReservedProduct(
+          [
+            {
+              failedId: req.params.productId,
+              selectedPropertyvalString: req.body.selectedPropertyvalString,
+            },
+          ],
+          cart
+        );
         return this.response({
           res,
           message: "محصول از سبد خرید حذف شد",
@@ -162,7 +170,15 @@ module.exports = new (class extends controller {
 
   async deleteReservedProduct(req, res) {
     const { data: cart } = await cartServices.seeOneCart(req, res);
-    await cartServices.deleteReservedProduct([req.params.productId], cart);
+    await cartServices.deleteReservedProduct(
+      [
+        {
+          failedId: req.params.productId,
+          selectedPropertyvalString: req.body.selectedPropertyvalString,
+        },
+      ],
+      cart
+    );
     return this.response({
       res,
       message: "محصول از سبد خرید حذف شد",

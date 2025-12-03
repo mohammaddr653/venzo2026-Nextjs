@@ -11,7 +11,7 @@ router.put("/plus/:productId", controller.plusCount.bind(controller));
 
 router.put("/minus/:productId", controller.minusCount.bind(controller));
 
-router.delete(
+router.put(
   "/delete/:productId",
   controller.deleteReservedProduct.bind(controller)
 );
