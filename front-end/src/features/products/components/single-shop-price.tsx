@@ -93,12 +93,18 @@ const SingleShopPrice = ({ product }: any) => {
       ></SelectiveProperties>
       <div className=" flex flex-col gap-2 items-end">
         <ProductPrice priceAndStock={priceAndStock}></ProductPrice>
-        <button
-          onClick={() => handleAddToCart(product._id)}
-          className="bg-lime-600 text-white text-shadow-lg rounded-lg px-4 py-2"
-        >
-          افزودن به سبد
-        </button>
+        {priceAndStock?.stock > 0 ? (
+          <button
+            onClick={() => handleAddToCart(product._id)}
+            className="bg-lime-600 text-white text-shadow-lg rounded-lg px-4 py-2 font-weight300"
+          >
+            افزودن به سبد
+          </button>
+        ) : (
+          <div className="bg-red-600/80 text-white text-shadow-lg rounded-lg px-4 py-2 font-weight300">
+            ناموجود در انبار
+          </div>
+        )}
       </div>
     </div>
   );
