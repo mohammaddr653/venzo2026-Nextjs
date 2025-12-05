@@ -2,7 +2,7 @@ const path = require("path");
 const sharp = require("sharp");
 const pathManager = require("../helpers/pathManager");
 
-const compressor = (dir) => {
+const compressor = (dir, resize) => {
   const sharpHandler = async (req, res, next) => {
     async function compress(file) {
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -12,10 +12,15 @@ const compressor = (dir) => {
       const directory = pathManager(dir);
       const sizes = {
         original: null, // بدون تغییر سایز
-        small: { width: 320 },
-        medium: { width: 640 },
-        large: { width: 1024 },
       };
+      if (resize) {
+        sizes = {
+          ...sizes,
+          small: { width: 320 },
+          medium: { width: 640 },
+          large: { width: 1024 },
+        };
+      }
       file.urls = {};
       await Promise.all(
         Object.entries(sizes).map(async ([key, size]) => {

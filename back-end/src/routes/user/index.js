@@ -17,7 +17,7 @@ router.put(
 router.post(
   "/dashboard/avatar",
   uploadHandler("avatar", /jpeg|jpg|png/, false, 1),
-  compressor("./uploads/avatars"),
+  compressor("./uploads/avatars",true),
   fileToReqBodyHandler("avatar", false),
   validator.avatarCheck(),
   controller.validate.bind(controller),

@@ -2,6 +2,7 @@
 const debug = require("debug")("app");
 const blogServices = require("../../services/blogServices");
 const categoriesServices = require("../../services/categoriesServices");
+const editorServices = require("../../services/editorServices");
 const mediaServices = require("../../services/mediaServices");
 const orderServices = require("../../services/orderServices");
 const productServices = require("../../services/productServices");
@@ -503,6 +504,15 @@ module.exports = new (class extends controller {
       });
 
     throw new Error("something went wrong");
+  }
+
+  async createEditorUpload(req, res) {
+    const result = await editorServices.createUpload(req, res);
+    return this.response({
+      res,
+      message: "فایل با موفقیت آپلود شد",
+      data: result.data,
+    });
   }
 
   async getAllOrders(req, res) {

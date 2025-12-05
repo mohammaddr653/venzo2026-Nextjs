@@ -99,4 +99,7 @@ module.exports = new (class extends validator {
   mediaValidator() {
     return [check("media", "لطفا رسانه ای بارگزاری کنید").notEmpty()];
   }
+  fileValidator() {
+    return [check("file", "لطفا فایلی بارگزاری کنید").notEmpty()];
+  }
 })();

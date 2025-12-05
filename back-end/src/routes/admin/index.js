@@ -191,7 +191,7 @@ router.get(
 router.post(
   "/dashboard/medias",
   uploadHandler("media", /jpeg|jpg|png|webp/, true, 1000),
-  compressor("./uploads/medias"),
+  compressor("./uploads/medias",true),
   fileToReqBodyHandler("media", true),
   validator.mediaValidator(),
   controller.validate.bind(controller),
@@ -200,7 +200,7 @@ router.post(
 router.put(
   "/dashboard/medias/:mediaId",
   uploadHandler("media", /jpeg|jpg|png|webp/, false, 1000),
-  compressor("./uploads/medias"),
+  compressor("./uploads/medias",true),
   fileToReqBodyHandler("media"),
   controller.updateMedia.bind(controller)
 );
@@ -210,9 +210,25 @@ router.delete(
   controller.deleteMedia.bind(controller)
 );
 
+//tinymce uploads
+
+router.post(
+  "/dashboard/editor-uploads",
+  uploadHandler("file", /jpeg|jpg|png|webp/, true, 1000),
+  compressor("./uploads/editor-uploads",false),
+  fileToReqBodyHandler("file", true),
+  validator.fileValidator(),
+  controller.validate.bind(controller),
+  controller.createEditorUpload.bind(controller)
+);
+
+
 //orders
 
 router.get("/dashboard/orders", controller.getAllOrders.bind(controller));
-router.delete("/dashboard/orders/:orderId", controller.exOrder.bind(controller));
+router.delete(
+  "/dashboard/orders/:orderId",
+  controller.exOrder.bind(controller)
+);
 
 module.exports = router;
