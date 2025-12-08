@@ -5,8 +5,8 @@ import { logger } from '#src/middlewares/logger.js';
 const startServer = () => {
   const app = createApp();
 
-  const server = app.listen(ENV.PORT, () => {
-    logger.info(`Server started on port ${ENV.PORT}`);
+  const server = app.listen(ENV.PORT, ENV.HOST, () => {
+    logger.info(`Server started on ${ENV.HOST}:${ENV.PORT}`);
     logger.info(`Environment: ${ENV.NODE_ENV}`);
   });
 
