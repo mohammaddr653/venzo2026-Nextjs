@@ -8,6 +8,8 @@ import { ENV } from '#src/config/env.js';
 import { logger, morganMiddleware } from '#src/middlewares/logger.js';
 import { AppError, errorHandler } from '#src/middlewares/error-handler.js';
 import userRoutes from '#src/modules/user/user.route.js';
+import authRoutes from '#src/modules/auth/auth.route.js';
+
 import mongoose from 'mongoose';
 
 export const createApp = (): Express => {
@@ -34,6 +36,7 @@ export const createApp = (): Express => {
     .then(() => logger.info('connected to mongodb'))
     .catch(() => logger.error('could not connect'));
 
+  app.use('/api/auth', authRoutes);
   app.use('/api', userRoutes);
 
   app.use((_req, _res, next) => {

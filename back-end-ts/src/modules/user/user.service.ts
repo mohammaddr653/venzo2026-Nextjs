@@ -1,52 +1,34 @@
-import { User, CreateUserDto } from './user.types.js';
-import { AppError } from '#src/middlewares/error-handler.js';
+import { RegisterUserDto } from './user.types.js';
+import serviceResponse from '#src/helpers/serviceResponse.js';
+import Cart from '#src/models/cart.js';
+import withTransaction from '#src/helpers/withTransaction.js';
+import mongoose from 'mongoose';
+import User from '#src/models/user.js';
+import bcrypt from 'bcrypt';
 
 // In-memory database (replace with real database in production)
-const users: User[] = [];
-
-export const clearUsers = () => {
-  users.length = 0;
-};
-
-export const userService = {
-  // Get all users
-  getAllUsers: async (): Promise<User[]> => {
-    return users;
-  },
-
-  // Get user by ID
-  getUserById: async (id: string): Promise<User> => {
-    const user = users.find((u) => u.id === id);
-    if (!user) {
-      throw new AppError('User not found', 404);
+export const userServices = {
+  async registerUser(data: RegisterUserDto) {
+    // create user , same as register , after user created , the cart will automaticly create
+    let user = await User.findOne({ email: data.email });
+    if (user) {
+      return serviceResponse(400, {});
     }
-    return user;
-  },
-
-  // Create user
-  createUser: async (data: CreateUserDto): Promise<User> => {
-    const existingUser = users.find((u) => u.email === data.email);
-    if (existingUser) {
-      throw new AppError('User with this email already exists', 409);
-    }
-
-    const newUser: User = {
-      id: crypto.randomUUID(),
-      ...data,
-      createdAt: new Date(),
-    };
-
-    users.push(newUser);
-    return newUser;
-  },
-
-  // Delete user
-  deleteUser: async (id: string): Promise<void> => {
-    const userIndex = users.findIndex((u) => u.id === id);
-    if (userIndex === -1) {
-      throw new AppError('User not found', 404);
-    }
-
-    users.splice(userIndex, 1);
+    user = new User({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+    const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
+      const saveOp = await user.save({ session });
+      const newCart = new Cart({
+        userId: user.id,
+      });
+      await newCart.save({ session });
+      return serviceResponse(200, saveOp);
+    });
+    return transactionResult;
   },
 };

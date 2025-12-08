@@ -8,6 +8,8 @@ const envSchema = z.object({
   HOST: z.string().default('localhost'),
   PORT: z.string().default('3000').transform(Number),
   CONNECTION_STRING: z.string(),
+  RECAPTCHA: z.string(),
+  SECRET_KEY: z.string(),
   CORS_ORIGIN: z.string().default('http://localhost:3000'),
   LOG_LEVEL: z.enum(['error', 'warn', 'info', 'verbose', 'debug', 'silly']).default('info'),
 });
