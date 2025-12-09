@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
@@ -31,6 +32,7 @@
     "express": "^5.1.0",
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^8.20.2",
     "morgan": "^1.10.1",
     "winston": "^3.18.3",

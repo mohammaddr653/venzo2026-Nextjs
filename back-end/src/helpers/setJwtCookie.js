@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const setJwtCookie = (res,user) => {
   const token = jwt.sign(
-    { _id: user.id, isAdmin: user.isadmin, verified: user.verified },
+    { _id: user.id, isadmin: user.isadmin, verified: user.verified },
     process.env.JWT_KEY
   );
   //storing jwt token as a httpOnly cookie

@@ -1,4 +1,4 @@
-import { RegisterUserDto } from './user.types.js';
+import { RegisterUserDto } from '../types/user.types.js';
 import serviceResponse from '#src/helpers/serviceResponse.js';
 import Cart from '#src/models/cart.js';
 import withTransaction from '#src/helpers/withTransaction.js';

@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import urlsObjSchema from './urlsObj.js';
+import { IUserDocument } from '#src/types/user.types.js';
 
-const userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema<IUserDocument>(
   {
     email: { type: String, required: true, unique: true },
     name: { type: String, required: true },

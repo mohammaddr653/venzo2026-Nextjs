@@ -9,6 +9,7 @@ const envSchema = z.object({
   PORT: z.string().default('3000').transform(Number),
   CONNECTION_STRING: z.string(),
   RECAPTCHA: z.string(),
+  JWT_KEY: z.string().min(32),
   SECRET_KEY: z.string(),
   CORS_ORIGIN: z.string().default('http://localhost:3000'),
   LOG_LEVEL: z.enum(['error', 'warn', 'info', 'verbose', 'debug', 'silly']).default('info'),
