@@ -6,10 +6,11 @@ import { ENV } from '#src/config/env.js';
 import bcrypt from 'bcrypt';
 import User from '#src/models/user.js';
 import setJwtCookie from '#src/helpers/setJwtCookie.js';
+import { LoginInput, RegisterInput } from './auth.schema.js';
 
 export const authController = {
   //register
-  async register(req: Request, res: Response) {
+  async register(req: Request<{}, {}, RegisterInput['body']>, res: Response) {
     const recaptchaResult = await validateRecaptcha(req);
     //recaptcha wont authorized if environment config 'recaptcha' is false
     if (!recaptchaResult && ENV.RECAPTCHA === 'true') {
@@ -40,7 +41,7 @@ export const authController = {
     throw Error;
   },
 
-  async login(req: Request, res: Response) {
+  async login(req: Request<{}, {}, LoginInput['body']>, res: Response) {
     const recaptchaResult = await validateRecaptcha(req);
     //recaptcha wont authorized if environment config 'recaptcha' is false
     if (!recaptchaResult && ENV.RECAPTCHA === 'true') {

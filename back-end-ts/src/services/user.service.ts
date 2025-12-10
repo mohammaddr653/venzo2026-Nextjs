@@ -1,5 +1,5 @@
-import { RegisterUserDto } from '../types/user.types.js';
-import serviceResponse from '#src/helpers/serviceResponse.js';
+import { IUserDocument, RegisterUserDto } from '../types/user.types.js';
+import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Cart from '#src/models/cart.js';
 import withTransaction from '#src/helpers/withTransaction.js';
 import mongoose from 'mongoose';
@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 
 // In-memory database (replace with real database in production)
 export const userServices = {
-  async registerUser(data: RegisterUserDto) {
+  async registerUser(data: RegisterUserDto): Promise<ServiceResponse> {
     // create user , same as register , after user created , the cart will automaticly create
     let user = await User.findOne({ email: data.email });
     if (user) {
@@ -30,5 +30,13 @@ export const userServices = {
       return serviceResponse(200, saveOp);
     });
     return transactionResult;
+  },
+
+  async updateProfile(data: { name: string }, user: IUserDocument): Promise<ServiceResponse> {
+    const updateOp = await User.updateOne({ _id: user.id }, { $set: data });
+    if (updateOp.matchedCount > 0) {
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
   },
 };
