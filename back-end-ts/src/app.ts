@@ -7,10 +7,10 @@ import hpp from 'hpp';
 import { ENV } from '#src/config/env.js';
 import { logger, morganMiddleware } from '#src/middlewares/logger.js';
 import { AppError, errorHandler } from '#src/middlewares/error-handler.js';
-import userRoutes from '#src/modules/user/user.route.js';
-import authRoutes from '#src/modules/auth/auth.route.js';
 
 import mongoose from 'mongoose';
+import router from './modules/index.router.js';
+import cookieParser from 'cookie-parser';
 
 export const createApp = (): Express => {
   const app = express();
@@ -24,6 +24,7 @@ export const createApp = (): Express => {
       credentials: true,
     }),
   );
+  app.use(cookieParser());
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -36,8 +37,7 @@ export const createApp = (): Express => {
     .then(() => logger.info('connected to mongodb'))
     .catch(() => logger.error('could not connect'));
 
-  app.use('/api/auth', authRoutes);
-  app.use('/api', userRoutes);
+  app.use('/api', router);
 
   app.use((_req, _res, next) => {
     next(new AppError('Route not found', 404));

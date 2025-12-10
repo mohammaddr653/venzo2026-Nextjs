@@ -11,6 +11,7 @@
 
     /* Path Aliases */
     "baseUrl": ".",
+    "typeRoots": ["./src/types", "./node_modules/@types"], //خودم اضافه کردم
     "paths": {
       "#src/*": ["./src/*"]
     },
