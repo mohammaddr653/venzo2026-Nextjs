@@ -5,6 +5,7 @@ import withTransaction from '#src/helpers/withTransaction.js';
 import mongoose from 'mongoose';
 import User from '#src/models/user.js';
 import bcrypt from 'bcrypt';
+import deleteWrapper from '#src/helpers/deleteWrapper.js';
 
 // In-memory database (replace with real database in production)
 export const userServices = {
@@ -35,6 +36,21 @@ export const userServices = {
   async updateProfile(data: { name: string }, user: IUserDocument): Promise<ServiceResponse> {
     const updateOp = await User.updateOne({ _id: user.id }, { $set: data });
     if (updateOp.matchedCount > 0) {
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
+  },
+
+  async addAvatar(file: any, user: IUserDocument): Promise<ServiceResponse> {
+    //اضافه کردن آواتار
+    const newAvatar = {
+      urls: file.urls,
+    };
+    const updateOp = await User.findOneAndUpdate({ _id: user.id }, { $set: { avatar: newAvatar } });
+    if (updateOp) {
+      if (updateOp.avatar && updateOp.avatar.urls) {
+        deleteWrapper(updateOp.avatar.urls);
+      }
       return serviceResponse(200, {});
     }
     return serviceResponse(404, {});

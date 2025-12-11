@@ -19,6 +19,12 @@ export const updateProfileSchema = z.object({
   }),
 });
 
+export const updateAvatarSchema = z.object({
+  body: z.object({
+    avatar: z.object(),
+  }),
+});
+
 export const deleteUserSchema = z.object({
   params: z.object({
     id: z.uuid('آیدی نامعتبر'),
@@ -27,5 +33,6 @@ export const deleteUserSchema = z.object({
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
+export type UpdateAvatarInput = z.infer<typeof updateAvatarSchema>;
 export type GetUserByIdInput = z.infer<typeof getUserByIdSchema>;
 export type DeleteUserInput = z.infer<typeof deleteUserSchema>;
