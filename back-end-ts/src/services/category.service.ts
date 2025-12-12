@@ -10,6 +10,12 @@ export const categoriesServices = {
     return serviceResponse(200, findOp);
   },
 
+  async seeOneCategory(categoryId: string): Promise<ServiceResponse> {
+    // خواندن یک دسته بندی از دیتابیس
+    const findOp = await Category.findById(categoryId).populate('img');
+    return serviceResponse(200, findOp);
+  },
+
   async createCategory(data: CreateCategoryInput['body']): Promise<ServiceResponse> {
     //اضافه کردن دسته بندی
     const newCategory = new Category({

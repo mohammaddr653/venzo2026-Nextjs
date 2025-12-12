@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateCategoryInput } from './category.schema.js';
+import { CreateCategoryInput, OneCategoryInput } from './category.schema.js';
 import { categoriesServices } from '#src/services/category.service.js';
 
 export const categoryController = {
@@ -9,6 +9,15 @@ export const categoryController = {
     return response({
       res,
       message: 'لیست دسته بندی ها',
+      data: result.data,
+    });
+  },
+
+  async seeOneCategory(req: Request<OneCategoryInput["params"]>, res: Response) {
+    const result = await categoriesServices.seeOneCategory(req.params.categoryId);
+    return response({
+      res,
+      message: 'نمایش یک دسته بندی',
       data: result.data,
     });
   },

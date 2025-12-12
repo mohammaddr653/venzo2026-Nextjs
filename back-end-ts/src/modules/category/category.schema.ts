@@ -1,4 +1,11 @@
+import mongoose from 'mongoose';
 import z from 'zod';
+
+export const oneCategorySchema = z.object({
+  params: z.object({
+    categoryId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی نامعتبر'),
+  }),
+});
 
 export const createCategorySchema = z.object({
   body: z.object({
@@ -12,3 +19,4 @@ export const createCategorySchema = z.object({
 });
 
 export type CreateCategoryInput = z.infer<typeof createCategorySchema>;
+export type OneCategoryInput = z.infer<typeof oneCategorySchema>;
