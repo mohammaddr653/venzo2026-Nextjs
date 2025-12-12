@@ -1,7 +1,7 @@
 import response from '#src/helpers/controllerResponse.js';
 import { userServices } from '#src/services/user.service.js';
 import { Request, Response } from 'express';
-import { CreateUserInput, OneUserInput, UpdateAvatarInput, UpdateProfileInput } from './user.schema.js';
+import { CreateUserInput, OneUserInput, UpdateAvatarInput, UpdateProfileInput, UpdateUserInput } from './user.schema.js';
 
 export const userController = {
   async updateProfile(req: Request<{}, {}, UpdateProfileInput['body']>, res: Response) {
@@ -94,6 +94,25 @@ export const userController = {
         res,
         message: 'کاربر با موفقیت ثبت نام شد',
         data: result.data,
+      });
+
+    throw new Error('something went wrong');
+  },
+
+  async updateUser(req: Request<UpdateUserInput['params'], {}, UpdateUserInput['body']>, res: Response) {
+    const result = await userServices.updateUser(req.params.userId, req.body);
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'کاربر با موفقیت بروزرسانی شد',
+      });
+
+    if (result.status === 400)
+      return response({
+        res,
+        message: 'کاربری با این ایمیل قبلا ثبت نام کرده است',
+        code: result.status,
       });
 
     throw new Error('something went wrong');

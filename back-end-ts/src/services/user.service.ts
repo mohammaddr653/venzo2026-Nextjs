@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import User from '#src/models/user.js';
 import bcrypt from 'bcrypt';
 import deleteWrapper from '#src/helpers/deleteWrapper.js';
+import { UpdateUserInput } from '#src/modules/user/user.schema.js';
 
 export const userServices = {
   async registerUser(data: RegisterUserDto): Promise<ServiceResponse> {
@@ -77,5 +78,19 @@ export const userServices = {
     // reading one user from database
     const findOp = await User.findById(userId);
     return serviceResponse(200, findOp);
+  },
+
+  async updateUser(userId: string, data: UpdateUserInput['body']): Promise<ServiceResponse> {
+    //if you changed the email field , it checks if its exists or not , then it updates the user
+    const { data: user } = await this.seeOneUser(userId);
+    let repeatedEmail = await User.findOne({ email: data.email });
+    if (repeatedEmail && user.email !== data.email) {
+      return serviceResponse(400, {});
+    }
+
+    user.name = data.name;
+    user.email = data.email;
+    await user.save();
+    return serviceResponse(200, {});
   },
 };
