@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { updateAvatarSchema, updateProfileSchema } from './user.schema.js';
+import { oneUserSchema, updateAvatarSchema, updateProfileSchema } from './user.schema.js';
 import { validate } from '#src/middlewares/validate.js';
 import { userController } from './user.controller.js';
 import fileToReqBodyHandler from '#src/middlewares/fileToReqBody.js';
 import compressor from '#src/middlewares/compressor.js';
 import uploadHandler from '#src/helpers/uploadHandler.js';
+import { isAdmin } from '#src/middlewares/auth.js';
 
 const router = Router();
 
@@ -18,6 +19,11 @@ router.post(
   userController.addAvatar,
 );
 router.delete('/avatar', userController.deleteAvatar);
+
+//admin
+router.use(isAdmin);
+router.get('/all', userController.getUsers);
+router.get('/:userId', validate(oneUserSchema), userController.seeOneUser);
 
 // router.get('/v1/users/', userController.getAllUsers);
 // router.get('/v1/users/:id', validate(getUserByIdSchema), userController.getUserById);

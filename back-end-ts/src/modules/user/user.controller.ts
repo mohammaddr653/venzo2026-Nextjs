@@ -1,7 +1,7 @@
 import response from '#src/helpers/controllerResponse.js';
 import { userServices } from '#src/services/user.service.js';
 import { Request, Response } from 'express';
-import { UpdateAvatarInput, UpdateProfileInput } from './user.schema.js';
+import { OneUserInput, UpdateAvatarInput, UpdateProfileInput } from './user.schema.js';
 
 export const userController = {
   async updateProfile(req: Request<{}, {}, UpdateProfileInput['body']>, res: Response) {
@@ -58,5 +58,24 @@ export const userController = {
       });
 
     throw Error;
+  },
+
+  //admin
+  async getUsers(req: Request, res: Response) {
+    const result = await userServices.getAllUsers(req.user!);
+    return response({
+      res,
+      message: 'this is all users',
+      data: result.data,
+    });
+  },
+
+  async seeOneUser(req: Request<OneUserInput['params']>, res: Response) {
+    const result = await userServices.seeOneUser(req.params.userId);
+    return response({
+      res,
+      message: 'this is user',
+      data: result.data,
+    });
   },
 };

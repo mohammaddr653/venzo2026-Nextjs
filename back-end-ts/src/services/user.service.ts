@@ -67,4 +67,16 @@ export const userServices = {
     }
     return serviceResponse(404, {});
   },
+
+  async getAllUsers(user: IUserDocument): Promise<ServiceResponse> {
+    //reading all users from database except current user that is maybe admin
+    const findOp = await User.find({ _id: { $ne: user.id } });
+    return serviceResponse(200, findOp);
+  },
+
+  async seeOneUser(userId: string): Promise<ServiceResponse> {
+    // reading one user from database
+    const findOp = await User.findById(userId);
+    return serviceResponse(200, findOp);
+  },
 };
