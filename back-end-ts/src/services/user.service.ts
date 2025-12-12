@@ -93,4 +93,28 @@ export const userServices = {
     await user.save();
     return serviceResponse(200, {});
   },
+
+  async deleteUser(userId: string, user: IUserDocument): Promise<ServiceResponse> {
+    //delete user , admin cant delete himself
+    if (userId !== user.id) {
+      const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
+        const deleteOp = await User.findOneAndDelete({ _id: userId }, { session });
+        if (deleteOp) {
+          await Cart.deleteOne(
+            {
+              userId: userId,
+            },
+            { session },
+          );
+          if (deleteOp.avatar && deleteOp.avatar.urls) {
+            deleteWrapper(deleteOp.avatar.urls);
+          }
+          return serviceResponse(200, {});
+        }
+        return serviceResponse(404, {});
+      });
+      return transactionResult;
+    }
+    return serviceResponse(400, {});
+  },
 };

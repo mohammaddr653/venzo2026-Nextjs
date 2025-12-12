@@ -27,12 +27,6 @@ export const updateAvatarSchema = z.object({
   }),
 });
 
-export const deleteUserSchema = z.object({
-  params: z.object({
-    id: z.uuid('آیدی نامعتبر'),
-  }),
-});
-
 export const oneUserSchema = z.object({
   params: z.object({
     userId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی نامعتبر'),
@@ -46,6 +40,12 @@ export const updateUserSchema = z.object({
   body: z.object({
     name: z.string().min(2, 'نام حداقل باید 2 کارکتر باشد').max(50),
     email: z.email('ایمیل نامعتبر است'),
+  }),
+});
+
+export const deleteUserSchema = z.object({
+  params: z.object({
+    userId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی نامعتبر'),
   }),
 });
 

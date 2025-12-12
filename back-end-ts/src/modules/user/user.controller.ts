@@ -1,7 +1,7 @@
 import response from '#src/helpers/controllerResponse.js';
 import { userServices } from '#src/services/user.service.js';
 import { Request, Response } from 'express';
-import { CreateUserInput, OneUserInput, UpdateAvatarInput, UpdateProfileInput, UpdateUserInput } from './user.schema.js';
+import { CreateUserInput, DeleteUserInput, OneUserInput, UpdateAvatarInput, UpdateProfileInput, UpdateUserInput } from './user.schema.js';
 
 export const userController = {
   async updateProfile(req: Request<{}, {}, UpdateProfileInput['body']>, res: Response) {
@@ -112,6 +112,32 @@ export const userController = {
       return response({
         res,
         message: 'کاربری با این ایمیل قبلا ثبت نام کرده است',
+        code: result.status,
+      });
+
+    throw new Error('something went wrong');
+  },
+
+  async deleteUser(req: Request<DeleteUserInput['params']>, res: Response) {
+    const result = await userServices.deleteUser(req.params.userId, req.user!);
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'کاربر با موفقیت حذف شد',
+      });
+
+    if (result.status === 400)
+      return response({
+        res,
+        message: 'شما نمیتوانید خود را حذف کنید',
+        code: result.status,
+      });
+
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'حذف کاربر ناموفق بود',
         code: result.status,
       });
 
