@@ -40,4 +40,23 @@ export const userController = {
 
     throw Error;
   },
+
+  async deleteAvatar(req: Request, res: Response) {
+    const result = await userServices.deleteAvatar(req.user!);
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'آواتار با موفقیت حذف شد',
+      });
+
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'کاربر یافت نشد',
+        code: result.status,
+      });
+
+    throw Error;
+  },
 };

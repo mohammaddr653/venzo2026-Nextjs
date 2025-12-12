@@ -17,6 +17,7 @@ router.post(
   validate(updateAvatarSchema),
   userController.addAvatar,
 );
+router.delete('/avatar', userController.deleteAvatar);
 
 // router.get('/v1/users/', userController.getAllUsers);
 // router.get('/v1/users/:id', validate(getUserByIdSchema), userController.getUserById);

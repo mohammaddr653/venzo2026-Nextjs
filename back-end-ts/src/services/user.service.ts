@@ -55,4 +55,16 @@ export const userServices = {
     }
     return serviceResponse(404, {});
   },
+
+  async deleteAvatar(user: IUserDocument): Promise<ServiceResponse> {
+    //حذف کردن آواتار
+    const updateOp = await User.findOneAndUpdate({ _id: user.id }, { $set: { avatar: null } });
+    if (updateOp) {
+      if (updateOp.avatar && updateOp.avatar.urls) {
+        deleteWrapper(updateOp.avatar.urls);
+      }
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
+  },
 };
