@@ -4,6 +4,15 @@ import { CreateCategoryInput } from './category.schema.js';
 import { categoriesServices } from '#src/services/category.service.js';
 
 export const categoryController = {
+  async getCategories(_req: Request, res: Response) {
+    const result = await categoriesServices.getAllCategories();
+    return response({
+      res,
+      message: 'لیست دسته بندی ها',
+      data: result.data,
+    });
+  },
+
   async createCategory(req: Request<{}, {}, CreateCategoryInput['body']>, res: Response) {
     const result = await categoriesServices.createCategory(req.body);
     if (result.status === 200)

@@ -6,6 +6,8 @@ import { isAdmin, isLoggedIn, verified } from '#src/middlewares/auth.js';
 
 const router = Router();
 
+router.get('/', categoryController.getCategories);
+
 //admin
 router.use(isLoggedIn, verified, isAdmin);
 router.post('/', validate(createCategorySchema), categoryController.createCategory);

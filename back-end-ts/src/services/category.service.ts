@@ -4,6 +4,12 @@ import { CreateCategoryInput } from '#src/modules/category/category.schema.js';
 import mongoose from 'mongoose';
 
 export const categoriesServices = {
+  async getAllCategories(): Promise<ServiceResponse> {
+    //خواندن تمام دسته بندی ها از دیتابیس
+    const findOp = await Category.find({}).populate('img');
+    return serviceResponse(200, findOp);
+  },
+
   async createCategory(data: CreateCategoryInput['body']): Promise<ServiceResponse> {
     //اضافه کردن دسته بندی
     const newCategory = new Category({
