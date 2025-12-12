@@ -1,6 +1,6 @@
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Category from '#src/models/category.js';
-import { CreateCategoryInput } from '#src/modules/category/category.schema.js';
+import { CreateCategoryInput, UpdateCategoryInput } from '#src/modules/category/category.schema.js';
 import mongoose from 'mongoose';
 
 export const categoriesServices = {
@@ -32,5 +32,29 @@ export const categoriesServices = {
     }
     const saveOp = await newCategory.save();
     return serviceResponse(200, saveOp);
+  },
+
+  async updateCategory(categoryId: string, data: UpdateCategoryInput['body']): Promise<ServiceResponse> {
+    const { data: category } = await this.seeOneCategory(categoryId);
+    if (category) {
+      category.name = data.name;
+      category.motherId = data.motherId === 'root' ? 'root' : new mongoose.Types.ObjectId(data.motherId);
+      category.type = data.type;
+      category.link = data.link;
+      category.img = data.img === '' ? null : data.img;
+      category.display = data.display;
+
+      if (data.motherId !== category.id) {
+        if (data.motherId !== 'root') {
+          const exist = await Category.findById(data.motherId);
+          if (!exist) return serviceResponse(404, {});
+        }
+        await category.save();
+        return serviceResponse(200, {});
+      } else {
+        return serviceResponse(403, {});
+      }
+    }
+    return serviceResponse(404, {});
   },
 };

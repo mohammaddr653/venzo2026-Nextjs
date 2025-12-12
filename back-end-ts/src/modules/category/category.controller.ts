@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateCategoryInput, OneCategoryInput } from './category.schema.js';
+import { CreateCategoryInput, OneCategoryInput, UpdateCategoryInput } from './category.schema.js';
 import { categoriesServices } from '#src/services/category.service.js';
 
 export const categoryController = {
@@ -13,7 +13,7 @@ export const categoryController = {
     });
   },
 
-  async seeOneCategory(req: Request<OneCategoryInput["params"]>, res: Response) {
+  async seeOneCategory(req: Request<OneCategoryInput['params']>, res: Response) {
     const result = await categoriesServices.seeOneCategory(req.params.categoryId);
     return response({
       res,
@@ -34,6 +34,23 @@ export const categoryController = {
       return response({
         res,
         message: 'ساخت دسته بندی ناموفق بود',
+        code: result.status,
+      });
+    throw new Error('something went wrong');
+  },
+
+  async updateCategory(req: Request<UpdateCategoryInput['params'], {}, UpdateCategoryInput['body']>, res: Response) {
+    const result = await categoriesServices.updateCategory(req.params.categoryId, req.body);
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'دسته بندی با موفقیت بروزرسانی شد',
+      });
+
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'بروزرسانی دسته بندی ناموفق بود',
         code: result.status,
       });
     throw new Error('something went wrong');
