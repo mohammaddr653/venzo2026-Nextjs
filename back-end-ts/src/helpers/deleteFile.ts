@@ -3,9 +3,9 @@
 import * as fs from 'fs';
 
 const deleteFile = (path: string) => {
-  fs.stat(path, (err, stats) => {
+  fs.stat(path, (err, _stats) => {
     if (!err) {
-      fs.unlink(path, (err) => {});
+      fs.unlink(path, (_err) => {});
     }
   });
 };
