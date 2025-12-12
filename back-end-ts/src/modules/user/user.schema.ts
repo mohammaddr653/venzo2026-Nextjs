@@ -5,6 +5,7 @@ export const createUserSchema = z.object({
   body: z.object({
     name: z.string().min(2, 'نام حداقل باید 2 کارکتر باشد').max(50),
     email: z.email('Invalid email address'),
+    password: z.string().min(8, 'رمز عبور حداقل باید 8 کارکتر باشد'),
   }),
 });
 

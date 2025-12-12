@@ -7,7 +7,6 @@ import User from '#src/models/user.js';
 import bcrypt from 'bcrypt';
 import deleteWrapper from '#src/helpers/deleteWrapper.js';
 
-// In-memory database (replace with real database in production)
 export const userServices = {
   async registerUser(data: RegisterUserDto): Promise<ServiceResponse> {
     // create user , same as register , after user created , the cart will automaticly create

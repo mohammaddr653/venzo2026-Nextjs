@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { oneUserSchema, updateAvatarSchema, updateProfileSchema } from './user.schema.js';
+import { createUserSchema, oneUserSchema, updateAvatarSchema, updateProfileSchema } from './user.schema.js';
 import { validate } from '#src/middlewares/validate.js';
 import { userController } from './user.controller.js';
 import fileToReqBodyHandler from '#src/middlewares/fileToReqBody.js';
@@ -24,6 +24,7 @@ router.delete('/avatar', userController.deleteAvatar);
 router.use(isAdmin);
 router.get('/all', userController.getUsers);
 router.get('/:userId', validate(oneUserSchema), userController.seeOneUser);
+router.post('/', validate(createUserSchema), userController.createUser);
 
 // router.get('/v1/users/', userController.getAllUsers);
 // router.get('/v1/users/:id', validate(getUserByIdSchema), userController.getUserById);
