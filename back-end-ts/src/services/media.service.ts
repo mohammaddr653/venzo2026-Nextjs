@@ -42,4 +42,14 @@ export const mediaServices = {
     }
     return serviceResponse(404, {});
   },
+
+  async deleteMedia(mediaId: string): Promise<ServiceResponse> {
+    //حذف رسانه
+    const deleteOp = await Media.findOneAndDelete({ _id: mediaId });
+    if (deleteOp) {
+      deleteWrapper(deleteOp.urls);
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
+  },
 };

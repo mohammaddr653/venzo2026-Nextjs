@@ -45,4 +45,23 @@ export const mediaController = {
         code: result.status,
       });
   },
+
+  async deleteMedia(req: Request<OneMediaInput['params']>, res: Response) {
+    const result = await mediaServices.deleteMedia(req.params.mediaId);
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'رسانه با موفقیت حذف شد',
+      });
+
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'حذف رسانه ناموفق بود',
+        code: result.status,
+      });
+
+    throw new Error('something went wrong');
+  },
 };

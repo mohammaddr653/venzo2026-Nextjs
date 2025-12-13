@@ -27,4 +27,6 @@ router.put(
   mediaController.updateMedia,
 );
 
+router.delete('/:mediaId', validate(oneMediaSchema), mediaController.deleteMedia);
+
 export default router;
