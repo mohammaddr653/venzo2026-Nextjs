@@ -2,6 +2,11 @@ import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.j
 import Media from '#src/models/media.js';
 
 export const mediaServices = {
+  async getAllMedias(): Promise<ServiceResponse> {
+    //خواندن تمام رسانه ها از دیتابیس
+    const findOp = await Media.find({});
+    return serviceResponse(200, findOp);
+  },
   async createMedia(array: Express.Multer.File[]): Promise<ServiceResponse> {
     //اضافه کردن رسانه
     let medias = [];

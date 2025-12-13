@@ -8,13 +8,14 @@ import { mediaController } from './media.controller.js';
 const router = Router();
 
 //admin
+router.get('/', mediaController.getMedias);
 router.post(
   '/',
   uploadHandler('media', /jpeg|jpg|png|webp/, true, 1000),
   compressor('./uploads/medias', true),
   fileToReqBodyHandler('media', true),
   validate(createMediaSchema),
-  mediaController.createMedia
+  mediaController.createMedia,
 );
 
 export default router;
