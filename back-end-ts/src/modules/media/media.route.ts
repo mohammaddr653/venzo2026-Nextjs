@@ -2,7 +2,7 @@ import uploadHandler from '#src/helpers/uploadHandler.js';
 import compressor from '#src/middlewares/compressor.js';
 import fileToReqBodyHandler from '#src/middlewares/fileToReqBody.js';
 import { Router } from 'express';
-import { createMediaSchema, oneMediaSchema } from './media.schema.js';
+import { createMediaSchema, oneMediaSchema, updateMediaSchema } from './media.schema.js';
 import { validate } from '#src/middlewares/validate.js';
 import { mediaController } from './media.controller.js';
 const router = Router();
@@ -17,6 +17,14 @@ router.post(
   fileToReqBodyHandler('media', true),
   validate(createMediaSchema),
   mediaController.createMedia,
+);
+router.put(
+  '/:mediaId',
+  uploadHandler('media', /jpeg|jpg|png|webp/, false, 1000),
+  compressor('./uploads/medias', true),
+  fileToReqBodyHandler('media'),
+  validate(updateMediaSchema),
+  mediaController.updateMedia,
 );
 
 export default router;

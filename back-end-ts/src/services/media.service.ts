@@ -1,3 +1,4 @@
+import deleteWrapper from '#src/helpers/deleteWrapper.js';
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Media from '#src/models/media.js';
 
@@ -27,5 +28,18 @@ export const mediaServices = {
 
     const saveOp = await Media.create(medias);
     return serviceResponse(200, saveOp);
+  },
+
+  async updateMedia(file: Express.Multer.File, mediaId: string): Promise<ServiceResponse> {
+    const media = await Media.findById(mediaId);
+    if (media) {
+      if (file) {
+        deleteWrapper(media.urls);
+        media.urls = file.urls!;
+      }
+      await media.save();
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
   },
 };

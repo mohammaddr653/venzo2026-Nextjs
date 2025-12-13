@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '#src/middlewares/logger.js';
+import deleteWrapper from '#src/helpers/deleteWrapper.js';
 
 // Custom error class
 export class AppError extends Error {
@@ -14,9 +15,20 @@ export class AppError extends Error {
 }
 
 // Error handler middleware
-export const errorHandler = (err: Error | AppError, _req: Request, res: Response, _next: NextFunction) => {
+export const errorHandler = (err: Error | AppError, req: Request, res: Response, _next: NextFunction) => {
   let statusCode = 500;
   let message = 'Internal Server Error';
+
+  if (req.file)
+    //if some files uploaded with this req , delete them
+    deleteWrapper(req.file.urls!);
+
+  if (req.files) {
+    req.files = req.files as Express.Multer.File[];
+    for (let file of req.files) {
+      deleteWrapper(file.urls!);
+    }
+  }
 
   if (err instanceof AppError) {
     statusCode = err.statusCode;

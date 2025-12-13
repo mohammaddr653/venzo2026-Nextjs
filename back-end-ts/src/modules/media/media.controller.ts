@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateMediaInput, OneMediaInput } from './media.schema.js';
+import { CreateMediaInput, OneMediaInput, UpdateMediaInput } from './media.schema.js';
 import { mediaServices } from '#src/services/media.service.js';
 
 export const mediaController = {
@@ -22,11 +22,27 @@ export const mediaController = {
     });
   },
   async createMedia(req: Request<{}, {}, CreateMediaInput['body']>, res: Response) {
-    const result = await mediaServices.createMedia(req.files! as Express.Multer.File[]);
+    const result = await mediaServices.createMedia(req.files as Express.Multer.File[]);
     return response({
       res,
       message: 'رسانه با موفقیت اضافه شد',
       data: result.data,
     });
+  },
+
+  async updateMedia(req: Request<UpdateMediaInput['params'], {}, UpdateMediaInput['body']>, res: Response) {
+    const result = await mediaServices.updateMedia(req.file as Express.Multer.File, req.params.mediaId);
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'رسانه با موفقیت بروزرسانی شد',
+      });
+
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'رسانه یافت نشد',
+        code: result.status,
+      });
   },
 };
