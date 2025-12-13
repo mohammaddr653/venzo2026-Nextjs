@@ -14,5 +14,6 @@ router.use(isLoggedIn, verified, isAdmin);
 router.get('/:categoryId', validate(oneCategorySchema), categoryController.seeOneCategory);
 router.post('/', validate(createCategorySchema), categoryController.createCategory);
 router.put('/:categoryId', validate(updateCategorySchema), categoryController.updateCategory);
+router.delete('/:categoryId', validate(oneCategorySchema), categoryController.deleteCategory);
 
 export default router;

@@ -57,4 +57,18 @@ export const categoriesServices = {
     }
     return serviceResponse(404, {});
   },
+
+  async deleteCategory(categoryId: string): Promise<ServiceResponse> {
+    //حذف دسته بندی . آیدی را میگیرد ، دسته بندی را حذف میکند و فرزندان آن را به دسته بندی مادر بالاتر منتقل می کند
+    let parentCategoryId;
+    const deleteOp = await Category.findOneAndDelete({
+      _id: categoryId,
+    });
+    if (deleteOp) {
+      parentCategoryId = deleteOp.motherId;
+      await Category.updateMany({ motherId: deleteOp._id }, { $set: { motherId: deleteOp.motherId } });
+      return serviceResponse(200, parentCategoryId);
+    }
+    return serviceResponse(404, {});
+  },
 };

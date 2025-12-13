@@ -55,4 +55,18 @@ export const categoryController = {
       });
     throw new Error('something went wrong');
   },
+
+  async deleteCategory(req: Request<OneCategoryInput['params']>, res: Response) {
+    const parentCategoryId = await categoriesServices.deleteCategory(req.params.categoryId); //آیدی کتگوری انتخاب شده را حذف میکنه و آیدی کتگوری بالاتر را برمیگردونه تا محصولات کتگوری حذف شده رو بهش منتقل کنیم
+    if (parentCategoryId.status === 200) {
+      // note:need to be uncommented
+      // await productServices.sendToParentCategory(parentCategoryId.data, req, res);
+      // await blogServices.sendToParentCategory(parentCategoryId.data, req, res);
+      return response({
+        res,
+        message: 'دسته بندی با موفقیت حذف شد',
+      });
+    }
+    throw new Error('something went wrong');
+  },
 };
