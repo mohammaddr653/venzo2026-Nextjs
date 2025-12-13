@@ -7,6 +7,12 @@ export const mediaServices = {
     const findOp = await Media.find({});
     return serviceResponse(200, findOp);
   },
+
+  async seeOneMedia(mediaId: string): Promise<ServiceResponse> {
+    // خواندن یک رسانه از دیتابیس
+    const findOp = await Media.findById(mediaId);
+    return serviceResponse(200, findOp);
+  },
   async createMedia(array: Express.Multer.File[]): Promise<ServiceResponse> {
     //اضافه کردن رسانه
     let medias = [];

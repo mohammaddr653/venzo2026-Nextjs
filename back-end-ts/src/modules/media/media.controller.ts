@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateMediaInput } from './media.schema.js';
+import { CreateMediaInput, OneMediaInput } from './media.schema.js';
 import { mediaServices } from '#src/services/media.service.js';
 
 export const mediaController = {
@@ -9,6 +9,15 @@ export const mediaController = {
     return response({
       res,
       message: 'لیست تمام رسانه ها',
+      data: result.data,
+    });
+  },
+
+  async seeOneMedia(req: Request<OneMediaInput['params']>, res: Response) {
+    const result = await mediaServices.seeOneMedia(req.params.mediaId);
+    return response({
+      res,
+      message: 'this is media',
       data: result.data,
     });
   },
