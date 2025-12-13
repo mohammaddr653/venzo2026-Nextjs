@@ -6,12 +6,12 @@ declare global {
   namespace Express {
     interface Request {
       user?: IUserDocument | null;
-      file?: Express.Multer.File | null;
-      files?: Express.Multer.File[] | null;
+      // file?: Express.Multer.File | null;
+      // files?: Express.Multer.File[] | null;
     }
     namespace Multer {
       interface File {
-        urls: UrlsObjSchema;
+        urls?: UrlsObjSchema;
       }
     }
   }

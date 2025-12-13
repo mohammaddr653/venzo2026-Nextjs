@@ -41,7 +41,7 @@ export const userServices = {
     return serviceResponse(404, {});
   },
 
-  async addAvatar(file: any, user: IUserDocument): Promise<ServiceResponse> {
+  async addAvatar(file: Express.Multer.File, user: IUserDocument): Promise<ServiceResponse> {
     //اضافه کردن آواتار
     const newAvatar = {
       urls: file.urls,

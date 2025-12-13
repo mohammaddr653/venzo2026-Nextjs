@@ -24,7 +24,7 @@ export const userController = {
   },
 
   async addAvatar(req: Request<{}, {}, UpdateAvatarInput['body']>, res: Response) {
-    const result = await userServices.addAvatar(req.file, req.user!);
+    const result = await userServices.addAvatar(req.file!, req.user!);
     if (result.status === 200)
       return response({
         res,

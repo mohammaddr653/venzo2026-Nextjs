@@ -5,8 +5,8 @@ export interface UrlObj {
 }
 
 export interface UrlsObjSchema {
-  original: UrlObj;
-  small: UrlObj;
-  medium: UrlObj;
-  large: UrlObj;
+  original?: UrlObj;
+  small?: UrlObj;
+  medium?: UrlObj;
+  large?: UrlObj;
 }

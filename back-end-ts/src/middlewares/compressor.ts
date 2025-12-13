@@ -35,7 +35,6 @@ const compressor = (dir: string, resize: boolean) => {
       await Promise.all(
         Object.entries(sizes).map(async ([k, size]) => {
           const key = k as keyof Sizes;
-          console.log(typeof key);
           let pipeline = sharp(file.buffer).withMetadata();
           const metadata = await pipeline.metadata();
 
@@ -81,7 +80,7 @@ const compressor = (dir: string, resize: boolean) => {
             width: width.toString(),
             height: height.toString(),
           };
-          file.urls = { ...file.urls, [key]: urlObj };
+          file.urls= { ...file.urls, [key]: urlObj };
         }),
       );
     }
