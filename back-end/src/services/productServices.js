@@ -125,6 +125,7 @@ class ProductServices {
 
   async createProduct(req, res) {
     //اضافه کردن محصول
+    console.log(req.body)
     const newProduct = new Product({
       name: req.body.name,
       price: req.body.price,
