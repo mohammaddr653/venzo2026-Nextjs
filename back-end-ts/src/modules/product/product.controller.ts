@@ -4,6 +4,14 @@ import { CreateProductInput } from './product.schema.js';
 import { productServices } from '#src/services/product.service.js';
 
 export const productController = {
+  async getProducts(_req: Request, res: Response) {
+    const result = await productServices.getAllProducts();
+    return response({
+      res,
+      message: 'لیست تمام محصولات',
+      data: result.data,
+    });
+  },
   async createProduct(req: Request<{}, {}, CreateProductInput['body']>, res: Response) {
     const result = await productServices.createProduct(req.body);
     return response({

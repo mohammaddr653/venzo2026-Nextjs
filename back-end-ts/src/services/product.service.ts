@@ -4,6 +4,14 @@ import { CreateProductInput } from '#src/modules/product/product.schema.js';
 import mongoose from 'mongoose';
 
 export const productServices = {
+  async getAllProducts(): Promise<ServiceResponse> {
+    //خواندن تمام محصولات از دیتابیس
+    const findOp = await Product.find({}).populate('img').populate({ path: 'properties.property', model: 'Property' }).populate({
+      path: 'properties.values.propertyval',
+      model: 'Propertyval',
+    });
+    return serviceResponse(200, findOp);
+  },
   async createProduct(data: CreateProductInput['body']): Promise<ServiceResponse> {
     //اضافه کردن محصول
     const newProduct = new Product({

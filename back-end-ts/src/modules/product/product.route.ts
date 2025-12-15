@@ -6,6 +6,8 @@ import { productController } from './product.controller.js';
 
 const router = Router();
 
+router.get('/', productController.getProducts);
+
 //admin
 router.use(isLoggedIn, verified, isAdmin);
 
