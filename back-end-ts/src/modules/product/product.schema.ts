@@ -19,6 +19,12 @@ export const getFiltersSchema = z.object({
   }),
 });
 
+export const getSingleProductSchema = z.object({
+  params: z.object({
+    productId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی محصول نامعتبر'),
+  }),
+});
+
 export const createProductSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'نام محصول را انتخاب کنید'),
@@ -64,9 +70,7 @@ export const createProductSchema = z.object({
 });
 
 export type CreateProductInput = z.infer<typeof createProductSchema>;
-
 export type GetMostProductsInput = z.infer<typeof getMostProductsSchema>;
-
 export type GetProductsByCategoryInput = z.infer<typeof getProductsByCategorySchema>;
-
 export type GetFiltersInput = z.infer<typeof getFiltersSchema>;
+export type GetSingleProductInput = z.infer<typeof getSingleProductSchema>;

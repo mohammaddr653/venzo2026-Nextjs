@@ -1,6 +1,12 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateProductInput, GetFiltersInput, GetMostProductsInput, GetProductsByCategoryInput } from './product.schema.js';
+import {
+  CreateProductInput,
+  GetFiltersInput,
+  GetMostProductsInput,
+  GetProductsByCategoryInput,
+  GetSingleProductInput,
+} from './product.schema.js';
 import { productServices } from '#src/services/product.service.js';
 import { categoriesServices } from '#src/services/category.service.js';
 import mongoose from 'mongoose';
@@ -12,6 +18,22 @@ export const productController = {
       res,
       message: 'لیست تمام محصولات',
       data: result.data,
+    });
+  },
+
+  async getSingleShopWithProperties(req: Request<GetSingleProductInput['params']>, res: Response) {
+    const { data: allCategories } = await categoriesServices.getAllCategories(); //تمام دسته بندی ها
+
+    const { data: product } = await productServices.getSingleShopWithProperties(req.params.productId);
+
+    const { data: motherCategories } = await categoriesServices.motherCats(allCategories, product?.categoryId); //دریافت آرایه motherCategories
+    return response({
+      res,
+      message: 'this is single shop with properties',
+      data: {
+        product: product,
+        motherCategories: motherCategories,
+      },
     });
   },
 

@@ -16,6 +16,26 @@ export const productServices = {
     return serviceResponse(200, findOp);
   },
 
+  async seeOneProduct(productId: string) {
+    // خواندن یک محصول از دیتابیس
+    const findOp = await Product.findById(productId)
+      .populate('img')
+      .populate('gallery')
+      .populate({ path: 'properties.property', model: 'Property' })
+      .populate({
+        path: 'properties.values.propertyval',
+        model: 'Propertyval',
+      });
+
+    return serviceResponse(200, findOp);
+  },
+
+  //note:this function must combine with seeOneProduct function since both do the same job
+  async getSingleShopWithProperties(productId: string): Promise<ServiceResponse> {
+    const { data: product } = await this.seeOneProduct(productId);
+    return serviceResponse(200, product);
+  },
+
   async getNewestProducts(): Promise<ServiceResponse> {
     //خواندن جدیدترین محصولات از دیتابیس
     const findOp = await Product.find({})
