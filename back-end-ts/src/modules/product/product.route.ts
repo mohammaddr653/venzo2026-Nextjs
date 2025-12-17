@@ -17,6 +17,7 @@ router.get('/most-products', validate(getMostProductsSchema), productController.
 router.get('/:categoryString', validate(getProductsByCategorySchema), productController.getShopByCategory);
 router.get('/filters/:categoryString', validate(getFiltersSchema), productController.getFiltersByCategory);
 router.get('/withProperties/:productId', validate(getSingleProductSchema), productController.getSingleShopWithProperties);
+router.get('/single/:productId', validate(getSingleProductSchema), productController.getSingleShop);
 
 //admin
 router.use(isLoggedIn, verified, isAdmin);

@@ -21,6 +21,15 @@ export const productController = {
     });
   },
 
+  async getSingleShop(req:Request<GetSingleProductInput['params']>, res:Response) {
+    const result = await productServices.seeOneProduct(req.params.productId);
+    return response({
+      res,
+      message: "this is single shop",
+      data: result.data,
+    });
+  },
+
   async getSingleShopWithProperties(req: Request<GetSingleProductInput['params']>, res: Response) {
     const { data: allCategories } = await categoriesServices.getAllCategories(); //تمام دسته بندی ها
 
