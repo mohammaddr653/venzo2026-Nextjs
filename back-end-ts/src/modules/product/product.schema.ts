@@ -13,6 +13,12 @@ export const getProductsByCategorySchema = z.object({
   }),
 });
 
+export const getFiltersSchema = z.object({
+  params: z.object({
+    categoryString: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'رشته دسته بندی نامعتبر'),
+  }),
+});
+
 export const createProductSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'نام محصول را انتخاب کنید'),
@@ -62,3 +68,5 @@ export type CreateProductInput = z.infer<typeof createProductSchema>;
 export type GetMostProductsInput = z.infer<typeof getMostProductsSchema>;
 
 export type GetProductsByCategoryInput = z.infer<typeof getProductsByCategorySchema>;
+
+export type GetFiltersInput = z.infer<typeof getFiltersSchema>;

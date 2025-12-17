@@ -1,7 +1,9 @@
 //gets all the filters that used in a category
 
-const filtersAggregation = (categoryArr: any[]) => {
-  const query = [
+import { PipelineStage } from 'mongoose';
+
+const filtersAggregation = (categoryArr: any[]): PipelineStage[] => {
+  const query: PipelineStage[] = [
     { $match: { categoryId: { $in: categoryArr } } },
     { $unwind: '$properties' },
     {

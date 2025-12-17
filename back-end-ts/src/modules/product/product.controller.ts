@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreateProductInput, GetMostProductsInput, GetProductsByCategoryInput } from './product.schema.js';
+import { CreateProductInput, GetFiltersInput, GetMostProductsInput, GetProductsByCategoryInput } from './product.schema.js';
 import { productServices } from '#src/services/product.service.js';
 import { categoriesServices } from '#src/services/category.service.js';
 import mongoose from 'mongoose';
@@ -67,6 +67,24 @@ export const productController = {
         motherCategories: motherCategories,
         childCategories: childCategories,
       },
+    });
+  },
+
+  async getFiltersByCategory(req: Request<GetFiltersInput['params']>, res: Response) {
+    const { data: allCategories } = await categoriesServices.getAllCategories(); //تمام دسته بندی ها
+    const { data: childCategories } = await categoriesServices.childCats(
+      allCategories,
+      req.params.categoryString as unknown as mongoose.Types.ObjectId,
+    ); //دریافت آرایه childCats
+
+    const { data: categoryArr } = await categoriesServices.createCategoryArr(childCategories); //آرایه دسته بندی تولید میشه که شامل دسته بندی انتخاب شده و زیرمجموعه های آن است
+
+    const { data: filters } = await productServices.getFiltersByCategoryString(categoryArr); //فیلتر ها
+
+    return response({
+      res,
+      message: 'this is filters , of specific category',
+      data: filters,
     });
   },
 

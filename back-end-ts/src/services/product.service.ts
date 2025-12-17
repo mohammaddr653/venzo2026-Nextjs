@@ -1,4 +1,5 @@
 import filterConditionsQuery from '#src/helpers/queries/filterConditionsQuery.js';
+import filtersAggregation from '#src/helpers/queries/filtersAggregation.js';
 import shopAggregation from '#src/helpers/queries/shopAggregation.js';
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Product from '#src/models/product.js';
@@ -90,6 +91,12 @@ export const productServices = {
       ...(filterConditions.length > 0 ? { $and: filterConditions } : {}),
     }).countDocuments();
     return serviceResponse(200, totalCount);
+  },
+
+  async getFiltersByCategoryString(categoryArr: mongoose.Types.ObjectId[]): Promise<ServiceResponse> {
+    //خواندن فیلتر ها مطابق با دسته بندی
+    const filters = await Product.aggregate(filtersAggregation(categoryArr));
+    return serviceResponse(200, filters);
   },
 
   async createProduct(data: CreateProductInput['body']): Promise<ServiceResponse> {
