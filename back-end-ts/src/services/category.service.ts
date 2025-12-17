@@ -1,6 +1,7 @@
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Category from '#src/models/category.js';
 import { CreateCategoryInput, UpdateCategoryInput } from '#src/modules/category/category.schema.js';
+import { ICategoryDocument } from '#src/types/category.types.js';
 import mongoose from 'mongoose';
 
 export const categoriesServices = {
@@ -70,5 +71,55 @@ export const categoriesServices = {
       return serviceResponse(200, parentCategoryId);
     }
     return serviceResponse(404, {});
+  },
+
+  async childCats(categories: ICategoryDocument[], initialId: mongoose.Types.ObjectId) {
+    const childCategories: ICategoryDocument[] = [];
+    if (categories) {
+      const loop = (array: ICategoryDocument[], id: mongoose.Types.ObjectId) => {
+        if (id) {
+          const sId = id.toString();
+          const category = categories.find((item) => item.id === sId);
+          category ? childCategories.push(category) : null;
+
+          array.forEach((obj) => {
+            if (obj.motherId.toString() === sId) {
+              loop(categories, obj._id);
+            }
+          });
+        }
+      };
+      loop(categories, initialId);
+    }
+    return serviceResponse(200, childCategories);
+  },
+
+  async motherCats(categories: ICategoryDocument[], initialId: mongoose.Types.ObjectId) {
+    const motherCategories: ICategoryDocument[] = [];
+    if (categories) {
+      const loop = (array: ICategoryDocument[], id: mongoose.Types.ObjectId) => {
+        if (id) {
+          const sId = id.toString();
+          const category = categories.find((item) => item.id === sId);
+          category ? motherCategories.push(category) : null;
+          if (category?.motherId !== 'root') {
+            loop(array, category?.motherId as mongoose.Types.ObjectId);
+          }
+        }
+      };
+      loop(categories, initialId);
+    }
+    return serviceResponse(200, motherCategories);
+  },
+
+  //یک آرایه متشکل از کتگوری کلیک شده و تمام کتگوری های فرزندش
+  async createCategoryArr(categories: ICategoryDocument[]): Promise<ServiceResponse> {
+    let categoryArr: mongoose.Types.ObjectId[] = [];
+    if (categories) {
+      categories.forEach((obj) => {
+        categoryArr.push(obj._id);
+      });
+    }
+    return serviceResponse(200, categoryArr);
   },
 };

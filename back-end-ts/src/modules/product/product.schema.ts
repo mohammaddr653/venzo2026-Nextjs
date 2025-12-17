@@ -1,4 +1,17 @@
+import mongoose from 'mongoose';
 import z from 'zod';
+
+export const getMostProductsSchema = z.object({
+  query: z.object({ type: z.enum(['newest', 'offers']) }),
+});
+
+export const getProductsByCategorySchema = z.object({
+  //note: I must send the attributes in req.body . this method needs to change
+  query: z.object({ limit: z.string().optional(), page: z.string().optional(), attributes: z.any().optional() }),
+  params: z.object({
+    categoryString: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'رشته دسته بندی نامعتبر'),
+  }),
+});
 
 export const createProductSchema = z.object({
   body: z.object({
@@ -45,3 +58,7 @@ export const createProductSchema = z.object({
 });
 
 export type CreateProductInput = z.infer<typeof createProductSchema>;
+
+export type GetMostProductsInput = z.infer<typeof getMostProductsSchema>;
+
+export type GetProductsByCategoryInput = z.infer<typeof getProductsByCategorySchema>;
