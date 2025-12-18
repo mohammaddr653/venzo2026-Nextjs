@@ -1,12 +1,12 @@
 import { Document } from 'mongoose';
-import { UrlsObjSchema } from './urlsObj.types.js';
+import { IUrlsObjDocument } from './urlsObj.types.js';
 
 export interface User {
   name: string;
   email: string;
   password: string;
   isadmin: boolean;
-  avatar: { urls: UrlsObjSchema } | null;
+  avatar: { urls: IUrlsObjDocument } | null;
   verified: boolean;
   passwordResetToken: string | null;
   passwordResetTokenExpires: Date | null;

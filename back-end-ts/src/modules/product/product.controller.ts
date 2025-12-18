@@ -6,6 +6,7 @@ import {
   GetMostProductsInput,
   GetProductsByCategoryInput,
   GetSingleProductInput,
+  UpdateProductInput,
 } from './product.schema.js';
 import { productServices } from '#src/services/product.service.js';
 import { categoriesServices } from '#src/services/category.service.js';
@@ -21,11 +22,11 @@ export const productController = {
     });
   },
 
-  async getSingleShop(req:Request<GetSingleProductInput['params']>, res:Response) {
+  async getSingleShop(req: Request<GetSingleProductInput['params']>, res: Response) {
     const result = await productServices.seeOneProduct(req.params.productId);
     return response({
       res,
-      message: "this is single shop",
+      message: 'this is single shop',
       data: result.data,
     });
   },
@@ -126,5 +127,19 @@ export const productController = {
       message: 'محصول با موفقیت ساخته شد',
       data: result.data,
     });
+  },
+
+  async updateProduct(req: Request<UpdateProductInput['params'], {}, UpdateProductInput['body']>, res: Response) {
+    const result = await productServices.updateProduct(req.params.productId, req.body);
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'محصول با موفقیت بروزرسانی شد',
+      });
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'محصول یافت نشد',
+      });
   },
 };

@@ -1,6 +1,6 @@
 //this function calls deleteFile component for all urls of file or files
 
-import { UrlsObjSchema } from '#src/types/urlsObj.types.js';
+import { UrlsObj } from '#src/types/urlsObj.types.js';
 import deleteFile from './deleteFile.js';
 enum Sizes {
   original = 'original',
@@ -8,7 +8,7 @@ enum Sizes {
   medium = 'medium',
   large = 'large',
 }
-const deleteWrapper = (fileURLS: UrlsObjSchema) => {
+const deleteWrapper = (fileURLS: UrlsObj) => {
   //if some files uploaded with this req , delete them
   for (let key of Object.values(Sizes))
     if (fileURLS[key]) {

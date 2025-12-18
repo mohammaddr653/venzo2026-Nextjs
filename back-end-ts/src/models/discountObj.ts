@@ -1,6 +1,7 @@
+import { DiscountObj } from '#src/types/discount.types.js';
 import mongoose from 'mongoose';
 
-const discountObjSchema = new mongoose.Schema(
+const discountObjSchema = new mongoose.Schema<DiscountObj>(
   {
     offer: {
       type: Number,

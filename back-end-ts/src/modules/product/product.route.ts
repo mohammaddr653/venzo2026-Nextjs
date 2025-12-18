@@ -5,6 +5,7 @@ import {
   getMostProductsSchema,
   getProductsByCategorySchema,
   getSingleProductSchema,
+  updateProductSchema,
 } from './product.schema.js';
 import { validate } from '#src/middlewares/validate.js';
 import { isAdmin, isLoggedIn, verified } from '#src/middlewares/auth.js';
@@ -23,5 +24,7 @@ router.get('/single/:productId', validate(getSingleProductSchema), productContro
 router.use(isLoggedIn, verified, isAdmin);
 
 router.post('/', validate(createProductSchema), productController.createProduct);
+
+router.put('/:productId', validate(updateProductSchema), productController.updateProduct);
 
 export default router;

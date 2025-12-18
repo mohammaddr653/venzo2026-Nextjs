@@ -3,8 +3,9 @@
 
 import mongoose from 'mongoose';
 import discountObjSchema from './discountObj.js';
+import { PropertyObj, PropertyvalObj } from '#src/types/property.types.js';
 
-const propertyvalObjSchema = new mongoose.Schema(
+const propertyvalObjSchema = new mongoose.Schema<PropertyvalObj>(
   {
     propertyval: {
       type: mongoose.Schema.Types.ObjectId,
@@ -25,7 +26,7 @@ const propertyvalObjSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const propertyObjSchema = new mongoose.Schema(
+const propertyObjSchema = new mongoose.Schema<PropertyObj>(
   {
     property: {
       type: mongoose.Schema.Types.ObjectId,

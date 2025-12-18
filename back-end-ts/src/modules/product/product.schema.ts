@@ -28,38 +28,64 @@ export const getSingleProductSchema = z.object({
 export const createProductSchema = z.object({
   body: z.object({
     name: z.string().min(1, 'نام محصول را انتخاب کنید'),
-    price: z.string().min(1, 'قیمت محصول را تعیین کنید'),
-    discount: z.object({ offer: z.string(), startedAt: z.string(), expiredAt: z.string() }).nullable(),
-    stock: z.string().min(1, 'موجودی انبار را تعیین کنید'),
+    price: z.number().min(0, 'قیمت محصول را تعیین کنید'),
+    discount: z.object({ offer: z.number(), startedAt: z.date().nullable(), expiredAt: z.date().nullable() }).nullable(),
+    stock: z.number().min(0, 'موجودی محصول را تعیین کنید'),
     categoryId: z.string(),
     description: z.string(),
     properties: z.array(
       z.object({
-        property: z.object({
-          _id: z.string(),
-          name: z.string(),
-          specifiedVals: z.boolean(),
-          type: z.string(),
-        }),
+        property: z.string(),
 
         selective: z.boolean(),
 
         values: z.array(
           z.object({
-            propertyval: z
-              .object({
-                _id: z.string(),
-                value: z.string(),
-                hex: z.string().optional(),
-              })
-              .optional(),
+            propertyval: z.string().optional(),
             valueString: z.string().optional(),
 
-            price: z.string().optional(),
+            price: z.number().min(0, 'قیمت ویژگی انتخابی را تعیین کنید').optional(),
 
-            discount: z.object({ offer: z.string(), startedAt: z.string(), expiredAt: z.string() }).optional().nullable(),
+            discount: z.object({ offer: z.number(), startedAt: z.date().nullable(), expiredAt: z.date().nullable() }).optional().nullable(),
 
-            stock: z.string().optional(),
+            stock: z.number().min(0, 'موجودی ویژگی انتخابی را تعیین کنید').optional(),
+          }),
+        ),
+      }),
+    ),
+    img: z.string().nullable(),
+    gallery: z.array(z.string()).nullable(),
+  }),
+});
+
+export const updateProductSchema = z.object({
+  params: z.object({
+    productId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی محصول نامعتبر'),
+  }),
+
+  body: z.object({
+    name: z.string().min(1, 'نام محصول را انتخاب کنید'),
+    price: z.number().min(0, 'قیمت محصول را تعیین کنید'),
+    discount: z.object({ offer: z.number(), startedAt: z.date().nullable(), expiredAt: z.date().nullable() }).nullable(),
+    stock: z.number().min(0, 'موجودی محصول را تعیین کنید'),
+    categoryId: z.string(),
+    description: z.string(),
+    properties: z.array(
+      z.object({
+        property: z.string(),
+
+        selective: z.boolean(),
+
+        values: z.array(
+          z.object({
+            propertyval: z.string().optional(),
+            valueString: z.string().optional(),
+
+            price: z.number().min(0, 'قیمت ویژگی انتخابی را تعیین کنید').optional(),
+
+            discount: z.object({ offer: z.number(), startedAt: z.date().nullable(), expiredAt: z.date().nullable() }).optional().nullable(),
+
+            stock: z.number().min(0, 'موجودی ویژگی انتخابی را تعیین کنید').optional(),
           }),
         ),
       }),
@@ -74,3 +100,4 @@ export type GetMostProductsInput = z.infer<typeof getMostProductsSchema>;
 export type GetProductsByCategoryInput = z.infer<typeof getProductsByCategorySchema>;
 export type GetFiltersInput = z.infer<typeof getFiltersSchema>;
 export type GetSingleProductInput = z.infer<typeof getSingleProductSchema>;
+export type UpdateProductInput = z.infer<typeof updateProductSchema>;

@@ -4,9 +4,10 @@ import domPurifier from 'dompurify';
 import { JSDOM } from 'jsdom';
 import discountObjSchema from './discountObj.js';
 import propertyObjSchema from './propertyObj.js';
+import { IProductDocument } from '#src/types/product.types.js';
 const htmlPurify = domPurifier(new JSDOM().window);
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema<IProductDocument>(
   {
     name: { type: String, required: true },
     price: { type: Number, required: true },
@@ -30,7 +31,7 @@ const productSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Media',
-        default:null
+        default: null,
       },
     ],
   },

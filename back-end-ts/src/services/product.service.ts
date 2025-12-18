@@ -3,7 +3,8 @@ import filtersAggregation from '#src/helpers/queries/filtersAggregation.js';
 import shopAggregation from '#src/helpers/queries/shopAggregation.js';
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import Product from '#src/models/product.js';
-import { CreateProductInput } from '#src/modules/product/product.schema.js';
+import { CreateProductInput, UpdateProductInput } from '#src/modules/product/product.schema.js';
+import { PropertyObj } from '#src/types/property.types.js';
 import mongoose from 'mongoose';
 
 export const productServices = {
@@ -136,5 +137,27 @@ export const productServices = {
     }
     const saveOp = await newProduct.save();
     return serviceResponse(200, saveOp);
+  },
+
+  async updateProduct(productId: string, data: UpdateProductInput['body']) {
+    let product = await Product.findById(productId);
+    if (product) {
+      product.name = data.name;
+      product.price = data.price;
+      product.discount = data.discount;
+      product.stock = data.stock;
+      product.categoryId = data.categoryId === '' ? null : product.categoryId;
+      product.description = data.description;
+      product.properties = data.properties as unknown as PropertyObj[];
+      product.img = data.img as unknown as mongoose.Types.ObjectId;
+      product.gallery = data.gallery as unknown as mongoose.Types.ObjectId[];
+
+      if (data.categoryId) {
+        product.categoryId = new mongoose.Types.ObjectId(data.categoryId);
+      }
+      await product.save();
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
   },
 };
