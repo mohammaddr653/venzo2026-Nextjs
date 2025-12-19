@@ -3,6 +3,7 @@ import authRoutes from '#src/modules/auth/auth.route.js';
 import userRouter from '#src/modules/user/user.route.js';
 import categoriesRouter from '#src/modules/category/category.route.js';
 import mediaRouter from '#src/modules/media/media.route.js';
+import propertyRouter from '#src/modules/property/property.route.js';
 import productRouter from '#src/modules/product/product.route.js';
 
 const router = Router();
@@ -15,6 +16,7 @@ router.use('/auth', notLoggedIn, authRoutes);
 router.use('/user', isLoggedIn, verified, userRouter);
 router.use('/categories', categoriesRouter);
 router.use('/medias', isLoggedIn, verified, isAdmin, mediaRouter);
+router.use('/properties', propertyRouter);
 router.use('/products', productRouter);
 
 export default router;

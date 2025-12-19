@@ -14,3 +14,12 @@ export interface PropertyObj {
   selective: boolean;
   values: PropertyvalObj[];
 }
+
+type Types = 'ordinary' | 'color';
+
+export interface PropertyI {
+  name: string;
+  specifiedVals: boolean;
+  type: Types;
+}
+export interface IPropertyDocument extends PropertyI, Document {}
