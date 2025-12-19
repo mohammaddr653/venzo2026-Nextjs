@@ -2,6 +2,8 @@ import filterConditionsQuery from '#src/helpers/queries/filterConditionsQuery.js
 import filtersAggregation from '#src/helpers/queries/filtersAggregation.js';
 import shopAggregation from '#src/helpers/queries/shopAggregation.js';
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
+import withTransaction from '#src/helpers/withTransaction.js';
+import Cart from '#src/models/cart.js';
 import Product from '#src/models/product.js';
 import { CreateProductInput, UpdateProductInput } from '#src/modules/product/product.schema.js';
 import { PropertyObj } from '#src/types/property.types.js';
@@ -139,7 +141,7 @@ export const productServices = {
     return serviceResponse(200, saveOp);
   },
 
-  async updateProduct(productId: string, data: UpdateProductInput['body']) {
+  async updateProduct(productId: string, data: UpdateProductInput['body']): Promise<ServiceResponse> {
     let product = await Product.findById(productId);
     if (product) {
       product.name = data.name;
@@ -159,5 +161,25 @@ export const productServices = {
       return serviceResponse(200, {});
     }
     return serviceResponse(404, {});
+  },
+
+  //note: I think we can replace findOneAndDelete with deleteOne for better performance
+  async deleteProduct(productId: string): Promise<ServiceResponse> {
+    //حذف محصول . محصول را همچنین از سبد خرید تمام کاربرانی که آن را دارند حذف میکند . تست شده برای یک سبد خرید . هنوز مطمئن نیستم اگر در چند سبد خرید این محصول موجود باشه چه نتیجه ای میده
+    const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
+      const deleteOp = await Product.findOneAndDelete({ _id: productId }, { session });
+      if (deleteOp) {
+        await Cart.updateMany(
+          {
+            reservedProducts: { $elemMatch: { productId: deleteOp._id } },
+          },
+          { $pull: { reservedProducts: { productId: deleteOp._id } } },
+          { session },
+        );
+        return serviceResponse(200, deleteOp);
+      }
+      return serviceResponse(404, {});
+    });
+    return transactionResult;
   },
 };

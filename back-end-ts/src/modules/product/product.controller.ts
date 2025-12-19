@@ -142,4 +142,20 @@ export const productController = {
         message: 'محصول یافت نشد',
       });
   },
+
+  async deleteProduct(req: Request<GetSingleProductInput['params']>, res: Response) {
+    const result = await productServices.deleteProduct(req.params.productId);
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'محصول با موفقیت حذف شد',
+      });
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'حذف محصول ناموفق بود',
+        code: result.status,
+      });
+    throw new Error('something went wrong');
+  },
 };
