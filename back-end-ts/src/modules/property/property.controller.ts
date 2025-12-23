@@ -4,6 +4,14 @@ import { CreatePropertyInput, UpdatePropertyInput } from './property.schema.js';
 import { propertyServices } from '#src/services/property.service.js';
 
 export const propertyController = {
+  async getProperties(_req: Request, res: Response) {
+    const result = await propertyServices.getAllProperties();
+    return response({
+      res,
+      message: 'this is all properties',
+      data: result.data,
+    });
+  },
   async createProperty(req: Request<{}, {}, CreatePropertyInput['body']>, res: Response) {
     const result = await propertyServices.createProperty(req.body);
     if (result.status === 400)

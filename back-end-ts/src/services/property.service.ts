@@ -5,6 +5,12 @@ import { CreatePropertyInput, UpdatePropertyInput } from '#src/modules/property/
 import mongoose from 'mongoose';
 
 export const propertyServices = {
+  async getAllProperties() {
+    //reading all properties
+    const findOp = await Property.find({});
+    return serviceResponse(200, findOp);
+  },
+
   async seeOneProperty(propertyId: string) {
     // reading one property from database
     const findOp = await Property.findById(propertyId);
