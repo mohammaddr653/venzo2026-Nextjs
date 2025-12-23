@@ -12,6 +12,8 @@ router.use(isLoggedIn, verified, isAdmin);
 
 router.get('/', propertyController.getProperties);
 
+router.get('/withvals', propertyController.getPropertiesWithVals);
+
 router.post('/', validate(createPropertySchema), propertyController.createProperty);
 
 router.put('/:propertyId', validate(updatePropertySchema), propertyController.updateProperty);

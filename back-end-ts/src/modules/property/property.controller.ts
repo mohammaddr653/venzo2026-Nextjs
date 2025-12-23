@@ -12,6 +12,15 @@ export const propertyController = {
       data: result.data,
     });
   },
+
+  async getPropertiesWithVals(_req: Request, res: Response) {
+    const result = await propertyServices.getPropertiesWithVals();
+    return response({
+      res,
+      message: 'this is all properties with vals',
+      data: result.data,
+    });
+  },
   async createProperty(req: Request<{}, {}, CreatePropertyInput['body']>, res: Response) {
     const result = await propertyServices.createProperty(req.body);
     if (result.status === 400)
