@@ -2,7 +2,7 @@ import { isAdmin, isLoggedIn, verified } from '#src/middlewares/auth.js';
 import { Router } from 'express';
 import { propertyController } from './property.controller.js';
 import { validate } from '#src/middlewares/validate.js';
-import { createPropertySchema, updatePropertySchema } from './property.schema.js';
+import { createPropertySchema, seeOnePropertySchema, updatePropertySchema } from './property.schema.js';
 
 const router = Router();
 
@@ -11,6 +11,8 @@ const router = Router();
 router.use(isLoggedIn, verified, isAdmin);
 
 router.get('/', propertyController.getProperties);
+
+router.get('/:propertyId', validate(seeOnePropertySchema), propertyController.seeOneProperty);
 
 router.get('/withvals', propertyController.getPropertiesWithVals);
 

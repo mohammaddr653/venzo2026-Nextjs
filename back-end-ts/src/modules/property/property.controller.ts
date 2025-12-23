@@ -1,6 +1,6 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
-import { CreatePropertyInput, UpdatePropertyInput } from './property.schema.js';
+import { CreatePropertyInput, SeeOnePropertyInput, UpdatePropertyInput } from './property.schema.js';
 import { propertyServices } from '#src/services/property.service.js';
 
 export const propertyController = {
@@ -9,6 +9,15 @@ export const propertyController = {
     return response({
       res,
       message: 'this is all properties',
+      data: result.data,
+    });
+  },
+
+  async seeOneProperty(req: Request<SeeOnePropertyInput['params']>, res: Response) {
+    const result = await propertyServices.seeOneProperty(req.params.propertyId);
+    return response({
+      res,
+      message: 'this is property',
       data: result.data,
     });
   },
