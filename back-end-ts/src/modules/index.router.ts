@@ -4,6 +4,7 @@ import userRouter from '#src/modules/user/user.route.js';
 import categoriesRouter from '#src/modules/category/category.route.js';
 import mediaRouter from '#src/modules/media/media.route.js';
 import propertyRouter from '#src/modules/property/property.route.js';
+import propertyvalRouter from '#src/modules/propertyval/propertyval.route.js';
 import productRouter from '#src/modules/product/product.route.js';
 
 const router = Router();
@@ -17,6 +18,7 @@ router.use('/user', isLoggedIn, verified, userRouter);
 router.use('/categories', categoriesRouter);
 router.use('/medias', isLoggedIn, verified, isAdmin, mediaRouter);
 router.use('/properties', propertyRouter);
+router.use('/propertyvals', propertyvalRouter);
 router.use('/products', productRouter);
 
 export default router;
