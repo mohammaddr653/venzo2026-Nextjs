@@ -61,4 +61,26 @@ export const propertyController = {
 
     throw new Error('something went wrong');
   },
+
+  async deleteProperty(req: Request<SeeOnePropertyInput['params']>, res: Response) {
+    const result = await propertyServices.deleteProperty(req.params.propertyId);
+    if (result.status === 403)
+      return response({
+        res,
+        message: `این ویژگی در محصولات زیر استفاده می شود ${result.data}`,
+        code: result.status,
+      });
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'ویژگی با موفقیت حذف شد',
+      });
+    if (result.status === 404)
+      return response({
+        res,
+        message: 'حذف ویژگی ناموفق بود',
+        code: result.status,
+      });
+    throw new Error('something went wrong');
+  },
 };

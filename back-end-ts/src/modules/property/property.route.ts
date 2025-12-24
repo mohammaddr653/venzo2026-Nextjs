@@ -20,4 +20,6 @@ router.post('/', validate(createPropertySchema), propertyController.createProper
 
 router.put('/:propertyId', validate(updatePropertySchema), propertyController.updateProperty);
 
+router.delete('/:propertyId', validate(seeOnePropertySchema), propertyController.deleteProperty);
+
 export default router;

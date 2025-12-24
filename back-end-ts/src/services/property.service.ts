@@ -1,5 +1,6 @@
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import withTransaction from '#src/helpers/withTransaction.js';
+import Product from '#src/models/product.js';
 import Property from '#src/models/property.js';
 import Propertyval from '#src/models/propertyval.js';
 import { CreatePropertyInput, UpdatePropertyInput } from '#src/modules/property/property.schema.js';
@@ -12,7 +13,7 @@ export const propertyServices = {
     return serviceResponse(200, findOp);
   },
 
-    //note:maybe I can do this with aggregation
+  //note:maybe I can do this with aggregation
   async getPropertiesWithVals(): Promise<ServiceResponse> {
     //reading all properties with values
     const result = [];
@@ -25,10 +26,7 @@ export const propertyServices = {
         type: property.type,
         values: [],
       };
-      data.values = await Propertyval.find(
-        { propertyId: property._id },
-        { _id: 1, value: 1, hex: 1 }
-      );
+      data.values = await Propertyval.find({ propertyId: property._id }, { _id: 1, value: 1, hex: 1 });
       result.push(data);
     }
     return serviceResponse(200, result);
@@ -67,6 +65,35 @@ export const propertyServices = {
     const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
       await property.save({ session });
       return serviceResponse(200, {});
+    });
+    return transactionResult;
+  },
+
+  //checks if this property is not used in any product then allow it to delete
+  async deleteProperty(propertyId: string) {
+    const { data: property } = await this.seeOneProperty(propertyId);
+    let productsInUse = await Product.find(
+      {
+        properties: { $elemMatch: { name: property._id } },
+      },
+      { name: 1, _id: 0 },
+    );
+    if (productsInUse && productsInUse.length) {
+      const productsName = await Promise.all(
+        productsInUse.map((item) => {
+          return item.name;
+        }),
+      );
+      return serviceResponse(403, productsName);
+    }
+
+    const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
+      const deleteOp = await Property.deleteOne({ _id: propertyId }, { session });
+      if (deleteOp.deletedCount > 0) {
+        await Propertyval.deleteMany({ propertyId: propertyId }, { session });
+        return serviceResponse(200, {});
+      }
+      return serviceResponse(404, {});
     });
     return transactionResult;
   },
