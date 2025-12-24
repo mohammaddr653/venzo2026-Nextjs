@@ -5,6 +5,12 @@ import { CreatePropertyvalInput } from '#src/modules/propertyval/propertyval.sch
 import mongoose from 'mongoose';
 
 export const propertyvalServices = {
+  async getAllPropertyvals(): Promise<ServiceResponse> {
+    //reading all propertyvals
+    const findOp = await Propertyval.find({});
+    return serviceResponse(200, findOp);
+  },
+
   async createPropertyval(data: CreatePropertyvalInput['body']): Promise<ServiceResponse> {
     // create propertyval
     const repeatedValue = await Propertyval.findOne({

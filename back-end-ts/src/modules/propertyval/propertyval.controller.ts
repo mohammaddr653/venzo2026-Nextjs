@@ -4,6 +4,15 @@ import { propertyvalServices } from '#src/services/propertyval.service.js';
 import { CreatePropertyvalInput } from './propertyval.schema.js';
 
 export const propertyvalController = {
+  async getPropertyvals(_req: Request, res: Response) {
+    const result = await propertyvalServices.getAllPropertyvals();
+    return response({
+      res,
+      message: 'this is all propertyvals',
+      data: result.data,
+    });
+  },
+
   async createPropertyval(req: Request<{}, {}, CreatePropertyvalInput['body']>, res: Response) {
     const result = await propertyvalServices.createPropertyval(req.body);
     if (result.status === 409)

@@ -9,6 +9,8 @@ const router = Router();
 
 router.use(isLoggedIn, verified, isAdmin);
 
+router.get('/', propertyvalController.getPropertyvals);
+
 router.post('/', validate(createPropertyvalSchema), propertyvalController.createPropertyval);
 
 export default router;
