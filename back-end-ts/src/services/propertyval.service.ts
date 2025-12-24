@@ -11,6 +11,14 @@ export const propertyvalServices = {
     return serviceResponse(200, findOp);
   },
 
+  async getPropertyvalsById(propertyId: string): Promise<ServiceResponse> {
+    //reading all propertyvals by id
+    const findOp = await Propertyval.find({
+      propertyId: propertyId,
+    });
+    return serviceResponse(200, findOp);
+  },
+
   async createPropertyval(data: CreatePropertyvalInput['body']): Promise<ServiceResponse> {
     // create propertyval
     const repeatedValue = await Propertyval.findOne({

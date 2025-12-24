@@ -1,9 +1,18 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
 import { propertyvalServices } from '#src/services/propertyval.service.js';
-import { CreatePropertyvalInput } from './propertyval.schema.js';
+import { CreatePropertyvalInput, PropertyvalByIdInput } from './propertyval.schema.js';
 
 export const propertyvalController = {
+  async getPropertyvalsById(req: Request<PropertyvalByIdInput['params']>, res: Response) {
+    const result = await propertyvalServices.getPropertyvalsById(req.params.propertyId);
+    return response({
+      res,
+      message: 'this is all propertyvals by id',
+      data: result.data,
+    });
+  },
+
   async getPropertyvals(_req: Request, res: Response) {
     const result = await propertyvalServices.getAllPropertyvals();
     return response({
