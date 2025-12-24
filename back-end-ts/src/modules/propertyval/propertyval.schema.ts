@@ -21,6 +21,16 @@ export const createPropertyvalSchema = z.object({
   }),
 });
 
+export const updatePropertyvalSchema = z.object({
+  params: z.object({
+    propertyvalId: z.string().refine((v) => mongoose.Types.ObjectId.isValid(v), 'آیدی مقدار ویژگی نامعتبر'),
+  }),
+  body: z.object({
+    value: z.string(),
+  }),
+});
+
 export type SeeOnePropertyvalInput = z.infer<typeof seeOnePropertyvalSchema>;
 export type PropertyvalByIdInput = z.infer<typeof propertyvalByIdSchema>;
 export type CreatePropertyvalInput = z.infer<typeof createPropertyvalSchema>;
+export type UpdatePropertyvalInput = z.infer<typeof updatePropertyvalSchema>;

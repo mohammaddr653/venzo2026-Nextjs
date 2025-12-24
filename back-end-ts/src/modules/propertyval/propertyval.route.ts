@@ -2,7 +2,7 @@ import { isAdmin, isLoggedIn, verified } from '#src/middlewares/auth.js';
 import { Router } from 'express';
 import { propertyvalController } from './propertyval.controller.js';
 import { validate } from '#src/middlewares/validate.js';
-import { createPropertyvalSchema, propertyvalByIdSchema, seeOnePropertyvalSchema } from './propertyval.schema.js';
+import { createPropertyvalSchema, propertyvalByIdSchema, seeOnePropertyvalSchema, updatePropertyvalSchema } from './propertyval.schema.js';
 const router = Router();
 
 //admin
@@ -16,5 +16,7 @@ router.get('/filter/:propertyId', validate(propertyvalByIdSchema), propertyvalCo
 router.get('/:propertyvalId', validate(seeOnePropertyvalSchema), propertyvalController.seeOnePropertyval);
 
 router.post('/', validate(createPropertyvalSchema), propertyvalController.createPropertyval);
+
+router.put('/:propertyvalId', validate(updatePropertyvalSchema), propertyvalController.updatePropertyval);
 
 export default router;

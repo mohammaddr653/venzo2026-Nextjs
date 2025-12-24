@@ -1,7 +1,8 @@
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
+import withTransaction from '#src/helpers/withTransaction.js';
 import Property from '#src/models/property.js';
 import Propertyval from '#src/models/propertyval.js';
-import { CreatePropertyvalInput } from '#src/modules/propertyval/propertyval.schema.js';
+import { CreatePropertyvalInput, UpdatePropertyvalInput } from '#src/modules/propertyval/propertyval.schema.js';
 import mongoose from 'mongoose';
 
 export const propertyvalServices = {
@@ -45,5 +46,23 @@ export const propertyvalServices = {
     propertyval.propertyId = new mongoose.Types.ObjectId(data.propertyId);
     await propertyval.save();
     return serviceResponse(200, {});
+  },
+
+  async updatePropertyval(propertyvalId: string, data: UpdatePropertyvalInput['body']) {
+    const { data: propertyval } = await this.seeOnePropertyval(propertyvalId);
+    let repeatedPropertyval = await Propertyval.findOne({
+      propertyId: propertyval.propertyId,
+      value: data.value,
+    });
+    if (repeatedPropertyval && propertyval.value !== data.value) {
+      return serviceResponse(400, {});
+    }
+    propertyval.value = data.value;
+    //note:I think we can do this without transactions
+    const transactionResult = await withTransaction(async (session: mongoose.mongo.ClientSession) => {
+      await propertyval.save({ session });
+      return serviceResponse(200, {});
+    });
+    return transactionResult;
   },
 };

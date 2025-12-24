@@ -1,7 +1,7 @@
 import response from '#src/helpers/controllerResponse.js';
 import { Request, Response } from 'express';
 import { propertyvalServices } from '#src/services/propertyval.service.js';
-import { CreatePropertyvalInput, PropertyvalByIdInput, SeeOnePropertyvalInput } from './propertyval.schema.js';
+import { CreatePropertyvalInput, PropertyvalByIdInput, SeeOnePropertyvalInput, UpdatePropertyvalInput } from './propertyval.schema.js';
 
 export const propertyvalController = {
   async getPropertyvalsById(req: Request<PropertyvalByIdInput['params']>, res: Response) {
@@ -51,6 +51,25 @@ export const propertyvalController = {
       return response({
         res,
         message: 'مقدار ویژگی ساخته شد',
+      });
+
+    throw new Error('something went wrong');
+  },
+
+  async updatePropertyval(req: Request<UpdatePropertyvalInput['params'], {}, UpdatePropertyvalInput['body']>, res: Response) {
+    const result = await propertyvalServices.updatePropertyval(req.params.propertyvalId, req.body);
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'مقدار ویژگی با موفقیت بروزرسانی شد',
+      });
+
+    if (result.status === 400)
+      return response({
+        res,
+        message: 'این مقدار ویژگی تکراری است',
+        code: result.status,
       });
 
     throw new Error('something went wrong');
