@@ -74,4 +74,30 @@ export const propertyvalController = {
 
     throw new Error('something went wrong');
   },
+
+  async deletePropertyval(req: Request<SeeOnePropertyvalInput['params']>, res: Response) {
+    const result = await propertyvalServices.deletePropertyval(req.params.propertyvalId);
+
+    if (result.status === 403)
+      return response({
+        res,
+        message: `این مقدار ویژگی در محصولات زیر استفاده می شود ${result.data}`,
+        code: result.status,
+      });
+
+    if (result.status === 200)
+      return response({
+        res,
+        message: 'مقدار ویژگی با موفقیت حذف شد',
+      });
+
+    if (result.status === 403)
+      return response({
+        res,
+        message: 'حذف مقدار ویژگی ناموفق بود',
+        code: result.status,
+      });
+
+    throw new Error('something went wrong');
+  },
 };

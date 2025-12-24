@@ -19,4 +19,6 @@ router.post('/', validate(createPropertyvalSchema), propertyvalController.create
 
 router.put('/:propertyvalId', validate(updatePropertyvalSchema), propertyvalController.updatePropertyval);
 
+router.delete('/:propertyvalId', validate(seeOnePropertyvalSchema), propertyvalController.deletePropertyval);
+
 export default router;

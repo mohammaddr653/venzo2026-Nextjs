@@ -1,5 +1,6 @@
 import serviceResponse, { ServiceResponse } from '#src/helpers/serviceResponse.js';
 import withTransaction from '#src/helpers/withTransaction.js';
+import Product from '#src/models/product.js';
 import Property from '#src/models/property.js';
 import Propertyval from '#src/models/propertyval.js';
 import { CreatePropertyvalInput, UpdatePropertyvalInput } from '#src/modules/propertyval/propertyval.schema.js';
@@ -48,7 +49,7 @@ export const propertyvalServices = {
     return serviceResponse(200, {});
   },
 
-  async updatePropertyval(propertyvalId: string, data: UpdatePropertyvalInput['body']) {
+  async updatePropertyval(propertyvalId: string, data: UpdatePropertyvalInput['body']): Promise<ServiceResponse> {
     const { data: propertyval } = await this.seeOnePropertyval(propertyvalId);
     let repeatedPropertyval = await Propertyval.findOne({
       propertyId: propertyval.propertyId,
@@ -64,5 +65,37 @@ export const propertyvalServices = {
       return serviceResponse(200, {});
     });
     return transactionResult;
+  },
+
+  //checks if this propertyval is not used in any product then allow it to delete
+  async deletePropertyval(propertyvalId: string): Promise<ServiceResponse> {
+    const { data: propertyval } = await this.seeOnePropertyval(propertyvalId);
+    let productsInUse = await Product.find(
+      {
+        properties: {
+          $elemMatch: {
+            name: propertyval.propertyId,
+            values: { $elemMatch: { value: propertyval._id } },
+          },
+        },
+      },
+      { name: 1, _id: 0 },
+    );
+    if (productsInUse && productsInUse.length) {
+      const productsName = await Promise.all(
+        productsInUse.map((item) => {
+          return item.name;
+        }),
+      );
+      return serviceResponse(403, productsName);
+    }
+    const deleteOp = await Propertyval.deleteOne({
+      _id: propertyvalId,
+    });
+
+    if (deleteOp.deletedCount > 0) {
+      return serviceResponse(200, {});
+    }
+    return serviceResponse(404, {});
   },
 };
