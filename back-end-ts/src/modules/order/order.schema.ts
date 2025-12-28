@@ -7,4 +7,19 @@ export const oneOrderSchema = z.object({
   }),
 });
 
+export const createOrderSchema = z.object({
+  body: z.object({
+    products: z.any(),
+    status: z.enum(['expired', 'canceled', 'pending', 'check', 'paid']),
+    name: z.string(),
+    phone: z.string(),
+    province: z.string(),
+    city: z.string(),
+    address: z.string(),
+    postalCode: z.string(),
+    note: z.string(),
+  }),
+});
+
 export type OneOrderInput = z.infer<typeof oneOrderSchema>;
+export type CreateOrderInput = z.infer<typeof createOrderSchema>;
