@@ -1,8 +1,9 @@
 //مشخصات محصولی که در سبد خرید کاربر ذخیره می شود
 
+import { ReservedProduct } from '#src/types/cart.types.js';
 import mongoose from 'mongoose';
 
-const reservedProduct = new mongoose.Schema(
+const reservedProduct = new mongoose.Schema<ReservedProduct>(
   {
     productId: {
       type: mongoose.Schema.Types.ObjectId,
