@@ -15,7 +15,7 @@ export interface PropertyObj {
   values: PropertyvalObj[];
 }
 
-type Types = 'ordinary' | 'color';
+export type Types = 'ordinary' | 'color';
 
 export interface PropertyI {
   name: string;
