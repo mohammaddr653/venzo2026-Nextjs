@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useUserStore } from "@/store";
 import callManager from "@/hooks/callManager";
 import { useRouter } from "next/navigation";
+import TitleRight from "@/components/title-right";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -58,6 +59,12 @@ export default function UsersPage() {
   };
 
   const handleRefresh = () => {
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      token: "",
+    });
     loadUsers();
   };
 
@@ -67,85 +74,87 @@ export default function UsersPage() {
       axios.post(SERVER_API + "/admin/dashboard/users", formData),
       true
     );
+    handleRefresh();
   };
 
   return (
-    <div>
-      <h1>مدیریت کاربران</h1>
-      <div className="bg-red-300">
-        <h1>ثبت نام</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            className="border"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            className="border"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="password"
-            placeholder="password"
-            className="border"
-            onChange={handleChange}
-          />
-          <button>ثبت نام</button>
-        </form>
-      </div>
-      <div className="bg-blue-300">
-        <button onClick={handleRefresh}>refresh</button>
-        <table className="border">
-          <caption>list of users</caption>
-          <thead>
-            <tr>
-              <th className="border">id</th>
-              <th className="border">name</th>
-              <th className="border">email</th>
-              <th className="border">password</th>
-              <th className="border">operation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users?.map((user: any, index: any) => {
-              return (
-                <tr key={index}>
-                  <td className="border">{user._id}</td>
-                  <td className="border">{user.name}</td>
-                  <td className="border">{user.email}</td>
-                  <td className="border">{user.password}</td>
-                  <td className="border">
-                    <button
-                      onClick={(e, userId = user._id) => {
-                        handleDelete(e, userId);
-                      }}
-                    >
-                      REMOVE
-                    </button>
-                    <button
-                      onClick={(e, userId = user._id) => {
-                        handleUpdate(e, userId);
-                      }}
-                    >
-                      UPDATE
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
+    <div className="flex flex-col gap-5">
+      <TitleRight title="مدیریت کاربران" className={"text-wrap"}></TitleRight>
+      <div className="flex items-start gap-5">
+        <div className="bg-neutral-100 p-2">
+          <h1>اضافه کردن کاربر</h1>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              value={formData.name}
+              className="border"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              value={formData.email}
+              className="border"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="password"
+              placeholder="password"
+              value={formData.password}
+              className="border"
+              onChange={handleChange}
+            />
+            <button>ثبت نام</button>
+          </form>
+        </div>
+        <div className="bg-neutral-100 flex flex-col gap-5 p-2 grow">
+          <div className="flex justify-between items-center">
+            <p>لیست کاربران</p>
+          </div>
+          <table className="border cu-records-table">
+            <thead>
+              <tr>
+                <th className="border">آیدی</th>
+                <th className="border">نام</th>
+                <th className="border">ایمیل</th>
+                <th className="border">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users?.map((user: any, index: any) => {
+                return (
+                  <tr key={index}>
+                    <td>{user._id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <button
+                        className="bg-red-400 rounded-md p-1"
+                        onClick={(e, userId = user._id) => {
+                          handleDelete(e, userId);
+                        }}
+                      >
+                        حذف
+                      </button>
+                      <button
+                        className="bg-yellow-400 ms-2 rounded-md p-1"
+                        onClick={(e, userId = user._id) => {
+                          handleUpdate(e, userId);
+                        }}
+                      >
+                        ویرایش
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -47,6 +47,7 @@ export default function UpdateUserPage() {
       axios.put(SERVER_API + `/admin/dashboard/users/${userId}`, formData),
       true
     );
+    loadOneUser();
   };
 
   return (
@@ -75,10 +76,6 @@ export default function UpdateUserPage() {
           />
           <button>بروزرسانی</button>
         </form>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
       </div>
     </div>
   );

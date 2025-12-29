@@ -115,6 +115,15 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
   }
+
+  .cu-records-table {
+    th {
+      @apply bg-gray-200 text-gray-600 font-semibold p-2;
+    }
+    td {
+      @apply p-2 border;
+    }
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {
