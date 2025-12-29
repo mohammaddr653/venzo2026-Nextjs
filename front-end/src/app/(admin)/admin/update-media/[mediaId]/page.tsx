@@ -95,49 +95,51 @@ export default function UpdateMediaPage() {
               media.urls &&
               Object.entries(media.urls).map(
                 ([urlObj, urlObjVal]: any, index: any) => {
-                  return (
-                    <tr key={index}>
-                      <td className="border">
-                        <img
-                          src={SERVER_URL + urlObjVal.url}
-                          alt=""
-                          width={100}
-                          className=""
-                        />
-                      </td>
-                      <td className="border">
-                        <span>سایز : {urlObj}</span>
-                      </td>
-                      <td className="border">
-                        {urlObj === formData.selectedVersion ? (
-                          <form onSubmit={(e) => handleSubmit(e)}>
-                            <input
-                              type="file"
-                              name="media"
-                              accept=".png,.jpg,.webp"
-                              className="border"
-                              onChange={handleUpdateFileChange}
-                              ref={versionInputRef}
-                            />
-                            <button>ذخیره</button>
-                          </form>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              setFormData({
-                                //note: for now its only for the original version that replace the whole media .
-                                selectedVersion:
-                                  urlObj === "original" ? urlObj : null,
-                                media: null,
-                              });
-                            }}
-                          >
-                            عکس جایگزین
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  );
+                  if (urlObjVal) {
+                    return (
+                      <tr key={index}>
+                        <td className="border">
+                          <img
+                            src={SERVER_URL + urlObjVal.url}
+                            alt=""
+                            width={100}
+                            className=""
+                          />
+                        </td>
+                        <td className="border">
+                          <span>سایز : {urlObj}</span>
+                        </td>
+                        <td className="border">
+                          {urlObj === formData.selectedVersion ? (
+                            <form onSubmit={(e) => handleSubmit(e)}>
+                              <input
+                                type="file"
+                                name="media"
+                                accept=".png,.jpg,.webp"
+                                className="border"
+                                onChange={handleUpdateFileChange}
+                                ref={versionInputRef}
+                              />
+                              <button>ذخیره</button>
+                            </form>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                setFormData({
+                                  //note: for now its only for the original version that replace the whole media .
+                                  selectedVersion:
+                                    urlObj === "original" ? urlObj : null,
+                                  media: null,
+                                });
+                              }}
+                            >
+                              عکس جایگزین
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  }
                 }
               )}
           </tbody>
