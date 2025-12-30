@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SERVER_API } from "../../../../../config";
 import axios from "axios";
+import TitleRight from "@/components/title-right";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
@@ -93,86 +94,95 @@ export default function PropertyvalsPage() {
 
   return (
     <div>
-      <h1>مدیریت مقدار های {property?.name}</h1>
-      <div className="bg-red-300">
-        <form onSubmit={handleSubmit} className="flex-column">
-          <input
-            type="text"
-            placeholder="value"
-            name="value"
-            value={formData.value}
-            className="border"
-            onChange={handleChange}
-          />
-          <br />
-          {property?.type === "color" ? (
-            <>
-              <h3>
-                نوع نمایش این ویژگی "رنگ" است . پس مقدار هگزادیسیمال رنگ را
-                تعیین کنید
-              </h3>
-              <input
-                type="text"
-                placeholder="hex"
-                name="hex"
-                value={formData.hex}
-                className="border"
-                onChange={handleChange}
-              />
-            </>
-          ) : null}
-          <button>افزودن مقدار ویژگی</button>
-        </form>
-      </div>
-      <div className="bg-blue-300">
-        <button onClick={handleRefresh}>refresh</button>
-        <table className="border">
-          <caption>list of properties</caption>
-          <thead>
-            <tr>
-              <th className="border">مقدار ویژگی</th>
-              <th className="border">عملیات</th>
-            </tr>
-          </thead>
-          <tbody>
-            {propertyvals?.map((propertyval: any, index: any) => {
-              return (
-                <tr key={index}>
-                  <td className="border">
-                    {propertyval.value}
-
-                    {propertyval.hex ? (
-                      <>
-                        <br />
-                        {propertyval.hex}
-                      </>
-                    ) : null}
-                  </td>
-                  <td className="border">
-                    <button
-                      onClick={(e) => {
-                        handleDelete(e, propertyval._id);
-                      }}
-                    >
-                      حذف
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        handleUpdate(e, propertyval._id);
-                      }}
-                    >
-                      ویرایش
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
+      <TitleRight
+        title={`مدیریت مقدار های ${property?.name}`}
+        className={"text-wrap"}
+      ></TitleRight>
+      <div className="flex items-start gap-5 mt-5">
+        <div className="bg-neutral-100 p-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+            <input
+              type="text"
+              placeholder="value"
+              name="value"
+              value={formData.value}
+              className="border rounded p-1"
+              onChange={handleChange}
+            />
+            {property?.type === "color" ? (
+              <>
+                <h3>
+                  نوع نمایش این ویژگی "رنگ" است . پس مقدار هگزادیسیمال رنگ را
+                  تعیین کنید
+                </h3>
+                <input
+                  type="text"
+                  placeholder="مقدار هگزادسیمال "
+                  name="hex"
+                  value={formData.hex}
+                  className="border rounded p-1"
+                  onChange={handleChange}
+                />
+              </>
+            ) : null}
+            <button className="bg-green-500 rounded-md text-neutral-50 p-2 w-50">
+              افزودن مقدار ویژگی
+            </button>
+          </form>
+        </div>
+        <div className="bg-neutral-100 flex flex-col gap-5 p-2 grow">
+          <div className="flex justify-between items-center">
+            <p>لیست مقادیر {property?.name}</p>
+          </div>
+          <table className="cu-records-table w-full text-sm">
+            <thead>
+              <tr>
+                <th className="border">مقدار ویژگی</th>
+                <th className="border">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {propertyvals?.map((propertyval: any, index: any) => {
+                return (
+                  <tr key={index}>
+                    <td className="border">
+                      <div className="flex flex-col gap-2">
+                        <p className="text-green-700 font-bold">
+                          {propertyval.value}
+                        </p>
+                        {propertyval.hex ? (
+                          <span className=" text-neutral-700 text-xs rounded-md">
+                            {propertyval.hex}
+                          </span>
+                        ) : null}
+                      </div>
+                    </td>
+                    <td className="border">
+                      <div className="flex gap-2">
+                        <button
+                          className="bg-red-400 rounded-md p-1"
+                          onClick={(e) => {
+                            handleDelete(e, propertyval._id);
+                          }}
+                        >
+                          حذف
+                        </button>
+                        <button
+                          className="bg-yellow-400 rounded-md p-1"
+                          onClick={(e) => {
+                            handleUpdate(e, propertyval._id);
+                          }}
+                        >
+                          ویرایش
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

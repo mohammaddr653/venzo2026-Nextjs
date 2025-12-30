@@ -26,7 +26,6 @@ export default function RootLayout({
             <Link href={"/admin/products"}>مدیریت محصولات</Link>
             <Link href={"/admin/properties"}>مدیریت ویژگی ها</Link>
             <Link href={"/admin/orders"}>مدیریت سفارش ها</Link>
-            <Link href={"/admin/blogs"}>مدیریت مقالات</Link>
           </div>
         </aside>
         <div className="bg-white grow overflow-y-scroll p-5">{children}</div>

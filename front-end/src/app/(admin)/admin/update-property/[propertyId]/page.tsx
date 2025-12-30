@@ -4,7 +4,6 @@ import axios from "axios";
 import { SERVER_API } from "../../../../../../config";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useUserStore } from "@/store";
 import callManager from "@/hooks/callManager";
 
 const baseURL =
@@ -12,7 +11,6 @@ const baseURL =
 
 export default function UpdatePropertyPage() {
   const { call } = callManager();
-  const { user } = useUserStore();
   const [formData, setFormData] = useState({
     name: "",
   });
@@ -65,17 +63,13 @@ export default function UpdatePropertyPage() {
           <input
             type="text"
             className="border rounded p-3"
-            placeholder="name"
+            placeholder="نام ویژگی"
             name="name"
             value={formData?.name}
             onChange={handleChange}
           />
           <button>بروزرسانی</button>
         </form>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
       </div>
     </div>
   );

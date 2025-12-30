@@ -4,7 +4,6 @@ import axios from "axios";
 import { SERVER_API } from "../../../../../../config";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useUserStore } from "@/store";
 import callManager from "@/hooks/callManager";
 
 const baseURL =
@@ -12,7 +11,6 @@ const baseURL =
 
 export default function UpdatePropertyvalPage() {
   const { call } = callManager();
-  const { user } = useUserStore();
   const [formData, setFormData] = useState({
     value: "",
   });
@@ -72,10 +70,6 @@ export default function UpdatePropertyvalPage() {
           />
           <button>بروزرسانی</button>
         </form>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
       </div>
     </div>
   );
