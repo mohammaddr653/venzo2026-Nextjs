@@ -1,6 +1,7 @@
 "use client";
 
 import AvatarSelector from "@/components/avatarSelector";
+import SocialIcons from "@/components/social-icons";
 import useLoadUser from "@/hooks/useLoadUser";
 import Link from "next/link";
 
@@ -26,6 +27,22 @@ export default function RootLayout({
             <Link href={"/admin/products"}>مدیریت محصولات</Link>
             <Link href={"/admin/properties"}>مدیریت ویژگی ها</Link>
             <Link href={"/admin/orders"}>مدیریت سفارش ها</Link>
+          </div>
+          <div className="flex flex-col gap-2 mt-auto p-2">
+            <Link
+              href={"/"}
+              className="flex border border-neutral-300 rounded p-2 text-white"
+            >
+              برگشت به سایت
+            </Link>
+            <div className="flex flex-row gap-2 items-center text-neutral-100">
+              {/* note: this needs to replace with the developer social icons */}
+              <SocialIcons
+                width={"15px"}
+                height={"15px"}
+                fill={"#f5f5f5"}
+              ></SocialIcons>
+            </div>
           </div>
         </aside>
         <div className="bg-white grow overflow-y-scroll p-5">{children}</div>

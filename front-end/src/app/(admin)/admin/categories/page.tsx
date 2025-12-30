@@ -111,12 +111,12 @@ export default function CategoriesPage() {
       <div className="flex items-start gap-5">
         <div className="bg-neutral-100 p-2">
           <h2>اضافه کردن دسته بندی</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <input
               type="text"
               name="name"
               placeholder="name"
-              className="border"
+              className="border rounded p-1"
               value={formData.name}
               onChange={handleChange}
             />
@@ -151,7 +151,7 @@ export default function CategoriesPage() {
               name="link"
               placeholder="link"
               value={formData.link}
-              className="border"
+              className="border rounded p-1"
               onChange={handleChange}
             />
             <br />
@@ -197,7 +197,10 @@ export default function CategoriesPage() {
           <div className="flex justify-between items-center">
             <p>لیست دسته بندی ها</p>
           </div>
-          <ul className="border border-neutral-300 p-2 cu-categories-list" ref={list}>
+          <ul
+            className="border border-neutral-300 p-2 cu-categories-list"
+            ref={list}
+          >
             {/* dynamic */}
           </ul>
         </div>
