@@ -122,9 +122,9 @@ const PropertiesManager = (props: PropertiesManagerProps) => {
   };
 
   return (
-    <div>
+    <div className=" border rounded-md border-neutral-300 p-2 flex flex-col gap-2">
       <h1>مدیریت ویژگی ها</h1>
-      <div className="flex-column bg-green-500">
+      <div className="flex-column">
         <div className="relative">
           <input
             type="text"
@@ -138,7 +138,7 @@ const PropertiesManager = (props: PropertiesManagerProps) => {
               }, 1000);
             }}
             value={property.nameString}
-            className="border"
+            className="border rounded p-1"
             onChange={handleproperty}
             autoComplete="off"
           />
@@ -158,6 +158,7 @@ const PropertiesManager = (props: PropertiesManagerProps) => {
         </label>
         <br />
         <button
+          className="bg-blue-500 rounded border-2 border-blue-700 p-1"
           onClick={(e) => {
             e.preventDefault();
             handleSaveProperty();
@@ -171,16 +172,16 @@ const PropertiesManager = (props: PropertiesManagerProps) => {
         ? props.properties.map(
             (propertyObj: ProductPropertiesObj, index: any) => {
               return (
-                <div className="bg-amber-500 p-5" key={index}>
+                <div className="bg-neutral-200 rounded-md p-5" key={index}>
                   <button
-                    className="bg-red-500"
+                    className="bg-red-500 text-white float-left p-1 text-xs rounded-lg"
                     onClick={() =>
                       handleDeleteProperty(propertyObj.property._id!)
                     }
                   >
-                    حذف ویژگی
+                  حذف
                   </button>
-                  <h3>{propertyObj.property.name}</h3>
+                  <h3 className="text-green-700 font-bold">{propertyObj.property.name}</h3>
                   <button
                     onClick={(e) => {
                       e.preventDefault();

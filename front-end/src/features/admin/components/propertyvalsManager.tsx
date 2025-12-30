@@ -101,7 +101,8 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
     }
   };
 
-  const handleSavePropertyval = async () => {
+  const handleSavePropertyval = async (e: any) => {
+    e.preventDefault();
     const matchedProperty = propertiesAndVals.find(
       (obj: any) => obj.name === selectedProperty
     );
@@ -241,8 +242,8 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
   };
 
   return (
-    <div className="bg-pink-400">
-      <div className="flex-column">
+    <div className=" p-2 rounded-md">
+      <div className="flex flex-col gap-1 w-fit">
         <div className="relative">
           <input
             type="text"
@@ -257,7 +258,7 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
             }}
             value={propertyval.valueString}
             onChange={handlepropertyval}
-            className="border"
+            className="border rounded p-1"
             autoComplete="off"
           />
           <PropertyvalSuggestions
@@ -273,7 +274,7 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
               name="price"
               value={propertyval.price}
               onChange={handleSelectiveChange}
-              className="border"
+              className="border rounded p-1"
               autoComplete="off"
             />
             <DiscountManager
@@ -286,12 +287,13 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
               name="stock"
               value={propertyval.stock}
               onChange={handleSelectiveChange}
-              className="border"
+              className="border rounded p-1"
               autoComplete="off"
             />
           </>
         ) : null}
         <button
+          className="bg-blue-600 text-white p-1 rounded-md"
           onClick={handleSavePropertyval}
           disabled={
             propertyval.valueString &&
@@ -304,14 +306,14 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
         </button>
       </div>
       {propertyObj.values.length ? (
-        <ul>
+        <ul className="mt-4 flex flex-col gap-1">
           {propertyObj.values.map(
             (propertyvalObj: ProductPropertyvalsObj, index: any) => {
               return (
                 <li key={index} className="flex flex-row justify-between">
-                  <div>
+                  <div className="flex gap-2 items-center">
                     <button
-                      className="bg-red-600"
+                      className="rounded-md bg-red-500 text-white p-1 text-xs"
                       onClick={() => {
                         handleDeletePropertyval(
                           propertyObj,
@@ -321,11 +323,13 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
                         );
                       }}
                     >
-                      x
+                      حذف
                     </button>
-                    {propertyObj.property.specifiedVals
-                      ? propertyvalObj.propertyval?.value!
-                      : propertyvalObj.valueString!}
+                    <span className="text-green-700 font-bold">
+                      {propertyObj.property.specifiedVals
+                        ? propertyvalObj.propertyval?.value!
+                        : propertyvalObj.valueString!}
+                    </span>
                   </div>
                   {propertyObj.selective ? (
                     <div className="flex flex-row gap-2">
@@ -343,6 +347,7 @@ const PropertyvalsManager = (props: PropertyvalsManagerProps) => {
                     </div>
                   ) : null}
                   <button
+                    className="bg-amber-300 text-sm p-1 rounded-md"
                     onClick={(e) => {
                       e.preventDefault();
                       handleUpdatePropertyval(propertyvalObj);

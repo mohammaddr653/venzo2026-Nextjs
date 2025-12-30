@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <main>
       <div className="adminpage-container flex items-stretch h-dvh bg-amber-300">
-        <aside className="bg-blue-900 flex flex-col w-50 overflow-y-scroll items-stretch gap-5">
+        <aside className="bg-blue-900 flex flex-col w-50 shrink-0 overflow-y-scroll items-stretch gap-5">
           <div className="flex justify-center p-2">
             <AvatarSelector user={user}></AvatarSelector>
           </div>

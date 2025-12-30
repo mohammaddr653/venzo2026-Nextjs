@@ -157,16 +157,16 @@ export default function UpdateProductPage() {
         >
           <input
             type="text"
-            className="border rounded p-3"
-            placeholder="name"
+            className="border rounded p-1"
+            placeholder="نام محصول"
             name="name"
             value={formData?.name}
             onChange={handleChange}
           />
           <input
             type="text"
-            className="border rounded p-3"
-            placeholder="price"
+            className="border rounded p-1"
+            placeholder="قیمت"
             name="price"
             value={formData?.price}
             onChange={handleChange}
@@ -179,8 +179,8 @@ export default function UpdateProductPage() {
           <br />
           <input
             type="text"
-            className="border rounded p-3"
-            placeholder="stock"
+            className="border rounded p-1"
+            placeholder="موجودی انبار"
             name="stock"
             value={formData?.stock}
             onChange={handleChange}
@@ -263,10 +263,6 @@ export default function UpdateProductPage() {
           setProperties={setProperties}
           propertiesAndVals={propertiesAndVals}
         ></PropertiesManager>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
       </div>
     </div>
   );

@@ -125,7 +125,7 @@ export default function MediasPage() {
                     </td>
                     <td className="border">
                       <button
-                        className="bg-yellow-400 ms-2 rounded-md p-1"
+                        className="bg-yellow-400 rounded-md p-1"
                         onClick={() => {
                           handleUpdate(media._id);
                         }}

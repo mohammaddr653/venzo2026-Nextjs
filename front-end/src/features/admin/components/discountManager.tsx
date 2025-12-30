@@ -3,7 +3,7 @@ import { discountObj } from "../types/discountObj";
 
 interface DiscountManagerProps {
   discount: discountObj;
-  setDiscount: React.Dispatch<React.SetStateAction<discountObj>>;
+  setDiscount: React.Dispatch<React.SetStateAction<discountObj | null>>;
 }
 
 const DiscountManager = ({ discount, setDiscount }: DiscountManagerProps) => {
@@ -29,32 +29,40 @@ const DiscountManager = ({ discount, setDiscount }: DiscountManagerProps) => {
     });
   };
 
+  function clearDiscount() {
+    setDiscount(null);
+  }
+
   return (
     <div>
-      <h1>مدیریت تخفیف ها</h1>
-      <div className="flex-column bg-green-500">
+      <div className="flex flex-col gap-1 w-fit p-2">
         <input
           type="text"
           placeholder="قیمت در تخفیف"
           name="offer"
           value={discountObj.offer}
-          className="border"
+          className="border rounded p-1"
           onChange={handleChange}
           autoComplete="off"
         />
-        <br />
         <button
           onClick={handleSaveDiscount}
           disabled={discountObj.offer ? false : true}
-          className="border"
+          className=" bg-blue-500 rounded-md p-1"
         >
           اعمال تخفیف
         </button>
         {discount ? (
-          <div className="bg-violet-500 flex flex-col">
+          <div className=" bg-neutral-100 border border-neutral-300 p-2 rounded-md flex flex-col">
             <span>{`قیمت در تخفیف : ${discount.offer}`}</span>
             <span>{`تاریخ شروع : ${discount.startedAt ?? ""}`}</span>
             <span>{`تاریخ پایان : ${discount.expiredAt ?? ""}`}</span>
+            <button
+              className="bg-red-400 rounded-md p-1 text-sm"
+              onClick={clearDiscount}
+            >
+              حذف تخفیف
+            </button>
           </div>
         ) : null}
       </div>
