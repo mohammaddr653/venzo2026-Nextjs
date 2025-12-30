@@ -32,14 +32,18 @@ const Library = (props: LibraryProps) => {
         className="library-overlay fixed w-full h-full z-10 top-0 right-0 bg-glass-shadow"
         onClick={() => props.setLibShow(false)}
       ></div>
-      <div className="bg-pink-400 border fixed w-[90vw] h-[90vh] overflow-y-scroll rounded-lg top-[5vh] right-[5vw] z-20">
+      <div className="bg-neutral-200 border fixed w-[90vw] h-[90vh] overflow-y-scroll rounded-lg top-[5vh] right-[5vw] z-20 p-10">
         <div className="grid grid-cols-8 gap-2">
           {medias?.map((media: any, index: any) => {
             return (
               <div
                 key={index}
                 onClick={() => handleSelect(media)}
-                className="w-full relative"
+                className={`w-full relative border-4  ${
+                  props.selectedImgs.some((img: any) => img._id === media._id)
+                    ? "border-green-600/50"
+                    : "border-transparent"
+                } rounded-md`}
               >
                 <Img
                   pic={media}
@@ -53,7 +57,13 @@ const Library = (props: LibraryProps) => {
                 {props.selectedImgs.some(
                   (img: any) => img._id === media._id
                 ) ? (
-                  <span className="flex absolute top-0 left-0 bg-red-500 w-[5px] aspect-square"></span>
+                  <span className="flex absolute top-[-7px] left-[-7px] bg-green-600 text-white font-bold aspect-square text-xs w-6 items-center justify-center rounded-full">
+                    {props.selectedImgs.indexOf(
+                      props.selectedImgs.find(
+                        (img: any) => img._id === media._id
+                      )
+                    ) + 1}
+                  </span>
                 ) : null}
               </div>
             );

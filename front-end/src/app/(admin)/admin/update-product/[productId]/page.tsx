@@ -14,14 +14,12 @@ import { ProductPropertiesObj } from "@/features/admin/types/properties";
 import useLoadPropertiesAndVals from "@/hooks/useLoadPropertiesAndVals";
 import useLoadCategories from "@/hooks/useLoadCategories";
 import callManager from "@/hooks/callManager";
-import { useUserStore } from "@/store";
 
 const baseURL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://aminderakhshande.ir";
 
 export default function UpdateProductPage() {
   const { call } = callManager();
-  const { user } = useUserStore();
   const selectionList = useRef<HTMLSelectElement>(null);
   const { categories, loadCategories } = useLoadCategories();
   const { propertiesAndVals, loadPropertiesAndVals } =
@@ -209,7 +207,7 @@ export default function UpdateProductPage() {
               width={100}
             ></Img>
             <p
-              className="cursor-pointer"
+              className="cursor-pointer bg-amber-500 p-2 rounded-md text-xs"
               onClick={() => {
                 setLibShow(true);
               }}
@@ -240,7 +238,7 @@ export default function UpdateProductPage() {
               );
             })}
             <p
-              className="cursor-pointer"
+              className="cursor-pointer bg-amber-500 p-2 rounded-md text-xs"
               onClick={() => {
                 setGalleryLibShow(true);
               }}

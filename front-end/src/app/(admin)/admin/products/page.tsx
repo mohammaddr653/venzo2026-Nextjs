@@ -162,7 +162,11 @@ export default function ProductsPage() {
       <TitleRight title="مدیریت محصولات" className={"text-wrap"}></TitleRight>
       <div className="flex items-start gap-5">
         <div className="bg-neutral-100 p-2">
-          <form id="newProduct" onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <form
+            id="newProduct"
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-2"
+          >
             <input
               type="text"
               placeholder="نام محصول"
@@ -208,7 +212,7 @@ export default function ProductsPage() {
               formData={formData}
               setFormData={setFormData}
             ></RichTextEditor>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center flex-wrap">
               <Img
                 pic={selectedImgs[0]}
                 sizes={"500px"}
@@ -216,7 +220,7 @@ export default function ProductsPage() {
                 width={100}
               ></Img>
               <p
-                className="cursor-pointer"
+                className="cursor-pointer bg-amber-500 p-2 rounded-md text-xs"
                 onClick={() => {
                   setLibShow(true);
                 }}
@@ -231,7 +235,7 @@ export default function ProductsPage() {
                 ></Library>
               ) : null}
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center flex-wrap">
               {selectedGalleryImgs.map((img: any, index: any) => {
                 return (
                   <Img
@@ -244,7 +248,7 @@ export default function ProductsPage() {
                 );
               })}
               <p
-                className="cursor-pointer"
+                className="cursor-pointer bg-amber-500 p-2 rounded-md text-xs"
                 onClick={() => {
                   setGalleryLibShow(true);
                 }}
@@ -264,7 +268,9 @@ export default function ProductsPage() {
               setProperties={setProperties}
               propertiesAndVals={propertiesAndVals}
             ></PropertiesManager>
-            <button className="bg-green-500 rounded-md text-neutral-50 p-2 w-50">افزودن محصول</button>
+            <button className="bg-green-500 rounded-md text-neutral-50 p-2 w-50">
+              افزودن محصول
+            </button>
           </form>
         </div>
         <div className="bg-neutral-100 flex flex-col gap-5 p-2 grow">
