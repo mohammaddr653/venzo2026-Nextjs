@@ -70,20 +70,30 @@ export const buildList = (
       title = document.createElement("h4");
     }
     if (title) {
-      title.innerHTML = menu ? item.name : item.name + `${item.type}`;
+      title.innerHTML = item.name;
       liHead.appendChild(title);
     }
 
     if (handleDelete && handleUpdate) {
       const liButtons = document.createElement("div");
-      liButtons.classList.add("flex", "gap-2");
+      liButtons.classList.add("li-buttons");
 
       const deleteBtn = document.createElement("button");
+      deleteBtn.classList.add("delete-btn");
       deleteBtn.innerText = "حذف";
       const updateBtn = document.createElement("button");
+      updateBtn.classList.add("update-btn");
       updateBtn.innerText = "ویرایش";
+      const itemType = document.createElement("span");
+      itemType.classList.add("item-type");
+      itemType.innerText = `نوع: ${item.type}`;
+      liButtons.appendChild(itemType);
+      const itemDisplay = document.createElement("span");
+      itemDisplay.classList.add("item-display");
+      itemDisplay.innerText = `نمایش: ${item.display}`;
+      liButtons.appendChild(itemDisplay);
+
       [deleteBtn, updateBtn].forEach((btn, i) => {
-        btn.classList.add("bg-yellow-200");
         liButtons.appendChild(btn);
         btn.onclick = (e, categoryId = item._id) => {
           i == 0 ? handleDelete(categoryId) : null;
@@ -97,7 +107,6 @@ export const buildList = (
     parent.appendChild(newLi);
     categories.map((category: any) => {
       if (category.motherId === item._id) {
-        !menu ? liChilds.classList.add("ps-5") : null;
         newLi.appendChild(liChilds);
         listLoop(category, newUl);
       }

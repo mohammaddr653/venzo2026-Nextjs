@@ -82,7 +82,7 @@ export default function UsersPage() {
       <TitleRight title="مدیریت کاربران" className={"text-wrap"}></TitleRight>
       <div className="flex items-start gap-5">
         <div className="bg-neutral-100 p-2">
-          <h1>اضافه کردن کاربر</h1>
+          <h2>اضافه کردن کاربر</h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <input
               type="text"

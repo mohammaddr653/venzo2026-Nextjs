@@ -124,6 +124,35 @@
       @apply p-2 border;
     }
   }
+
+  .cu-categories-list {
+    @apply flex flex-col gap-2;
+    li {
+      @apply bg-amber-200;
+    }
+    li .head {
+      @apply flex justify-between p-2 border-r-2 border-red-600;
+    }
+    li .childs {
+      @apply ps-5;
+    }
+    li div.li-buttons {
+      @apply flex gap-2;
+    }
+    li div.li-buttons button {
+      @apply rounded-md p-1;
+    }
+    li div.li-buttons button.delete-btn {
+      @apply bg-red-400;
+    }
+    li div.li-buttons button.update-btn {
+      @apply bg-yellow-400;
+    }
+    li div.li-buttons .item-type,
+    li div.li-buttons .item-display {
+      @apply rounded-md p-1 text-xs flex justify-center items-center;
+    }
+  }
 }
 
 .scrollbar-hide::-webkit-scrollbar {

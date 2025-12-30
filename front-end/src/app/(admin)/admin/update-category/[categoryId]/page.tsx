@@ -4,7 +4,6 @@ import Img from "@/components/img";
 import Library from "@/features/admin/components/library";
 import { buildSelectionList } from "@/helpers/buildSelectionList";
 import callManager from "@/hooks/callManager";
-import { useUserStore } from "@/store";
 import { useEffect, useRef, useState } from "react";
 import { SERVER_API } from "../../../../../../config";
 import axios from "axios";
@@ -18,7 +17,6 @@ export default function UpdateCategoryPage() {
   const { call } = callManager();
   const { categoryId } = useParams<{ categoryId: string }>();
   const { categories, loadCategories } = useLoadCategories();
-  const { user } = useUserStore();
   const [formData, setFormData] = useState({
     name: "",
     motherId: "",
@@ -96,6 +94,8 @@ export default function UpdateCategoryPage() {
       ),
       true
     );
+    setSelectedImgs([]);
+    loadOneCategory();
   };
 
   return (
@@ -192,10 +192,6 @@ export default function UpdateCategoryPage() {
 
           <button>بروزرسانی</button>
         </form>
-      </div>
-      <div className="bg-sky-600">this is tailwind</div>
-      <div className="bg-sky-300">
-        this is zustand , hello{user ? user.name : " user"}
       </div>
     </div>
   );
