@@ -11,7 +11,7 @@ import SingleShopBootstrap from "@/components/singleShopBootstrap";
 const SingleShopPage = async ({
   params,
 }: {
-  params: { productId: string };
+  params: Promise<{ productId: string }>;
 }) => {
   const resolvedParams = await params;
   const { productId } = resolvedParams;

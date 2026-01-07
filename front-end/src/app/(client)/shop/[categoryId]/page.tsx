@@ -101,8 +101,8 @@ export default async function ShopPage({
   params,
   searchParams,
 }: {
-  params: { categoryId: string };
-  searchParams: { [key: string]: string };
+  params: Promise<{ categoryId: string }>;
+  searchParams: Promise<{ [key: string]: string }>;
 }) {
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;

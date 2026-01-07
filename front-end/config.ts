@@ -1,4 +1,7 @@
-export const SERVER_URL = `${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}`;
+export const SERVER_URL =
+  process.env.NEXT_PUBLIC_NODE_ENV === "development"
+    ? `${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_HOST}:${process.env.NEXT_PUBLIC_SERVER_PORT}`
+    : `${process.env.NEXT_PUBLIC_SERVER_PROTOCOL}://${process.env.NEXT_PUBLIC_SERVER_HOST}`;
 
 export const SERVER_API = SERVER_URL + "/api";
 

@@ -14,9 +14,9 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
-        protocol: process.env.NEXT_PUBLIC_SERVER_PROTOCOL,
-        hostname: process.env.NEXT_PUBLIC_SERVER_HOST,
-        port: process.env.NEXT_PUBLIC_SERVER_PORT,
+        protocol: process.env.NEXT_PUBLIC_SERVER_PROTOCOL || "http",
+        hostname: process.env.NEXT_PUBLIC_SERVER_HOST || "127.0.0.1",
+        port: process.env.NEXT_PUBLIC_SERVER_PORT || "5000",
         pathname: "/uploads/**",
       },
     ],
