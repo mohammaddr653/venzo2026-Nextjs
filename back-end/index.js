@@ -38,9 +38,7 @@ const mode = process.env.NODE_ENV;
 app.use("/api", router);
 
 app.get("*", (req, res) => {
-  mode === "production"
-    ? res.sendFile(path.join(__dirname, "client", "index.html"))
-    : res.send(`you are in ${mode} mode`);
+  res.send(`you are in ${mode} mode`);
 });
 
 const port = process.env.PORT || 3000;
