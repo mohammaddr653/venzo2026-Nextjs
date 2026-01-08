@@ -13,7 +13,13 @@ module.exports = new (class extends controller {
   }
 
   async logout(req, res) {
-    res.clearCookie("jwt");
+    const mode = process.env.NODE_ENV;
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      path: "/",
+      secure: mode === "production" ? true : false,
+      sameSite: mode === "production" ? "None" : "Strict",
+    });
     return this.response({
       res,
       message: "از حساب کاربری خارج شدید",
